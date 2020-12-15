@@ -16,7 +16,7 @@ export const config = {
 		gravity:{y:0}
 	  }
 	},
-	scene: [preloader,mainMenu]
+	scene: [preloader,mainMenu,playGame]
   };
 
 const game = ()=>{ 
