@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import NaviComponent from "../components/navigation"
+import NaviButton from "../components/naviButton"
 
 
 export default class cardCollection extends Phaser.Scene{
@@ -13,9 +13,11 @@ export default class cardCollection extends Phaser.Scene{
 
         this.add.text(width * 0.5, 50, 'Card Collection', { fontSize: 62 })
             .setOrigin(0.5)
+        
+        const navibuttion=new NaviButton(this);
+        navibuttion.createBtn(48,14,24,"Return","mainMenu");
 
-      console.log("this")
-
-        // const playbtn =this.createBtn(width*0.5,height*0.5,"playBtn","game")
+        
+        
     }
 }
