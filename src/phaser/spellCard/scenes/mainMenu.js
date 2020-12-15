@@ -16,9 +16,21 @@ export default class mainMenu extends Phaser.Scene{
 
       
 
-        const playbtn =this.add.text(width*0.5,height*0.5,"playBtn",{ fontSize: 32 }).setOrigin(0.5)
+        const playbtn =this.createBtn(width*0.5,height*0.5,"playBtn","game")
+    }
+
+    /**
+     * 
+     * @param {number} width 
+     * @param {number} height 
+     * @param {string} name 
+     * @param {string} sceneToNaviTo
+     */
+    createBtn(width, height, name,sceneToNaviTo){
+        const btn=this.add.text(width,height,name,{fontSize:48}).setOrigin(0.5)
         const navi=new NaviComponent()
-        navi.navigationToScene("game",this.scene,playbtn);
+        navi.navigationToScene(sceneToNaviTo,this.scene,btn);
+        return btn
     }
 
     
