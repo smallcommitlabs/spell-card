@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import playGame from "../phaser/spellCard/scenes/mainGame";
+import playGame from "../phaser/spellCard/scenes/GameSecnes/mainGame";
 import preloader from "../phaser/spellCard/scenes/preloader"
 import mainMenu from "../phaser/spellCard/scenes/mainMenu"
 import cardCollection from "../phaser/spellCard/scenes/cardCollection"

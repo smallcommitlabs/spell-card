@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import NavigationButton from "../components/naviButton"
+import NavigationButton from "../../components/naviButton"
 
 class playGame extends Phaser.Scene {
   constructor() {
