@@ -15,7 +15,7 @@ class preloader extends Phaser.Scene{
     
     create(){
         console.log("create")
-        this.scene.start('game')
+        this.scene.start('mainMenu')
     }
 }
 

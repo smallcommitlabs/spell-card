@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import playGame from "../phaser/spellCard/mainGame";
 import preloader from "../phaser/spellCard/preloader"
+import mainMenu from "../phaser/spellCard/mainMenu"
 import React from "react";
 
 export const config = {
@@ -15,7 +16,7 @@ export const config = {
 		gravity:{y:0}
 	  }
 	},
-	scene: [preloader,playGame]
+	scene: [preloader,mainMenu]
   };
 
 const game = ()=>{ 
