@@ -16,7 +16,7 @@ export default class mainMenu extends Phaser.Scene{
         this.add.text(width * 0.5, 50, 'Main Menu', { fontSize: 62 })
             .setOrigin(0.5)
 
-        this.navigationButton.createBtn(width*0.5,height*0.5,48,"playBtn","game")
+        this.navigationButton.createBtn(width*0.5,height*0.5,48,"playBtn","gamePreload")
         this.navigationButton.createBtn(width*0.5,height*0.5+70,48,"My Collection","cardCollection")
     }
 
