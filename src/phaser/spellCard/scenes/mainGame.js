@@ -14,8 +14,8 @@ class playGame extends Phaser.Scene {
 
     // Temporary
     const returnBtn=this.add.text(48,14,"Return",{fontSize:24}).setOrigin(0.5)
-    const navi = new NaviComponent ("mainMenu",this.scene,returnBtn)
-    navi.navigationToScene();
+    const navi = new NaviComponent ()
+    navi.navigationToScene("mainMenu",this.scene,returnBtn);
     
   }
 }
