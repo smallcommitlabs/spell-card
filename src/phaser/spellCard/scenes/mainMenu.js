@@ -1,11 +1,13 @@
 import Phaser from 'phaser'
-import NaviComponent from "../components/navigation"
+import NavigationButton from "../components/naviButton"
 
 
 export default class mainMenu extends Phaser.Scene{
 
     constructor(){
         super('mainMenu')
+        
+        this.navigationButton=new NavigationButton(this);
     }
 
     create(){
@@ -14,22 +16,8 @@ export default class mainMenu extends Phaser.Scene{
         this.add.text(width * 0.5, 50, 'Main Menu', { fontSize: 62 })
             .setOrigin(0.5)
 
-        const playbtn =this.createBtn(width*0.5,height*0.5,"playBtn","game")
-        const cardCollection=this.createBtn(width*0.5,height*0.5+70,"My Collection","cardCollection")
-    }
-
-    /**
-     * 
-     * @param {number} width 
-     * @param {number} height 
-     * @param {string} name 
-     * @param {string} sceneToNaviTo
-     */
-    createBtn(width, height, name,sceneToNaviTo){
-        const btn=this.add.text(width,height,name,{fontSize:48}).setOrigin(0.5)
-        const navi=new NaviComponent()
-        navi.navigationToScene(sceneToNaviTo,this.scene,btn);
-        return btn
+        this.navigationButton.createBtn(width*0.5,height*0.5,"playBtn","game")
+        this.navigationButton.createBtn(width*0.5,height*0.5+70,"My Collection","cardCollection")
     }
 
     
