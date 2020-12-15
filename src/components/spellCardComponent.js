@@ -4,6 +4,7 @@ import preloader from "../phaser/spellCard/scenes/preloader"
 import mainMenu from "../phaser/spellCard/scenes/mainMenu"
 import cardCollection from "../phaser/spellCard/scenes/cardCollection"
 import deckDetail from "../phaser/spellCard/scenes/cardCollectiobScenes/deck"
+import newDeck from "../phaser/spellCard/scenes/cardCollectiobScenes/newDeck"
 import React from "react";
 
 export const config = {
@@ -18,7 +19,7 @@ export const config = {
 		gravity:{y:0}
 	  }
 	},
-	scene: [preloader,mainMenu,playGame,cardCollection,deckDetail]
+	scene: [preloader,mainMenu,playGame,cardCollection,deckDetail,newDeck]
   };
 
 const game = ()=>{ 
