@@ -1,5 +1,6 @@
 import Phaser from "phaser";
-import gameBackground from '../assets/gameBackground.jpg'
+import gameBackground from '../../assets/gameBackground.jpg'
+
 class preloader extends Phaser.Scene{
     constructor(){
         super('preloader')

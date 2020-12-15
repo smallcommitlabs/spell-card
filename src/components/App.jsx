@@ -1,5 +1,5 @@
 import React from "react";
-import GameComponent from "./gameComponent"
+import GameComponent from "./spellCardComponent"
 
 export default class App extends React.Component {
 	render() {

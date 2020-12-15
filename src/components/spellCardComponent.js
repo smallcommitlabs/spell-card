@@ -1,6 +1,6 @@
 import Phaser from "phaser";
-import playGame from "../phaser/mainGame";
-import preloader from "../phaser/Preloader"
+import playGame from "../phaser/spellCard/mainGame";
+import preloader from "../phaser/spellCard/preloader"
 import React from "react";
 
 export const config = {
