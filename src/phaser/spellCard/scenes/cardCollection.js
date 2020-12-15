@@ -30,7 +30,7 @@ export default class cardCollection extends Phaser.Scene{
         let xper=0.25;
 
         for(let col=0; col<3;++col){
-            this.add.text(width*xper,height*0.5,"Deck",{fontSize:24});
+            this.navibutton.createBtn(width*xper,height*0.5,25,"Deck","");
             xper+=0.25
         }
     }
@@ -39,9 +39,8 @@ export default class cardCollection extends Phaser.Scene{
         const {width,height}=this.scale
         let xper=0.25;
         
-
         for(let col=0; col<3;++col){
-            this.navibutton.createBtn(width*xper,height*0.25,24,"card","");
+            this.add.text(width*xper,height*0.25,"card",{fontSize:24});
             xper+=0.25
         }
     }
