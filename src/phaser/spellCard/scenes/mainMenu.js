@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import NaviComponent from "../components/navigation"
 
 
 export default class mainMenu extends Phaser.Scene{
@@ -13,13 +14,11 @@ export default class mainMenu extends Phaser.Scene{
         this.add.text(width * 0.5, 50, 'Main Menu', { fontSize: 62 })
             .setOrigin(0.5)
 
-        const playbtn =this.add.text(width*0.5,height*0.5,"playBtn",{ fontSize: 32 }).setOrigin(0.5)
-        playbtn.setInteractive();
-        playbtn.on("pointerdown", this.mouseClick, this)
-    }
+      
 
-    mouseClick(){
-        this.scene.start("game");
+        const playbtn =this.add.text(width*0.5,height*0.5,"playBtn",{ fontSize: 32 }).setOrigin(0.5)
+        const navi=new NaviComponent("game",this.scene,playbtn)
+        navi.navigationToScene();
     }
 
     
