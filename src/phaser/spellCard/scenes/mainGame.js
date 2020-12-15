@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import NaviComponent from "../components/navigation"
+import NavigationButton from "../components/naviButton"
 
 class playGame extends Phaser.Scene {
   constructor() {
@@ -13,9 +13,8 @@ class playGame extends Phaser.Scene {
     .setOrigin(0.5)
 
     // Temporary
-    const returnBtn=this.add.text(48,14,"Return",{fontSize:24}).setOrigin(0.5)
-    const navi = new NaviComponent ()
-    navi.navigationToScene("mainMenu",this.scene,returnBtn);
+    const navigationButton=new NavigationButton(this)
+    navigationButton.createBtn(48,14,24,"Return","mainMenu")
     
   }
 }
