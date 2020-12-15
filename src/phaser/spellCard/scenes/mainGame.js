@@ -10,6 +10,8 @@ class playGame extends Phaser.Scene {
     this.add.image(width*0.5,height*0.5,'gameBackground')
     .setScale(0.5)
     .setOrigin(0.5)
+
+    
   }
 }
 
