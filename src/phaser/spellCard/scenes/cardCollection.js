@@ -30,7 +30,7 @@ export default class cardCollection extends Phaser.Scene{
         let xper=0.25;
 
         for(let col=0; col<3;++col){
-            this.navibutton.createBtn(width*xper,height*0.5,25,"Deck","");
+            this.navibutton.createBtn(width*xper,height*0.5,25,"Deck","deckDetail");
             xper+=0.25
         }
     }
