@@ -8,7 +8,6 @@ Loading images via JavaScript module `import` is also supported.
 
 ## Quickstart
 
-`git clone https://github.com/nodes777/phaser3-react-template`
 `npm install`
 `npm start`
 
