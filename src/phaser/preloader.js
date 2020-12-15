@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-
+import gameBackground from '../assets/gameBackground.jpg'
 class preloader extends Phaser.Scene{
     constructor(){
         super('preloader')
@@ -8,6 +8,7 @@ class preloader extends Phaser.Scene{
     // Items to load
     preload(){
         console.log("preload")
+        this.load.image('gameBackground',gameBackground )
     }
 
     

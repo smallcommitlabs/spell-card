@@ -6,8 +6,8 @@ import React from "react";
 export const config = {
 	type: Phaser.AUTO,
 	parent: "phaser",
-	width: 800,
-	height: 600,
+	width: 960,
+	height: 540,
 	physics:{
 	  default:'arcade',
 	  arcade:{
