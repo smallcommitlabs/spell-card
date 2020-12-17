@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import NavigationButton from "../../components/naviButton"
 
-class playGame extends Phaser.Scene {
+export default class playGame extends Phaser.Scene {
   constructor() {
     super("game");
   }
@@ -18,5 +18,3 @@ class playGame extends Phaser.Scene {
     
   }
 }
-
-export default playGame;
