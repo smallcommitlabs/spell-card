@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import NaviButton from "../components/naviButton"
 import Zone from "../components/zone"
 import CardDisplayArea from "../components/cardCollection/cardDisplayZone"
+import cardDisplayZone from '../components/cardCollection/cardDisplayZone'
 
 
 export default class cardCollection extends Phaser.Scene{
@@ -52,5 +53,9 @@ export default class cardCollection extends Phaser.Scene{
             this.add.text(width*xper,height*0.25,"card",{fontSize:24});
             xper+=0.25
         }
+    }
+
+    update(){
+        this.cardDisplayArea.update()
     }
 }
