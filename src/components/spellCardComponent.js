@@ -3,7 +3,7 @@ import playGame from "../phaser/spellCard/scenes/GameScenes/mainGame";
 import preloader from "../phaser/spellCard/scenes/preloader"
 import mainMenu from "../phaser/spellCard/scenes/mainMenu"
 import cardCollection from "../phaser/spellCard/scenes/cardCollection"
-import deckDetail from "../phaser/spellCard/scenes/cardCollectionScenes/deck"
+import deckDetail from "../phaser/spellCard/scenes/cardCollectionScenes/deckScene"
 import newDeck from "../phaser/spellCard/scenes/cardCollectionScenes/newDeck"
 import gamePreloader from "../phaser/spellCard/scenes/GameScenes/gamePreloader"
 import deckSelection from "../phaser/spellCard/scenes/GameScenes/deckSelection"
