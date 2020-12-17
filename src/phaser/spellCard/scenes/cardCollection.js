@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import NaviButton from "../components/naviButton"
 import Zone from "../components/zone"
+import CardDisplayArea from "../components/cardCollection/cardDisplayZone"
 
 
 export default class cardCollection extends Phaser.Scene{
@@ -10,6 +11,7 @@ export default class cardCollection extends Phaser.Scene{
         super('cardCollection')
         this.navibutton=new NaviButton(this);
         this.zone=new Zone(this);
+        this.cardDisplayArea=new CardDisplayArea(this);
         }
 
     create(){
@@ -18,9 +20,13 @@ export default class cardCollection extends Phaser.Scene{
         this.add.text(width * 0.5, 50, 'Card Collection', { fontSize: 62 })
             .setOrigin(0.5)
         
+        // console.log(this.add.sprite)
+
+        this.cardDisplayArea.create();
+        
         this.navibutton.createBtn(48,14,24,"Return","mainMenu");
 
-        const zone=this.zone.creactZone(width*0.1,height*0.2,width*0.45,height*0.55)
+        
         // this.loadCards()
         // this.loadDeck()
 
