@@ -19,10 +19,6 @@ export default class playGame extends Phaser.Scene {
     // this.scene.add("newDeck",NewDeck,true,{ x: 400, y: 300 });
     console.log(this.settingMenu)
 
-    // Temporary
-    const navigationButton=new NavigationButton(this)
-    navigationButton.createBtn(48,14,24,"Return","mainMenu")
-
     const menuBtn=this.add.text(width*0.5,height*0.17,"Setting", {fontSize:24})
     .setOrigin(0.5)
     .setInteractive();
