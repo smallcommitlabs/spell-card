@@ -1,10 +1,9 @@
 export default class navigation{
 
-    constructor(){
+    constructor(scene){
 
         this.sceneToNaviTo;
-        this.scene;
-        this.component;
+        this.scene=scene;
     }
 
         /**
@@ -12,9 +11,9 @@ export default class navigation{
      * @param {Phaser.Scene} scene
      * @param {Phaser.GameObjects.Image} component
      */
-    navigationToScene(sceneToNaviTo,scene, component){
+    navigationToScene(sceneToNaviTo, component){
+        console.log(sceneToNaviTo)
         this.sceneToNaviTo=sceneToNaviTo
-        this.scene=scene
         this.component=component
 
         const button=this.component.setInteractive();
@@ -22,7 +21,13 @@ export default class navigation{
     }
 
     mouseClick(){
-        this.scene.start(this.sceneToNaviTo);
+        console.log(this.scene)
+        this.scene.scene.start(this.sceneToNaviTo);
+    }
+
+    custNavigationToScene(btn,custFunc){
+        btn.setInteractive();
+        btn.on("pointerdown", custFunc, this)
     }
 
 
