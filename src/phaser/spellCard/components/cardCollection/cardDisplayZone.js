@@ -3,14 +3,14 @@ import Zone from "../../components/zone"
 
 
 
-export default class cardDisplayZone {
+export default class cardDisplayZone extends Phaser.Scene{
 
     /**@type {numner} */
     pageNum
 
-    constructor(scene){
-        this.scene=scene
-        this.zone=new Zone(scene);
+    constructor(){
+        super("cardDisplayZone")
+        this.zone=new Zone(this);
         this.pageNum=0
         this.left
         this.right
@@ -18,18 +18,18 @@ export default class cardDisplayZone {
     }
 
     create(){
-        const {width,height}=this.scene.scale
-        const zone=this.zone.creactZone(width*0.1,height*0.2,width*0.45,height*0.55)
+        const {width,height}=this.scale
+        const zone=this.zone.creactZone(width*0.08,height*0.25,width*0.45,height*0.55)
         this.mockCards(zone)
 
-        const left=this.scene.add.text(zone.x*1.1, zone.y*2.2, "<", {fontSize:24})
+        const left=this.add.text(zone.x*1.1, zone.y*2.2, "<", {fontSize:24})
         .setInteractive();
 
         left.on("pointerdown",this.toLeft,this)
         this.left=left
         left.disableInteractive();
 
-        const right=this.scene.add.text(zone.width*1.1, zone.y*2.2, ">", {fontSize:24})
+        const right=this.add.text(zone.width*1.1, zone.y*2.2, ">", {fontSize:24})
         .setInteractive();
 
         right.on("pointerdown",this.toRight,this)
@@ -56,7 +56,7 @@ export default class cardDisplayZone {
             console.log("i")
             for(let j=0;j<3;++j){
                 console.log("j")
-                card=this.scene.add.sprite(x*xper, y,"CardBack").setOrigin(0).setScale(0.2)
+                card=this.add.sprite(x*xper, y,"CardBack").setOrigin(0).setScale(0.2)
                 x+=130
             }
             y+=120
