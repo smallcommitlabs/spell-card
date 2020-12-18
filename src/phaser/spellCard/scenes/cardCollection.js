@@ -36,7 +36,10 @@ export default class cardCollection extends Phaser.Scene{
         // this.loadCards()
         // this.loadDeck()
 
-        this.navibutton.createBtn(width*0.5,height*0.85,32,"New Deck","newDeck")
+        this.navibutton.createSpecialButton(width*0.5,height*0.85,32,"New Deck",()=>{
+            this.scene.remove("cardDisplayZone")
+            this.scene.start("newDeck")
+        })
         
     }
 
