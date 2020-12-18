@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 export default class setting extends Phaser.Scene{
 
     init(data){
-        this.last=data
+        this.mainGame=data
     }
 
     constructor(){
@@ -16,13 +16,21 @@ export default class setting extends Phaser.Scene{
         // let rt = this.add.renderTexture(0, 0, width, height).setOrigin(0);
         var retangle = this.add.rectangle(0,0, width,height,0x000000).setOrigin(0);
         retangle.alpha=0.5
-        this.add.text(300,300,"Setting", {fontSize:24})
+        const surrender=this.add.text(300,300,"Surrender", {fontSize:24}).setInteractive()
+        
+        surrender.on("pointerdown",()=>{
+            this.scene.remove("gameSetting");
+            this.scene=this.mainGame.object.scene
+            this.scene.start("mainMenu")
+        }
+        )
+        
         const close=this.add.text(200,200,"X", {fontSize:30}).setInteractive();
         close.on("pointerdown",()=>{
             this.scene.remove("gameSetting");
             console.log(this.scene)
-            console.log(this.last)
-            this.scene=this.last.object.scene
+            console.log(this.mainGame)
+            this.scene=this.mainGame.object.scene
             this.scene.resume("game")
         },this)
     }
