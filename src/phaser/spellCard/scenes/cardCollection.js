@@ -10,8 +10,11 @@ export default class cardCollection extends Phaser.Scene{
         super('cardCollection')
         this.navibutton=new NaviButton(this);
         this.zone=new Zone(this);
+        this.color="#8F8F8C"
         this.allCard=undefined
         this.ownCard=undefined
+        this.allCardText
+        this.ownCardText
         }
 
     create(){
@@ -22,11 +25,12 @@ export default class cardCollection extends Phaser.Scene{
         
         // console.log(this.add.sprite)
 
-        const allCard=this.add.text(width*0.1,height*0.25-24,"All Card",{fontSize:24}).setInteractive()
-        const ownedCards=this.add.text(width*0.1+200,height*0.25-24,"Owned Card",{fontSize:24}).setInteractive();
-        
-        allCard.on("pointerdown",this.showAllCards,this)
-        ownedCards.on("pointerdown",this.showOwnedCards,this)
+        this.allCardText=this.add.text(width*0.1,height*0.25-24,"All Card",{fontSize:24}).setInteractive()
+        this.ownCardText=this.add.text(width*0.1+200,height*0.25-24,"Owned Card",{fontSize:24}).setInteractive();
+        this.ownCardText.setColor(this.color)
+
+        this.allCardText.on("pointerdown",this.showAllCards,this)
+        this.ownCardText.on("pointerdown",this.showOwnedCards,this)
         
         this.navibutton.createSpecialButton(48,14,24,"Return",()=>{
             this.scene.remove("cardDisplayZone")
@@ -50,6 +54,8 @@ export default class cardCollection extends Phaser.Scene{
             this.scene.remove("cardDisplayZone")
             this.allCard=this.scene.add("allCardDisplay",cardDisplayZone,true,"All")
             this.ownCard=undefined
+            this.ownCardText.setColor(this.color)
+            this.allCardText.setColor("#FFFFFF")
         }
 
     }
@@ -59,6 +65,8 @@ export default class cardCollection extends Phaser.Scene{
             this.scene.remove("cardDisplayZone")
             this.ownCard=this.scene.add("ownedCardDisplay",cardDisplayZone,true,"Owned")
             this.allCard=undefined
+            this.allCardText.setColor(this.color)
+            this.ownCardText.setColor("#FFFFFF")
         }
 
     }
