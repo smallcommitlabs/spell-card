@@ -10,6 +10,8 @@ export default class cardCollection extends Phaser.Scene{
         super('cardCollection')
         this.navibutton=new NaviButton(this);
         this.zone=new Zone(this);
+        this.allCard=undefined
+        this.ownCard=undefined
         }
 
     create(){
@@ -31,7 +33,7 @@ export default class cardCollection extends Phaser.Scene{
             this.scene.start("mainMenu")
         });
 
-        this.scene.add("cardDisplay",cardDisplayZone,true)
+        this.allCard=this.scene.add("cardDisplay",cardDisplayZone,true,"All")
         
         // this.loadCards()
         // this.loadDeck()
@@ -41,6 +43,30 @@ export default class cardCollection extends Phaser.Scene{
             this.scene.start("newDeck")
         })
         
+    }
+
+    showAllCards(){
+        if(this.allCard=== undefined){
+            this.scene.remove("cardDisplayZone")
+            this.allCard=this.scene.add("allCardDisplay",cardDisplayZone,true,"All")
+            this.ownCard=undefined
+        }
+
+    }
+    
+    showOwnedCards(){
+        if(this.ownCard=== undefined){
+            this.scene.remove("cardDisplayZone")
+            this.ownCard=this.scene.add("ownedCardDisplay",cardDisplayZone,true,"Owned")
+            this.allCard=undefined
+        }
+
+    }
+
+
+    update(){
+        console.log()
+
     }
 
     loadDeck(){
@@ -61,19 +87,5 @@ export default class cardCollection extends Phaser.Scene{
             this.add.text(width*xper,height*0.25,"card",{fontSize:24});
             xper+=0.25
         }
-    }
-
-
-    showAllCards(){
-
-    }
-    
-    showOwnedCards(){
-    }
-
-
-    update(){
-        console.log()
-
     }
 }
