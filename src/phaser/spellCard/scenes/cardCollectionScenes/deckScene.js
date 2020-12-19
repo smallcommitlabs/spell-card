@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 import NavigationButton from '../../components/naviButton'
 
-export default class deck extends Phaser.Scene{
+export default class deckScene extends Phaser.Scene{
     constructor(){
         super("deckDetail")
         this.navibutton =new NavigationButton(this)

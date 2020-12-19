@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 import NaviButton from "../components/naviButton"
 import Zone from "../components/zone"
-
+import cardDisplayZone from '../components/cardCollection/cardDisplayZone'
 
 export default class cardCollection extends Phaser.Scene{
 
@@ -18,13 +18,28 @@ export default class cardCollection extends Phaser.Scene{
         this.add.text(width * 0.5, 50, 'Card Collection', { fontSize: 62 })
             .setOrigin(0.5)
         
-        this.navibutton.createBtn(48,14,24,"Return","mainMenu");
+        // console.log(this.add.sprite)
 
-        const zone=this.zone.creactZone(width*0.1,height*0.2,width*0.45,height*0.55)
+        const allCard=this.add.text(width*0.1,height*0.25-24,"All Card",{fontSize:24}).setInteractive()
+        const ownedCards=this.add.text(width*0.1+200,height*0.25-24,"Owned Card",{fontSize:24}).setInteractive();
+        
+        allCard.on("pointerdown",this.showAllCards,this)
+        ownedCards.on("pointerdown",this.showOwnedCards,this)
+        
+        this.navibutton.createSpecialButton(48,14,24,"Return",()=>{
+            this.scene.remove("cardDisplayZone")
+            this.scene.start("mainMenu")
+        });
+
+        this.scene.add("cardDisplay",cardDisplayZone,true)
+        
         // this.loadCards()
         // this.loadDeck()
 
-        this.navibutton.createBtn(width*0.5,height*0.85,32,"New Deck","newDeck")
+        this.navibutton.createSpecialButton(width*0.5,height*0.85,32,"New Deck",()=>{
+            this.scene.remove("cardDisplayZone")
+            this.scene.start("newDeck")
+        })
         
     }
 
@@ -46,5 +61,19 @@ export default class cardCollection extends Phaser.Scene{
             this.add.text(width*xper,height*0.25,"card",{fontSize:24});
             xper+=0.25
         }
+    }
+
+
+    showAllCards(){
+
+    }
+    
+    showOwnedCards(){
+    }
+
+
+    update(){
+        console.log()
+
     }
 }
