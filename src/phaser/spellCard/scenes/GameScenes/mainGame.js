@@ -12,6 +12,9 @@ export default class playGame extends Phaser.Scene {
     .setScale(0.5)
     .setOrigin(0.5)
 
+    this.cardDeck = this.add.image(869, 456, 'CardBack').setScale(0.315, 0.28)
+    this.cardGraveyard = this.add.image(98, 456, 'CardBack').setScale(0.315, 0.28)
+
     // Temporary
     const navigationButton=new NavigationButton(this)
     navigationButton.createBtn(48,14,24,"Return","mainMenu")
