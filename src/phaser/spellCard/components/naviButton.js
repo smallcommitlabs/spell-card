@@ -16,8 +16,8 @@ export default class naviButton {
      * 
      * @param {number} width 
      * @param {number} height 
-     * @param {string} name 
      * @param {number} size
+     * @param {string} name 
      * @param {string} sceneToNaviTo
      */
     createBtn(width, height, size,name,sceneToNaviTo){
