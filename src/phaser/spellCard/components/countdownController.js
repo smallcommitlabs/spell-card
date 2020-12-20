@@ -45,6 +45,17 @@ export default class countdownController{
 
 	stop()
 	{
+        if (this.timerEvent)
+        {
+            console.log("stop")
+            this.timerEvent.destroy()
+            this.timerEvent = undefined
+        }
+  
+	}
+
+	update()
+	{
         if(!this.timerEvent || this.duration<=0){
             return
         }
@@ -56,10 +67,6 @@ export default class countdownController{
         const seconds=remaining/1000
 
         this.label.text=seconds.toFixed(0)
-	}
-
-	update()
-	{
 	}
 
 }
