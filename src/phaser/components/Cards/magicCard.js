@@ -1,4 +1,4 @@
-import Card from './Card'
+import Card from './Card';
 
 export default class magicCard extends Card {
   constructor(name, rank, type, value, imagePath) {

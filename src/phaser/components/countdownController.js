@@ -1,12 +1,12 @@
 export default class countdownController {
   /** @type {Phaser.Time.TimerEvent} */
-  timerEvent
+  timerEvent;
 
   /** @type {Phaser.Scene} */
-  scene
+  scene;
 
   /** @type {Phaser.GameObjects.Text} */
-  label
+  label;
 
   /**
    *
@@ -14,8 +14,8 @@ export default class countdownController {
    * @param {Phaser.GameObjects.Text} label
    */
   constructor(scene, label) {
-    this.scene = scene
-    this.label = label
+    this.scene = scene;
+    this.label = label;
   }
 
   /**
@@ -23,42 +23,42 @@ export default class countdownController {
    * @param {number} duration
    */
   start(callback, duration) {
-    this.duration = duration
-    this.stop()
+    this.duration = duration;
+    this.stop();
 
     this.timerEvent = this.scene.time.addEvent({
       delay: duration,
       callback: () => {
-        this.label.text = '0'
+        this.label.text = '0';
 
-        this.stop()
+        this.stop();
 
         if (callback) {
-          callback()
+          callback();
         }
       },
-    })
+    });
   }
 
   stop() {
     if (this.timerEvent) {
-      console.log('stop')
-      this.timerEvent.destroy()
-      this.timerEvent = undefined
+      console.log('stop');
+      this.timerEvent.destroy();
+      this.timerEvent = undefined;
     }
   }
 
   update() {
     if (!this.timerEvent || this.duration <= 0) {
-      return
+      return;
     }
 
-    const elapsed = this.timerEvent.getElapsed()
+    const elapsed = this.timerEvent.getElapsed();
 
-    const remaining = this.duration - elapsed
+    const remaining = this.duration - elapsed;
 
-    const seconds = remaining / 1000
+    const seconds = remaining / 1000;
 
-    this.label.text = seconds.toFixed(0)
+    this.label.text = seconds.toFixed(0);
   }
 }

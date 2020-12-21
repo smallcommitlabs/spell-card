@@ -1,15 +1,15 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 
 export default class gamePreloader extends Phaser.Scene {
   constructor() {
-    super('gamePreload')
+    super('gamePreload');
   }
 
   preload() {
-    console.log('Loading........ Connecting...')
+    console.log('Loading........ Connecting...');
   }
 
   create() {
-    this.scene.start('cardSwitch')
+    this.scene.start('cardSwitch');
   }
 }
