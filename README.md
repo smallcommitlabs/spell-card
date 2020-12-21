@@ -8,26 +8,26 @@ Clone the repo then run `yarn` (or `npm i`) to install all project dependencies
 
 ## 📜 Available scripts
 
-### ▶ `Start`
+### ▶ Start
 
 `yarn start`/`npm run start`
 
 Runs the app in the development mode.  
 Open `http://localhost:3000` to view it in the browser.
 
-### 🔨 `Build`
+### 🔨 Build
 
 `yarn build`/`npm run build`
 
 Creates a production build ready for deployment and outputs the result into the `build` folder
 
-### 🔬 `Test`
+### 🔬`Test
 
 `yarn test`/`npm run test`
 
 Launches the test runner in the interactive watch mode.
 
-### 📝 `Lint`
+### 📝 Lint
 
 `yarn lint`/`npm run lint`
 
