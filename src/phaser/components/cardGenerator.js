@@ -1,7 +1,3 @@
-
-export default class cardGenerator{
-    constructor(){
-
-    }
-
+export default class cardGenerator {
+  constructor() {}
 }

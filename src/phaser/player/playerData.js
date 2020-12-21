@@ -1,3 +1,3 @@
-export default cardObject;
+export default cardObject
 
 export default cardobjectCreate
