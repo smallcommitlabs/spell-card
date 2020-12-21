@@ -36,3 +36,8 @@ Runs eslint against all `js`,`ts`,`jsx`,`tsx` files in the project and automatic
 ## Development
 
 This project is setup for typescript but also allows regular `js` files as well 😊
+
+## Opening a pull request
+
+Please make all changes on a new branch and then [open a pull request](https://github.com/smallcommitlabs/spell-card/compare) to merge into main. In the description give a brief description of the changes made. Also select yourself as an assignee and make sure it is reviewed by at least one other person before merging.
+
