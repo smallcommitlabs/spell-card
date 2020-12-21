@@ -1,12 +1,10 @@
-import React from 'react';
-import SpellCard from './components/SpellCard';
+import React from 'react'
+import SpellCard from './components/SpellCard'
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-        <SpellCard/>
-    </div>
-  );
-}
+const App: React.FC = () => (
+  <div className='App'>
+    <SpellCard />
+  </div>
+)
 
-export default App;
+export default App
