@@ -1,13 +1,13 @@
 import React from 'react';
 import { renderRoutes, routeMap } from './routeMapper';
 
-const LazySpellCard = React.lazy(() => import('../components/SpellCard'));
+const LazyGame = React.lazy(() => import('../pages/Game'));
 
 const mainRouteMap: routeMap = {
   routes: [
     {
       path: '/spellcard',
-      Component: LazySpellCard,
+      Component: LazyGame,
       exact: true,
     },
   ],

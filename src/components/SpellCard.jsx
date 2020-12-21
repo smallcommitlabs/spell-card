@@ -10,7 +10,7 @@ import deckSelection from '../phaser/scenes/GameScenes/deckSelection';
 import cardSwich from '../phaser/scenes/GameScenes/cardSwitch';
 import React, { useEffect } from 'react';
 
-export const config = {
+const config = {
   type: Phaser.AUTO,
   parent: 'phaser',
   width: 960,
@@ -40,7 +40,7 @@ const SpellCard = () => {
     new Phaser.Game(config);
   }, []);
 
-  return <div></div>;
+  return <div id={'phaser'} style={{ height: config.height, width: config.width }}></div>;
 };
 
 export default SpellCard;
