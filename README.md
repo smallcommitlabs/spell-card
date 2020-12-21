@@ -1,46 +1,43 @@
-# Getting Started with Create React App
+# ✨ Spell Card ✨
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Repo for the frontend of the Spell-card game, using [React](https://reactjs.org/) and [Phaser](https://phaser.io/). Bootstrapped with [CRA](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 💻 Setting up a local development environment
 
-In the project directory, you can run:
+Clone the repo then run `yarn` (or `npm i`) to install all project dependencies
 
-### `yarn start`
+## 📜 Available scripts
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### ▶ Start
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`yarn start`/`npm run start`
 
-### `yarn test`
+Runs the app in the development mode.  
+Open `http://localhost:3000` to view it in the browser.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🔨 Build
 
-### `yarn build`
+`yarn build`/`npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Creates a production build ready for deployment and outputs the result into the `build` folder
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🔬`Test
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`yarn test`/`npm run test`
 
-### `yarn eject`
+Launches the test runner in the interactive watch mode.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 📝 Lint
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`yarn lint`/`npm run lint`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Runs eslint against all `js`,`ts`,`jsx`,`tsx` files in the project and automatically fixes all linting errors
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Development
 
-## Learn More
+This project is setup for typescript but also allows regular `js` files as well 😊
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Opening a pull request
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Please make all changes on a new branch and then [open a pull request](https://github.com/smallcommitlabs/spell-card/compare) to merge into main. In the description give a brief description of the changes made. Also select yourself as an assignee and make sure it is reviewed by at least one other person before merging.
+
