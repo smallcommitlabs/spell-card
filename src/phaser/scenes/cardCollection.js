@@ -13,8 +13,6 @@ export default class cardCollection extends Phaser.Scene{
         this.color="#8F8F8C"
         this.allCard=undefined
         this.ownCard=undefined
-        this.allCardText
-        this.ownCardText
         }
 
     create(){

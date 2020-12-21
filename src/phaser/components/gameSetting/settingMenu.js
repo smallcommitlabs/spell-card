@@ -1,8 +1,9 @@
 import Phaser from 'phaser'
+
 export default class setting extends Phaser.Scene{
 
     init(data){
-        this.mainGame=data
+        this.mainGame = data
     }
 
     constructor(){

@@ -1,11 +1,11 @@
 import Phaser from "phaser";
-import gameBackground from '../../../assets/gameBackground.jpg'
-import CardBack from '../../../assets/CardBack.png'
-import attack from '../../../assets/attack.jpg'
-import value8 from '../../../assets/1.jpg'
-import value2 from '../../../assets/2.jpg'
-import value4 from '../../../assets/3.jpg'
-import value6 from '../../../assets/4.jpg'
+import gameBackground from '../assets/gameBackground.jpg'
+import CardBack from '../assets/CardBack.png'
+import attack from '../assets/attack.jpg'
+import value8 from '../assets/1.jpg'
+import value2 from '../assets/2.jpg'
+import value4 from '../assets/3.jpg'
+import value6 from '../assets/4.jpg'
 
 class preloader extends Phaser.Scene{
     constructor(){

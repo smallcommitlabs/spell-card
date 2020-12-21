@@ -6,7 +6,6 @@ export default class playGame extends Phaser.Scene {
   constructor() {
     super("game");
     this.showMenu=true;
-    this.settingMenu
   }
 
   create() {

@@ -2,8 +2,7 @@ export default class navigation{
 
     constructor(scene){
 
-        this.sceneToNaviTo;
-        this.scene=scene;
+        this.scene = scene;
     }
 
         /**

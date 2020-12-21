@@ -1,6 +1,3 @@
-import Phaser from "phaser";
-import { useEffect } from "react";
-import { SplitChunksPlugin } from "webpack";
 
 export default class Card {
     constructor(name, rank, type, value, imagePath) {

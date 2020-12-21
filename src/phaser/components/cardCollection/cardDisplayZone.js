@@ -16,9 +16,6 @@ export default class cardDisplayZone extends Phaser.Scene{
         super("cardDisplayZone")
         this.zone=new Zone(this);
         this.pageNum=0
-        this.left
-        this.right
-        this.pageNumText
 
     }
 
