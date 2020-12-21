@@ -1,7 +1,7 @@
-import React from 'react'
-import { renderRoutes, routeMap } from './routeMapper'
+import React from 'react';
+import { renderRoutes, routeMap } from './routeMapper';
 
-const LazySpellCard = React.lazy(() => import('../components/SpellCard'))
+const LazySpellCard = React.lazy(() => import('../components/SpellCard'));
 
 const mainRouteMap: routeMap = {
   routes: [
@@ -18,6 +18,6 @@ const mainRouteMap: routeMap = {
       to: '/spellcard',
     },
   ],
-}
+};
 
-export default renderRoutes(mainRouteMap)
+export default renderRoutes(mainRouteMap);

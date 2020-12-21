@@ -1,14 +1,14 @@
-import Phaser from 'phaser'
-import playGame from '../phaser/scenes/GameScenes/mainGame'
-import preloader from '../phaser/scenes/preloader'
-import mainMenu from '../phaser/scenes/mainMenu'
-import cardCollection from '../phaser/scenes/cardCollection'
-import deckDetail from '../phaser/scenes/cardCollectionScenes/deckScene'
-import newDeck from '../phaser/scenes/cardCollectionScenes/newDeck'
-import gamePreloader from '../phaser/scenes/GameScenes/gamePreloader'
-import deckSelection from '../phaser/scenes/GameScenes/deckSelection'
-import cardSwich from '../phaser/scenes/GameScenes/cardSwitch'
-import React, { useEffect } from 'react'
+import Phaser from 'phaser';
+import playGame from '../phaser/scenes/GameScenes/mainGame';
+import preloader from '../phaser/scenes/preloader';
+import mainMenu from '../phaser/scenes/mainMenu';
+import cardCollection from '../phaser/scenes/cardCollection';
+import deckDetail from '../phaser/scenes/cardCollectionScenes/deckScene';
+import newDeck from '../phaser/scenes/cardCollectionScenes/newDeck';
+import gamePreloader from '../phaser/scenes/GameScenes/gamePreloader';
+import deckSelection from '../phaser/scenes/GameScenes/deckSelection';
+import cardSwich from '../phaser/scenes/GameScenes/cardSwitch';
+import React, { useEffect } from 'react';
 
 export const config = {
   type: Phaser.AUTO,
@@ -33,14 +33,14 @@ export const config = {
     gamePreloader,
     cardSwich,
   ],
-}
+};
 
 const SpellCard = () => {
   useEffect(() => {
-    new Phaser.Game(config)
-  }, [])
+    new Phaser.Game(config);
+  }, []);
 
-  return <div></div>
-}
+  return <div></div>;
+};
 
-export default SpellCard
+export default SpellCard;

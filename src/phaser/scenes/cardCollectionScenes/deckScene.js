@@ -1,18 +1,18 @@
-import Phaser from 'phaser'
-import NavigationButton from '../../components/naviButton'
+import Phaser from 'phaser';
+import NavigationButton from '../../components/naviButton';
 
 export default class deckScene extends Phaser.Scene {
   constructor() {
-    super('deckDetail')
-    this.navibutton = new NavigationButton(this)
+    super('deckDetail');
+    this.navibutton = new NavigationButton(this);
   }
 
   create() {
-    const { width, height } = this.scale
+    const { width, height } = this.scale;
 
-    this.add.text(width * 0.5, 50, 'Deck', { fontSize: 62 }).setOrigin(0.5)
+    this.add.text(width * 0.5, 50, 'Deck', { fontSize: 62 }).setOrigin(0.5);
 
-    this.navibutton.createBtn(48, 14, 24, 'Return', 'cardCollection')
+    this.navibutton.createBtn(48, 14, 24, 'Return', 'cardCollection');
 
     const submit = this.navibutton.createBtn(
       width * 0.5,
@@ -20,6 +20,6 @@ export default class deckScene extends Phaser.Scene {
       24,
       'Submit',
       'cardCollection'
-    )
+    );
   }
 }
