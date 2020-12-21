@@ -10,6 +10,11 @@ export default class cardCollection extends Phaser.Scene{
         super('cardCollection')
         this.navibutton=new NaviButton(this);
         this.zone=new Zone(this);
+        this.color="#8F8F8C"
+        this.allCard=undefined
+        this.ownCard=undefined
+        this.allCardText
+        this.ownCardText
         }
 
     create(){
@@ -20,18 +25,19 @@ export default class cardCollection extends Phaser.Scene{
         
         // console.log(this.add.sprite)
 
-        const allCard=this.add.text(width*0.1,height*0.25-24,"All Card",{fontSize:24}).setInteractive()
-        const ownedCards=this.add.text(width*0.1+200,height*0.25-24,"Owned Card",{fontSize:24}).setInteractive();
-        
-        allCard.on("pointerdown",this.showAllCards,this)
-        ownedCards.on("pointerdown",this.showOwnedCards,this)
+        this.allCardText=this.add.text(width*0.1,height*0.25-24,"All Card",{fontSize:24}).setInteractive()
+        this.ownCardText=this.add.text(width*0.1+200,height*0.25-24,"Owned Card",{fontSize:24}).setInteractive();
+        this.ownCardText.setColor(this.color)
+
+        this.allCardText.on("pointerdown",this.showAllCards,this)
+        this.ownCardText.on("pointerdown",this.showOwnedCards,this)
         
         this.navibutton.createSpecialButton(48,14,24,"Return",()=>{
             this.scene.remove("cardDisplayZone")
             this.scene.start("mainMenu")
         });
 
-        this.scene.add("cardDisplay",cardDisplayZone,true)
+        this.allCard=this.scene.add("cardDisplay",cardDisplayZone,true,"All")
         
         // this.loadCards()
         // this.loadDeck()
@@ -41,6 +47,34 @@ export default class cardCollection extends Phaser.Scene{
             this.scene.start("newDeck")
         })
         
+    }
+
+    showAllCards(){
+        if(this.allCard=== undefined){
+            this.scene.remove("cardDisplayZone")
+            this.allCard=this.scene.add("allCardDisplay",cardDisplayZone,true,"All")
+            this.ownCard=undefined
+            this.ownCardText.setColor(this.color)
+            this.allCardText.setColor("#FFFFFF")
+        }
+
+    }
+    
+    showOwnedCards(){
+        if(this.ownCard=== undefined){
+            this.scene.remove("cardDisplayZone")
+            this.ownCard=this.scene.add("ownedCardDisplay",cardDisplayZone,true,"Owned")
+            this.allCard=undefined
+            this.allCardText.setColor(this.color)
+            this.ownCardText.setColor("#FFFFFF")
+        }
+
+    }
+
+
+    update(){
+        console.log()
+
     }
 
     loadDeck(){
@@ -61,19 +95,5 @@ export default class cardCollection extends Phaser.Scene{
             this.add.text(width*xper,height*0.25,"card",{fontSize:24});
             xper+=0.25
         }
-    }
-
-
-    showAllCards(){
-
-    }
-    
-    showOwnedCards(){
-    }
-
-
-    update(){
-        console.log()
-
     }
 }

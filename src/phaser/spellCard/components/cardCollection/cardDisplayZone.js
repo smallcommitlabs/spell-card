@@ -7,6 +7,10 @@ export default class cardDisplayZone extends Phaser.Scene{
 
     /**@type {numner} */
     pageNum
+    init(input){
+       
+        this.input=input
+    }
 
     constructor(){
         super("cardDisplayZone")
@@ -14,13 +18,18 @@ export default class cardDisplayZone extends Phaser.Scene{
         this.pageNum=0
         this.left
         this.right
+        this.pageNumText
 
     }
 
     create(){
+        console.log(this.input)
+        const text=this.add.text(700,400,this.input,{fontSize:24})
         const {width,height}=this.scale
         const zone=this.zone.creactZone(width*0.08,height*0.25,width*0.45,height*0.55)
         this.mockCards(zone)
+
+        this.pageNumText=this.add.text(zone.y*2,zone.x*5.2,this.pageNum+1,{fontSize:12})
 
         const left=this.add.text(zone.x*1.1, zone.y*2.2, "<", {fontSize:24})
         .setInteractive();
@@ -43,6 +52,7 @@ export default class cardDisplayZone extends Phaser.Scene{
             this.left.disableInteractive()
         }
         console.log(this.pageNum)
+        this.pageNumText.setText(this.pageNum+1)
     }
 
     mockCards(zone){
