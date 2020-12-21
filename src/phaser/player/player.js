@@ -1,12 +1,12 @@
-const ATTACK = '../../../assets/attack.jpg'
-const DEFENCE = '../../../assets/3.jpg'
-const MAGIC = '../../../assets/4.jpg'
+const ATTACK = '../../../assets/attack.jpg';
+const DEFENCE = '../../../assets/3.jpg';
+const MAGIC = '../../../assets/4.jpg';
 
 export const player = [
   {
     Name: 'Arron',
   },
-]
+];
 
 export const deck = {
   card: [
@@ -116,4 +116,4 @@ export const deck = {
       image: MAGIC,
     },
   ],
-}
+};

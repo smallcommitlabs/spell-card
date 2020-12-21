@@ -1,10 +1,11 @@
-import React from 'react'
-import SpellCard from './components/SpellCard'
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import MainRoutes from './routes/MainRoutes';
 
 const App: React.FC = () => (
-  <div className='App'>
-    <SpellCard />
-  </div>
-)
+  <Router>
+    <MainRoutes />
+  </Router>
+);
 
-export default App
+export default App;
