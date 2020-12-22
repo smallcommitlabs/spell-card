@@ -5,11 +5,11 @@ export default class Card {
   useEffect() {}
 
   useCard() {
-    this.cardInform.isDiscarded = true;
+    this.cardInform.discarded = true;
   }
 
   resetCardUsed() {
-    this.cardInform.isDiscarded = false;
+    this.cardInform.discarded = false;
   }
 
   createSprite(x, y, scene) {
