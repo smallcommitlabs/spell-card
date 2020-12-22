@@ -28,6 +28,8 @@ export default class cards {
         card = new DefenceCard(i);
       } else if (i.class === 'Magic') {
         card = new MagicCard(i);
+      } else {
+        console.log('none');
       }
       this.card[a] = card;
       a++;
@@ -35,6 +37,20 @@ export default class cards {
   }
 
   getRandomCard(numOfCards) {
-    return this.card[6];
+    let i = 0;
+    const array = new Array();
+    while (numOfCards > 0) {
+      const num = Math.floor(Math.random() * this.card.length);
+      console.log(num);
+      const card = this.card[num];
+      console.log(card.getCard().discarded);
+      if (!card.getCard().discarded) {
+        array[i] = card;
+        card.useCard();
+        numOfCards--;
+        i++;
+      }
+    }
+    return array;
   }
 }
