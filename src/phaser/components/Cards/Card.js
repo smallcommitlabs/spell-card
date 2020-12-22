@@ -15,4 +15,8 @@ export default class Card {
   createSprite(x, y, scene) {
     return scene.physics.add.sprite(x, y, this.cardInform, this.cardInform);
   }
+
+  getCard() {
+    return this.cardInform;
+  }
 }
