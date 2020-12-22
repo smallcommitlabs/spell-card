@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import gameBackground from '../assets/gameBackground.jpg';
+import playerData from '../player/playerData';
 import CardBack from '../assets/CardBack.png';
 import attack from '../assets/attack.jpg';
 import value8 from '../assets/1.jpg';
@@ -14,6 +15,8 @@ class preloader extends Phaser.Scene {
 
   // Items to load
   preload() {
+    const process = new playerData();
+    process.loadCard();
     console.log('preload');
     this.load.image('gameBackground', gameBackground);
     this.load.image('CardBack', CardBack);
