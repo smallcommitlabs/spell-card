@@ -2,114 +2,114 @@ const ATTACK = '../../../assets/attack.jpg';
 const DEFENCE = '../../../assets/3.jpg';
 const MAGIC = '../../../assets/4.jpg';
 
-export const player = [
+const player = [
   {
     Name: 'Arron',
   },
 ];
 
-export const deck = {
+const deck = {
   card: [
     {
-      name: 'Sword',
+      name: 'Sword1',
       class: 'Attack',
       rank: 1,
       discarded: false,
       image: ATTACK,
     },
     {
-      name: 'Sword',
+      name: 'Sword2',
       class: 'Attack',
       rank: 2,
       discarded: false,
       image: ATTACK,
     },
     {
-      name: 'Sword',
+      name: 'Sword3',
       class: 'Attack',
       rank: 3,
       discarded: false,
       image: ATTACK,
     },
     {
-      name: 'Sword',
+      name: 'Sword4',
       class: 'Attack',
       rank: 4,
       discarded: false,
       image: ATTACK,
     },
     {
-      name: 'Sword',
+      name: 'Sword5',
       class: 'Attack',
       rank: 5,
       discarded: false,
       image: ATTACK,
     },
     {
-      name: 'Shield',
+      name: 'Shield1',
       class: 'Defence',
       rank: 1,
       discarded: false,
       image: DEFENCE,
     },
     {
-      name: 'Shield',
+      name: 'Shield2',
       class: 'Defence',
       rank: 2,
       discarded: false,
       image: DEFENCE,
     },
     {
-      name: 'Shield',
+      name: 'Shield3',
       class: 'Defence',
       rank: 3,
       discarded: false,
       image: DEFENCE,
     },
     {
-      name: 'Shield',
+      name: 'Shield4',
       class: 'Depence',
       rank: 4,
       discarded: false,
       image: DEFENCE,
     },
     {
-      name: 'Shield',
+      name: 'Shield5',
       class: 'Depence',
       rank: 5,
       discarded: false,
       image: DEFENCE,
     },
     {
-      name: 'WoooWah',
+      name: 'WoooWah1',
       class: 'Magic',
       rank: 1,
       discarded: false,
       image: MAGIC,
     },
     {
-      name: 'WoooWah',
+      name: 'WoooWah2',
       class: 'Magic',
       rank: 2,
       discarded: false,
       image: MAGIC,
     },
     {
-      name: 'WoooWah',
+      name: 'WoooWah3',
       class: 'Magic',
       rank: 3,
       discarded: false,
       image: MAGIC,
     },
     {
-      name: 'WoooWah',
+      name: 'WoooWah4',
       class: 'Magic',
       rank: 4,
       discarded: false,
       image: MAGIC,
     },
     {
-      name: 'WoooWah',
+      name: 'WoooWah5',
       class: 'Magic',
       rank: 5,
       discarded: false,
@@ -117,3 +117,5 @@ export const deck = {
     },
   ],
 };
+
+export default deck;
