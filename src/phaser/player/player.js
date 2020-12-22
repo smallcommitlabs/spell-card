@@ -68,14 +68,14 @@ const deck = {
     },
     {
       name: 'Shield4',
-      class: 'Depence',
+      class: 'Defence',
       rank: 4,
       discarded: false,
       image: DEFENCE,
     },
     {
       name: 'Shield5',
-      class: 'Depence',
+      class: 'Defence',
       rank: 5,
       discarded: false,
       image: DEFENCE,
