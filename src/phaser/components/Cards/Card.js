@@ -1,23 +1,22 @@
 export default class Card {
-  constructor(name, rank, type, value, imagePath) {
-    this.name = name;
-    this.rank = rank;
-    this.type = type;
-    this.value = value;
-    this.imagePath = imagePath;
-    this.isDiscarded = false;
+  constructor(cardInform) {
+    this.cardInform = cardInform;
   }
   useEffect() {}
 
   useCard() {
-    this.isDiscarded = true;
+    this.cardInform.discarded = true;
   }
 
   resetCardUsed() {
-    this.isDiscarded = false;
+    this.cardInform.discarded = false;
   }
 
   createSprite(x, y, scene) {
-    return scene.physics.add.sprite(x, y, this.name, this.imagePath);
+    return scene.physics.add.sprite(x, y, this.cardInform, this.cardInform);
+  }
+
+  getCard() {
+    return this.cardInform;
   }
 }
