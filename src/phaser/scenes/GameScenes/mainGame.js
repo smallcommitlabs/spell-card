@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import NavigationButton from '../../components/naviButton';
+import QuestionBoard from '../../components/answerQuestion/questionBoard';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 
 export default class playGame extends Phaser.Scene {
@@ -28,7 +29,12 @@ export default class playGame extends Phaser.Scene {
       .setInteractive();
     this.popUpScreen(menuBtn, 'setting', SettingMenu);
 
-    this.add.image(240, 450, 'attack8').setOrigin(0.5).setScale(0.1).setInteractive();
+    const mockCard = this.add
+      .image(240, 450, 'attack8')
+      .setOrigin(0.5)
+      .setScale(0.1)
+      .setInteractive();
+    this.popUpScreen(mockCard, 'questionBoard', QuestionBoard);
   }
 
   update() {}
