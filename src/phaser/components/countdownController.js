@@ -24,12 +24,17 @@ export default class countdownController {
    */
   start(callback, duration) {
     this.duration = duration;
+    this.time = duration;
     this.stop();
 
     this.timerEvent = this.scene.time.addEvent({
       delay: duration,
       callback: () => {
-        this.label.text = '0';
+        if (duration < 60000) {
+          this.label.text = '0';
+        } else {
+          this.label.text = '0:00';
+        }
 
         this.stop();
 
@@ -57,8 +62,42 @@ export default class countdownController {
 
     const remaining = this.duration - elapsed;
 
-    const seconds = remaining / 1000;
+    const minute = (remaining / 60000).toFixed(0);
+    // minute=minute.toFixed(0);
+    let seconds;
 
-    this.label.text = seconds.toFixed(0);
+    let minuteToPrint;
+
+    // For time greater than 1min is in the form 00:00
+    if (this.time > 60000) {
+      console.log(remaining / 1000);
+      seconds = minute * 60 - remaining / 1000;
+
+      if (minute * 60 > remaining / 1000) {
+        seconds = minute * 60 - remaining / 1000;
+        seconds = 60 - seconds;
+      } else {
+        seconds = remaining / 1000 - minute * 60;
+      }
+
+      if (minute < 10) {
+        minuteToPrint = '0' + minute;
+      } else {
+        minuteToPrint = minute;
+      }
+
+      if (seconds > 59) {
+        this.label.text = minuteToPrint + ':00';
+      } else if (seconds == 9 || seconds < 10) {
+        this.label.text = minuteToPrint + ':0' + seconds.toFixed(0);
+      } else {
+        console.log('else');
+        this.label.text = minuteToPrint + ':' + seconds.toFixed(0);
+      }
+    } else {
+      seconds = remaining / 1000;
+      console.log('10000');
+      this.label.text = seconds.toFixed(0);
+    }
   }
 }
