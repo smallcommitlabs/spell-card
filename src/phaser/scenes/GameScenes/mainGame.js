@@ -26,33 +26,24 @@ export default class playGame extends Phaser.Scene {
       .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
       .setOrigin(0.5)
       .setInteractive();
-    this.menuButtonFuntion(menuBtn, width * 0.25, height * 0.25);
+    this.popUpScreen(menuBtn, 'setting', SettingMenu);
+
+    this.add.image(240, 450, 'attack8').setOrigin(0.5).setScale(0.1).setInteractive();
   }
+
   update() {}
 
-  menuButtonFuntion(button, x, y) {
+  popUpScreen(button, popUpName, popUpInput) {
     const menu = undefined;
     button.on(
       'pointerdown',
       function () {
-        // console.log(menu)
-        // if (this.showMenu === true) {
         console.log('un');
-        this.settingMenu = this.scene.add('setting', SettingMenu, true, { object: this });
+        this.settingMenu = this.scene.add(popUpName, popUpInput, true, { object: this });
         this.showMenu = false;
         this.scene.pause('game');
-
-        // }
-        // else{
-        //    this.scene.remove("gameSetting");
-        //     this.showMenu=true
-        // }
       },
       this
     );
-
-    // ()=>{
-    //   this.scene.resume("game")
-    // }
   }
 }
