@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import CountdownController from '../../components/countdownController';
 
 export default class questionBoard extends Phaser.Scene {
   init(data) {
@@ -29,5 +30,20 @@ export default class questionBoard extends Phaser.Scene {
       },
       this
     );
+
+    // const tiemrLabel = this.add
+    //   .text(width * 0.5, 220, '20', { fontSize: 32 })
+    //   .setOrigin(0.5);
+
+    // this.countdown=new CountdownController(this,tiemrLabel);
+    // this.countdown.start(this.handleCountdownFinished.bind(this),300000);
   }
+
+  // update(){
+  //   this.countdown.update();
+  // }
+
+  // handleCountdownFinished(){
+  //   this.scene.start('game');
+  // }
 }

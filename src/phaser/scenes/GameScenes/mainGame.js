@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import NavigationButton from '../../components/naviButton';
 import QuestionBoard from '../../components/answerQuestion/questionBoard';
 import SettingMenu from '../../components/gameSetting/settingMenu';
+import CountdownController from '../../components/countdownController';
 
 export default class playGame extends Phaser.Scene {
   constructor() {
@@ -35,9 +36,17 @@ export default class playGame extends Phaser.Scene {
       .setScale(0.1)
       .setInteractive();
     this.popUpScreen(mockCard, 'questionBoard', QuestionBoard);
+
+    // Timer
+    const tiemrLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
+
+    this.countdown = new CountdownController(this, tiemrLabel);
+    this.countdown.start(this.handleCountdownFinished.bind(this), 300000);
   }
 
-  update() {}
+  update() {
+    this.countdown.update();
+  }
 
   popUpScreen(button, popUpName, popUpInput) {
     const menu = undefined;
@@ -51,5 +60,9 @@ export default class playGame extends Phaser.Scene {
       },
       this
     );
+  }
+
+  handleCountdownFinished() {
+    // this.scene.start('game');
   }
 }
