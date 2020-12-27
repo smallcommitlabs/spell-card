@@ -13,6 +13,7 @@ import {
   Input,
   Label,
 } from 'reactstrap';
+import { AuthClient } from '../util/AuthClient';
 
 interface formData {
   username: string;
@@ -21,10 +22,13 @@ interface formData {
 
 const Login: React.FC = () => {
   const { register, handleSubmit, errors } = useForm();
-  const history = useHistory();
 
   const onSubmit = ({ username, password }: formData) => {
-    history.push('/spellcard');
+    // This will become async once auth properly set up
+    const res = AuthClient.signIn(username, password);
+    if (res) {
+      window.location.reload();
+    }
   };
 
   return (
