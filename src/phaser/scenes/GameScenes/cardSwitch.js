@@ -29,14 +29,12 @@ export default class cardSwich extends Phaser.Scene {
 
     this.countdown.start(this.handleCountdownFinished.bind(this), 20000);
 
-    this.navigation.createSpecialButton(width * 0.5, height * 0.9, 24, 'Done', () => {
-      this.countdown.stop();
-      this.scene.start('game');
-    });
-
     this.givenCards = this.process.getRandomCards(5);
     console.log(this.givenCards);
+
     this.cardHandler(width, height);
+
+    // replace the given cards properly into the array and it is stored within this.givenCards
 
     /**
      * This adds a new button to confirm the selection of a specific card to swap.
@@ -44,12 +42,26 @@ export default class cardSwich extends Phaser.Scene {
      * randomCardList.
      */
     this.navigation.createSpecialButton(width * 0.5, height * 0.85, 24, 'Confirm', () => {
+      let cardsReplaced = 0;
+      let cardsKept = 0;
+      const replacementCards = new Array();
+      // THis is not working because this.givenCards[i] is not referencing the same isSelected and does not change
+      // in this instance itself i think and only in the card class instance or something like that
       for (let i = 0; i < this.givenCards.length; i++) {
+        console.log(this.givenCards[i].isSelected);
         if (this.givenCards[i].isSelected) {
+          console.log('i like cheese');
           this.process.replaceCards(this.givenCards[i]);
+          cardsReplaced++;
+        } else {
+          console.log('but im lactose');
+          replacementCards[cardsKept] = this.givenCards[i];
+          cardsKept++;
         }
       }
-      console.log(this.givenCards);
+      this.process.createRandomCardList();
+      replacementCards.concat(this.process.getRandomCards(cardsReplaced));
+      console.log(replacementCards);
       // Re-shuffle the cards as the cards returned are added to the back of the array.
       this.process.createRandomCardList();
       this.countdown.stop();
@@ -66,14 +78,12 @@ export default class cardSwich extends Phaser.Scene {
   }
 
   cardHandler(width, height) {
-    console.log('I have reacted');
     let card;
     let cardNumber = 1;
     const x = width * 0.2 - 35;
     const y = height * 0.5;
     for (let i = 0; i < this.givenCards.length; i++) {
       // Select the image for the card here
-      console.log(this.givenCards[i].getCard().image);
       card = this.add
         .sprite(x * cardNumber, y, this.givenCards[i].getCard().image.toString())
         .setScale(0.15, 0.133)

@@ -5,14 +5,6 @@ export default class Card {
   }
   useEffect() {}
 
-  selectCard() {
-    this.isSelected = true;
-  }
-
-  deselectCard() {
-    this.isSelected = false;
-  }
-
   isSelected() {
     return this.isSelected;
   }

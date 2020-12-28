@@ -15,7 +15,7 @@ const deck = {
       class: 'Attack',
       rank: 1,
       discarded: false,
-      image: 'ATTACK',
+      image: ATTACK,
     },
     {
       name: 'Sword2',
