@@ -66,7 +66,6 @@ export default class countdownController {
   }
 
   update() {
-    // console.log(this.label);
     if (!this.timerEvent || this.duration <= 0) {
       return;
     }
@@ -77,8 +76,6 @@ export default class countdownController {
     this.remain = remaining;
 
     const minute = (remaining / 60000).toFixed(0);
-    // console.log(minute);
-    // minute=minute.toFixed(0);
     let seconds;
 
     let minuteToPrint;
@@ -87,7 +84,6 @@ export default class countdownController {
 
     // For time greater than 1min is in the form 00:00
     if (this.time >= 60000) {
-      // console.log(remaining / 1000);
       seconds = minute * 60 - remaining / 1000;
 
       if (minute * 60 > remaining / 1000) {
@@ -101,18 +97,16 @@ export default class countdownController {
         minuteToPrint = minuteToPrint - 1;
       }
 
+      // Formating
       if (seconds > 59) {
         this.label.text = minuteToPrint + 1 + ':00';
       } else if (seconds <= 9 || seconds.toFixed(0) < 10) {
         this.label.text = minuteToPrint + ':0' + seconds.toFixed(0);
       } else {
-        // console.log('else');
         this.label.text = minuteToPrint + ':' + seconds.toFixed(0);
       }
-      // console.log(this.initial);
     } else {
       seconds = remaining / 1000;
-      // console.log('10000');
       this.label.text = seconds.toFixed(0);
     }
   }
