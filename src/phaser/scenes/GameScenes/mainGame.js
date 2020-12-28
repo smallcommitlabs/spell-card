@@ -3,8 +3,12 @@ import NavigationButton from '../../components/naviButton';
 import QuestionBoard from '../../components/answerQuestion/questionBoard';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 import CountdownController from '../../components/countdownController';
+import countdownController from '../../components/countdownController';
 
 export default class playGame extends Phaser.Scene {
+  //  /**@type {Phaser.GameObjects.Text} */
+  //  tiemrLabel
+
   constructor() {
     super('game');
     this.showMenu = true;
@@ -22,7 +26,17 @@ export default class playGame extends Phaser.Scene {
     this.cardGraveyard = this.add.image(98, 456, 'CardBack').setScale(0.315, 0.28);
 
     // this.scene.add("newDeck",NewDeck,true,{ x: 400, y: 300 });
-    console.log(this.settingMenu);
+    this.events.on('resume', function (sys, data) {
+      console.log(sys);
+      if (data) {
+        const counter = data.counter;
+        const timeRemain = counter.getRemain();
+        const mainGameTimerLabel = data.mainGameCounter;
+        mainGameTimerLabel.resume(timeRemain);
+      }
+    });
+
+    // console.log(this.scene);
 
     const menuBtn = this.add
       .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
@@ -38,9 +52,9 @@ export default class playGame extends Phaser.Scene {
     this.popUpScreen(mockCard, 'questionBoard', QuestionBoard);
 
     // Timer
-    const tiemrLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
+    this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
 
-    this.countdown = new CountdownController(this, tiemrLabel);
+    this.countdown = new CountdownController(this, this.timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), 300000);
   }
 
@@ -49,13 +63,17 @@ export default class playGame extends Phaser.Scene {
   }
 
   popUpScreen(button, popUpName, popUpInput) {
-    const menu = undefined;
     button.on(
       'pointerdown',
       function () {
         console.log('un');
-        this.settingMenu = this.scene.add(popUpName, popUpInput, true, { object: this });
+        this.settingMenu = this.scene.add(popUpName, popUpInput, true, {
+          object: this,
+          counter: this.countdown,
+          timerLabel: this.timerLabel,
+        });
         this.showMenu = false;
+        this.timerLabel.visible = false;
         this.scene.pause('game');
       },
       this
