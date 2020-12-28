@@ -42,6 +42,7 @@ export default class countdownController {
         this.stop();
 
         if (callback) {
+          this.callback = callback;
           callback();
         }
       },
@@ -56,8 +57,8 @@ export default class countdownController {
     }
   }
 
-  resume() {
-    this.timerEvent.paused = false;
+  resume(duation) {
+    this.start(this.callback, duation);
   }
 
   getRemain() {
@@ -65,6 +66,7 @@ export default class countdownController {
   }
 
   update() {
+    // console.log(this.label);
     if (!this.timerEvent || this.duration <= 0) {
       return;
     }
@@ -107,7 +109,7 @@ export default class countdownController {
         // console.log('else');
         this.label.text = minuteToPrint + ':' + seconds.toFixed(0);
       }
-      console.log(this.initial);
+      // console.log(this.initial);
     } else {
       seconds = remaining / 1000;
       // console.log('10000');
