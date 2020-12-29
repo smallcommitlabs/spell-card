@@ -58,7 +58,11 @@ export default class setting extends Phaser.Scene {
     }
   }
 
-  handleCountdownFinished() {}
+  handleCountdownFinished() {
+    this.scene.remove('gameSetting');
+    this.scene = this.mainGame.object.scene;
+    this.scene.start('roundResult');
+  }
 
   timerSettup(width) {
     const timerLabel = this.add.text(width * 0.5, 150, '5:00', { fontSize: 32 }).setOrigin(0.5);
