@@ -39,9 +39,9 @@ export default class setting extends Phaser.Scene {
       'pointerdown',
       () => {
         this.scene.remove('gameSetting');
+        this.scene = this.mainGame.object.scene;
         if (this.counter) {
           this.mainGameTimerLabel.visible = true;
-          this.scene = this.mainGame.object.scene;
           this.scene.resume(this.key, { counter: this.countdown, mainGameCounter: this.counter });
         } else {
           this.scene.resume(this.key);
@@ -52,7 +52,10 @@ export default class setting extends Phaser.Scene {
   }
 
   update() {
-    this.countdown.update();
+    if (this.counter) {
+      console.log('nope');
+      this.countdown.update();
+    }
   }
 
   handleCountdownFinished() {}
