@@ -48,13 +48,15 @@ export default class playGame extends Phaser.Scene {
       .setInteractive();
     this.popUpScreen(settingBtn, 'setting', SettingMenu);
 
+    this.loadCards();
+
     // Mock card
-    const mockCard = this.add
-      .image(240, 450, 'attack8')
-      .setOrigin(0.5)
-      .setScale(0.1)
-      .setInteractive();
-    this.popUpScreen(mockCard, 'questionBoard', QuestionBoard);
+    // const mockCard = this.add
+    //   .image(240, 450, 'attack8')
+    //   .setOrigin(0.5)
+    //   .setScale(0.1)
+    //   .setInteractive();
+    // this.popUpScreen(mockCard, 'questionBoard', QuestionBoard);
 
     // Timer
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
@@ -67,7 +69,7 @@ export default class playGame extends Phaser.Scene {
   }
 
   // Creates the pop-up screen
-  popUpScreen(button, popUpName, popUpInput) {
+  popUpScreen(button, popUpName, popUpInput, data) {
     button.on(
       'pointerdown',
       function () {
@@ -75,6 +77,7 @@ export default class playGame extends Phaser.Scene {
           object: this,
           counter: this.countdown,
           timerLabel: this.timerLabel,
+          question: data,
         });
         // hide the timer
         this.timerLabel.visible = false;
@@ -87,5 +90,19 @@ export default class playGame extends Phaser.Scene {
 
   handleCountdownFinished() {
     // this.scene.start('game');
+  }
+
+  loadCards() {
+    let x = 240;
+    for (const i of this.selectedCards) {
+      const card = this.add
+        .image(x, 450, i.getCard().image)
+        .setOrigin(0.5)
+        .setScale(0.1)
+        .setInteractive();
+      x += 122;
+
+      this.popUpScreen(card, 'questionBoard', QuestionBoard, x);
+    }
   }
 }
