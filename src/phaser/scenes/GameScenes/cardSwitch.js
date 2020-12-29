@@ -65,7 +65,7 @@ export default class cardSwich extends Phaser.Scene {
       // Re-shuffle the cards as the cards returned are added to the back of the array.
       this.process.createRandomCardList();
       this.countdown.stop();
-      this.scene.start('game');
+      this.handleCountdownFinished();
     });
   }
 
@@ -74,7 +74,7 @@ export default class cardSwich extends Phaser.Scene {
   }
 
   handleCountdownFinished() {
-    this.scene.start('game');
+    this.scene.start('game', { selectedCards: this.givenCards });
   }
 
   cardHandler(width, height) {

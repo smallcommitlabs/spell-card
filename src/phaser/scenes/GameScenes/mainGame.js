@@ -8,6 +8,10 @@ export default class playGame extends Phaser.Scene {
   //  /**@type {Phaser.GameObjects.Text} */
   //  tiemrLabel
 
+  init(data) {
+    this.selectedCards = data.selectedCards;
+    console.log(this.selectedCards);
+  }
   constructor() {
     super('game');
     this.showMenu = true;
