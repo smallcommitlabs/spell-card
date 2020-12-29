@@ -7,6 +7,7 @@ export default class questionBoard extends Phaser.Scene {
     this.mainGame = data;
     this.counter = data.counter;
     this.mainGameTimerLabel = data.timerLabel;
+    this.question = data.question;
   }
 
   constructor() {
@@ -19,7 +20,9 @@ export default class questionBoard extends Phaser.Scene {
     const retangle = this.add.rectangle(0, 0, width, height, 0x000000).setOrigin(0);
     retangle.alpha = 0.5;
 
-    this.add.text(300, 300, 'Answer question.....', { fontSize: 21 });
+    this.add.text(300, 250, 'Answer question..... \n \n What is ' + this.question, {
+      fontSize: 21,
+    });
 
     // Create timer
     const timerLabel = this.add.text(width * 0.5, 150, '5:00', { fontSize: 32 }).setOrigin(0.5);
