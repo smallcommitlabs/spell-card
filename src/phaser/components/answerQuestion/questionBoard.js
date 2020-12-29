@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 import CountdownController from '../../components/countdownController';
 
-export default class setting extends Phaser.Scene {
+export default class questionBoard extends Phaser.Scene {
+  // fetch the data passed by the previous scene
   init(data) {
     this.mainGame = data;
     this.counter = data.counter;
@@ -9,47 +10,47 @@ export default class setting extends Phaser.Scene {
   }
 
   constructor() {
-    super('gameSetting');
+    super('questionBoard');
   }
 
   create() {
     const { width, height } = this.scale;
-    console.log(this.counter);
 
-    // this.cameras.main.backgroundColor.setTo(106,78,86);
-    // let rt = this.add.renderTexture(0, 0, width, height).setOrigin(0);
     const retangle = this.add.rectangle(0, 0, width, height, 0x000000).setOrigin(0);
     retangle.alpha = 0.5;
-    const surrender = this.add.text(300, 300, 'Surrender', { fontSize: 24 }).setInteractive();
 
+    this.add.text(300, 300, 'Answer question.....', { fontSize: 21 });
+
+    // Create timer
     const timerLabel = this.add.text(width * 0.5, 150, '5:00', { fontSize: 32 }).setOrigin(0.5);
     const timeRemain = this.counter.getRemain();
     console.log(timeRemain);
     this.countdown = new CountdownController(this, timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
 
-    surrender.on('pointerdown', () => {
-      this.scene.remove('gameSetting');
-      this.scene = this.mainGame.object.scene;
-      this.scene.start('mainMenu');
-    });
-
+    // Close button
     const close = this.add.text(200, 200, 'X', { fontSize: 30 }).setInteractive();
     close.on(
       'pointerdown',
       () => {
-        this.scene.remove('gameSetting');
+        this.scene.remove('questionBoard');
+        // Make the timer in the mainGame to be visible
         this.mainGameTimerLabel.visible = true;
+        // get the scenePlugin from the previous scene to get the the scene keys
         this.scene = this.mainGame.object.scene;
+        // resume the mainGame scene and pass the countdown object from the scene and the previous scene
         this.scene.resume('game', { counter: this.countdown, mainGameCounter: this.counter });
       },
       this
     );
   }
 
+  // Update counter
   update() {
     this.countdown.update();
   }
 
-  handleCountdownFinished() {}
+  handleCountdownFinished() {
+    // this.scene.start('game');
+  }
 }

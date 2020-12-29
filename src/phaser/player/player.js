@@ -1,6 +1,6 @@
-const ATTACK = '../../../assets/attack.jpg';
-const DEFENCE = '../../../assets/3.jpg';
-const MAGIC = '../../../assets/4.jpg';
+const ATTACK = 'attack8';
+const DEFENCE = 'attack4';
+const MAGIC = 'attack6';
 
 const player = [
   {

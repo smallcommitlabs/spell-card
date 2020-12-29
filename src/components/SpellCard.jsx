@@ -7,7 +7,7 @@ import deckDetail from '../phaser/scenes/cardCollectionScenes/deckScene';
 import newDeck from '../phaser/scenes/cardCollectionScenes/newDeck';
 import gamePreloader from '../phaser/scenes/GameScenes/gamePreloader';
 import deckSelection from '../phaser/scenes/GameScenes/deckSelection';
-import cardSwich from '../phaser/scenes/GameScenes/cardSwitch';
+import cardSwitch from '../phaser/scenes/GameScenes/cardSwitch';
 import React, { useEffect } from 'react';
 
 const config = {
@@ -31,7 +31,7 @@ const config = {
     newDeck,
     deckSelection,
     gamePreloader,
-    cardSwich,
+    cardSwitch,
   ],
 };
 
