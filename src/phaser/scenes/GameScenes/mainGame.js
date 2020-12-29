@@ -59,9 +59,11 @@ export default class playGame extends Phaser.Scene {
     // this.popUpScreen(mockCard, 'questionBoard', QuestionBoard);
 
     // Timer
+    // const time=300000;
+    const time = 5000;
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
     this.countdown = new CountdownController(this, this.timerLabel);
-    this.countdown.start(this.handleCountdownFinished.bind(this), 300000);
+    this.countdown.start(this.handleCountdownFinished.bind(this), time);
   }
 
   update() {
@@ -78,6 +80,7 @@ export default class playGame extends Phaser.Scene {
           counter: this.countdown,
           timerLabel: this.timerLabel,
           question: data,
+          key: 'game',
         });
         // hide the timer
         this.timerLabel.visible = false;
@@ -89,7 +92,8 @@ export default class playGame extends Phaser.Scene {
   }
 
   handleCountdownFinished() {
-    // this.scene.start('game');
+    console.log('s');
+    this.scene.start('roundResult');
   }
 
   loadCards() {
