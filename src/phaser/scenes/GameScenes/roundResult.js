@@ -3,9 +3,9 @@ import SettingMenu from '../../components/gameSetting/settingMenu';
 
 export default class roundResult extends Phaser.Scene {
   init(data) {}
+
   constructor() {
     super('roundResult');
-    this.showMenu = true;
   }
 
   create() {
@@ -19,19 +19,6 @@ export default class roundResult extends Phaser.Scene {
     this.cardDeck = this.add.image(869, 456, 'CardBack').setScale(0.315, 0.28);
     this.cardGraveyard = this.add.image(98, 456, 'CardBack').setScale(0.315, 0.28);
 
-    // Listen to the resume event
-    this.events.on('resume', function (sys, data) {
-      console.log(sys);
-      if (data) {
-        const counter = data.counter;
-        // Get the remaining time in the popup scene
-        const timeRemain = counter.getRemain();
-        const mainGameTimerLabel = data.mainGameCounter;
-        // restart the timer
-        mainGameTimerLabel.resume(timeRemain);
-      }
-    });
-
     // Setting button setup
     const settingBtn = this.add
       .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
@@ -40,9 +27,7 @@ export default class roundResult extends Phaser.Scene {
     this.popUpScreen(settingBtn, 'setting', SettingMenu);
   }
 
-  update() {
-    this.countdown.update();
-  }
+  update() {}
 
   // Creates the pop-up screen
   popUpScreen(button, popUpName, popUpInput, data) {
@@ -51,14 +36,11 @@ export default class roundResult extends Phaser.Scene {
       function () {
         this.scene.add(popUpName, popUpInput, true, {
           object: this,
-          counter: this.countdown,
-          timerLabel: this.timerLabel,
-          question: data,
+          key: 'roundResult',
         });
         // hide the timer
-        this.timerLabel.visible = false;
         // pause the scene
-        this.scene.pause('game');
+        this.scene.pause('roundResult');
       },
       this
     );
