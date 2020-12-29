@@ -54,6 +54,8 @@ export default class questionBoard extends Phaser.Scene {
   }
 
   handleCountdownFinished() {
-    // this.scene.start('game');
+    this.scene.remove('questionBoard');
+    this.scene = this.mainGame.object.scene;
+    this.scene.start('roundResult');
   }
 }
