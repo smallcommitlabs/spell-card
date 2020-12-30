@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
+    "@aws-amplify/auth": "^3.4.16",
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -12,8 +13,8 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
-    "@types/react-router-dom": "^5.1.6",
     "@types/react-redux": "^7.1.14",
+    "@types/react-router-dom": "^5.1.6",
     "bootstrap": "^4.5.3",
     "phaser": "^3.50.0",
     "react": "^17.0.1",
