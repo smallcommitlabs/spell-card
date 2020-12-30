@@ -58,9 +58,11 @@ export default class playGame extends Phaser.Scene {
     this.events.on('resume', function (sys, data) {
       console.log(sys);
       if (data) {
+        // console.log(data + "hi");
         const counter = data.counter;
         // Get the remaining time in the popup scene
         const timeRemain = counter.getRemain();
+        console.log(timeRemain);
         const mainGameTimerLabel = data.mainGameCounter;
         // restart the timer
         mainGameTimerLabel.resume(timeRemain);
@@ -85,8 +87,8 @@ export default class playGame extends Phaser.Scene {
     // this.popUpScreen(mockCard, 'questionBoard', QuestionBoard);
 
     // Timer
-    const time = 300000;
-    // const time = 5000;
+    // const time = 300000;
+    const time = 5000;
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
     this.countdown = new CountdownController(this, this.timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), time);
@@ -118,8 +120,11 @@ export default class playGame extends Phaser.Scene {
   }
 
   handleCountdownFinished() {
-    console.log('s');
-    this.scene.start('roundResult');
+    this.scene.start('roundResult', {
+      player1Health: this.player1Health,
+      player2Health: this.player2Health,
+      cards: this.selectedCards,
+    });
   }
 
   loadCards() {
