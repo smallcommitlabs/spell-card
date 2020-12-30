@@ -36,13 +36,7 @@ export default class questionBoard extends Phaser.Scene {
     close.on(
       'pointerdown',
       () => {
-        this.scene.remove('questionBoard');
-        // Make the timer in the mainGame to be visible
-        this.mainGameTimerLabel.visible = true;
-        // get the scenePlugin from the previous scene to get the the scene keys
-        this.scene = this.mainGame.object.scene;
-        // resume the mainGame scene and pass the countdown object from the scene and the previous scene
-        this.scene.resume('game', { counter: this.countdown, mainGameCounter: this.counter });
+        this.navigation();
       },
       this
     );
@@ -54,8 +48,16 @@ export default class questionBoard extends Phaser.Scene {
   }
 
   handleCountdownFinished() {
+    this.navigation();
+  }
+
+  navigation() {
     this.scene.remove('questionBoard');
+    // Make the timer in the mainGame to be visible
+    this.mainGameTimerLabel.visible = true;
+    // get the scenePlugin from the previous scene to get the the scene keys
     this.scene = this.mainGame.object.scene;
-    this.scene.start('roundResult');
+    // resume the mainGame scene and pass the countdown object from the scene and the previous scene
+    this.scene.resume('game', { counter: this.countdown, mainGameCounter: this.counter });
   }
 }

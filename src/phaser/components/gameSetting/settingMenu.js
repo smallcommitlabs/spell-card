@@ -38,14 +38,7 @@ export default class setting extends Phaser.Scene {
     close.on(
       'pointerdown',
       () => {
-        this.scene.remove('gameSetting');
-        this.scene = this.mainGame.object.scene;
-        if (this.counter) {
-          this.mainGameTimerLabel.visible = true;
-          this.scene.resume(this.key, { counter: this.countdown, mainGameCounter: this.counter });
-        } else {
-          this.scene.resume(this.key);
-        }
+        this.navigation();
       },
       this
     );
@@ -53,15 +46,12 @@ export default class setting extends Phaser.Scene {
 
   update() {
     if (this.counter) {
-      console.log('nope');
       this.countdown.update();
     }
   }
 
   handleCountdownFinished() {
-    this.scene.remove('gameSetting');
-    this.scene = this.mainGame.object.scene;
-    this.scene.start('roundResult');
+    this.navigation();
   }
 
   timerSettup(width) {
@@ -70,5 +60,16 @@ export default class setting extends Phaser.Scene {
     console.log(timeRemain);
     this.countdown = new CountdownController(this, timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
+  }
+
+  navigation() {
+    this.scene.remove('gameSetting');
+    this.scene = this.mainGame.object.scene;
+    if (this.counter) {
+      this.mainGameTimerLabel.visible = true;
+      this.scene.resume(this.key, { counter: this.countdown, mainGameCounter: this.counter });
+    } else {
+      this.scene.resume(this.key);
+    }
   }
 }
