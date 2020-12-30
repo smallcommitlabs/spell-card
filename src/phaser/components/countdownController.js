@@ -29,6 +29,7 @@ export default class countdownController {
     this.duration = duration;
     this.time = duration;
     this.stop();
+    this.callback = callback;
 
     this.timerEvent = this.scene.time.addEvent({
       delay: duration,
@@ -42,7 +43,6 @@ export default class countdownController {
         this.stop();
 
         if (callback) {
-          this.callback = callback;
           callback();
         }
       },
@@ -58,6 +58,7 @@ export default class countdownController {
   }
 
   resume(duation) {
+    console.log(duation);
     this.start(this.callback, duation);
   }
 
