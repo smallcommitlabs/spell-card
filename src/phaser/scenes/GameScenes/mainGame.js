@@ -28,6 +28,17 @@ export default class playGame extends Phaser.Scene {
     this.cardDeck = this.add.image(869, 456, 'CardBack').setScale(0.315, 0.28);
     this.cardGraveyard = this.add.image(98, 456, 'CardBack').setScale(0.315, 0.28);
 
+    // player
+    this.physics.add
+      .sprite(width * 0.2, height * 0.4, 'player')
+      .setOrigin(0.5)
+      .setScale(0.15);
+
+    this.physics.add
+      .sprite(width * 0.8, height * 0.4, 'player')
+      .setOrigin(0.5)
+      .setScale(0.15);
+
     // Listen to the resume event
     this.events.on('resume', function (sys, data) {
       console.log(sys);
@@ -59,8 +70,8 @@ export default class playGame extends Phaser.Scene {
     // this.popUpScreen(mockCard, 'questionBoard', QuestionBoard);
 
     // Timer
-    // const time=300000;
-    const time = 5000;
+    const time = 300000;
+    // const time = 5000;
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
     this.countdown = new CountdownController(this, this.timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), time);
