@@ -3,6 +3,7 @@ import NavigationButton from '../../components/naviButton';
 import QuestionBoard from '../../components/answerQuestion/questionBoard';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 import CountdownController from '../../components/countdownController';
+import PlayerHealth from '../../player/playerHealth';
 
 export default class playGame extends Phaser.Scene {
   //  /**@type {Phaser.GameObjects.Text} */
@@ -10,6 +11,8 @@ export default class playGame extends Phaser.Scene {
 
   init(data) {
     this.selectedCards = data.selectedCards;
+    this.player1Health = data.player1Health;
+    this.player2Health = data.player2Health;
     console.log(this.selectedCards);
   }
   constructor() {
@@ -38,6 +41,18 @@ export default class playGame extends Phaser.Scene {
       .sprite(width * 0.8, height * 0.4, 'player')
       .setOrigin(0.5)
       .setScale(0.15);
+
+    // Health
+    if (!this.player1Health) {
+      this.player1Health = new PlayerHealth(60);
+      this.player2Health = new PlayerHealth(60);
+    }
+    this.add
+      .text(width * 0.1, height * 0.1, this.player1Health.getHealth(), { fontSize: 30 })
+      .setOrigin(0.5);
+    this.add
+      .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
+      .setOrigin(0.5);
 
     // Listen to the resume event
     this.events.on('resume', function (sys, data) {
