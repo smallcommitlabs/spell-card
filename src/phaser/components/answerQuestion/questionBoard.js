@@ -3,11 +3,13 @@ import CountdownController from '../../components/countdownController';
 
 export default class questionBoard extends Phaser.Scene {
   // fetch the data passed by the previous scene
+
   init(data) {
     this.mainGame = data;
     this.counter = data.counter;
     this.mainGameTimerLabel = data.timerLabel;
     this.question = data.question;
+    this.callback = data.callback;
   }
 
   constructor() {
@@ -40,6 +42,14 @@ export default class questionBoard extends Phaser.Scene {
       },
       this
     );
+
+    // Confirm button
+    const confirmBtn = this.add.text(300, 400, 'Confirm', { fontSize: 34 });
+    confirmBtn.setInteractive();
+    confirmBtn.on('pointerdown', () => {
+      this.callback();
+      this.navigation();
+    });
   }
 
   // Update counter
