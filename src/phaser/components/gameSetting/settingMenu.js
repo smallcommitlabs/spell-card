@@ -6,6 +6,7 @@ export default class setting extends Phaser.Scene {
     this.mainGame = data;
     this.counter = data.counter;
     this.mainGameTimerLabel = data.timerLabel;
+    this.key = data.key;
   }
 
   constructor() {
@@ -18,15 +19,14 @@ export default class setting extends Phaser.Scene {
 
     // this.cameras.main.backgroundColor.setTo(106,78,86);
     // let rt = this.add.renderTexture(0, 0, width, height).setOrigin(0);
+
     const retangle = this.add.rectangle(0, 0, width, height, 0x000000).setOrigin(0);
     retangle.alpha = 0.5;
     const surrender = this.add.text(300, 300, 'Surrender', { fontSize: 24 }).setInteractive();
 
-    const timerLabel = this.add.text(width * 0.5, 150, '5:00', { fontSize: 32 }).setOrigin(0.5);
-    const timeRemain = this.counter.getRemain();
-    console.log(timeRemain);
-    this.countdown = new CountdownController(this, timerLabel);
-    this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
+    if (this.counter) {
+      this.timerSettup(width);
+    }
 
     surrender.on('pointerdown', () => {
       this.scene.remove('gameSetting');
@@ -38,18 +38,38 @@ export default class setting extends Phaser.Scene {
     close.on(
       'pointerdown',
       () => {
-        this.scene.remove('gameSetting');
-        this.mainGameTimerLabel.visible = true;
-        this.scene = this.mainGame.object.scene;
-        this.scene.resume('game', { counter: this.countdown, mainGameCounter: this.counter });
+        this.navigation();
       },
       this
     );
   }
 
   update() {
-    this.countdown.update();
+    if (this.counter) {
+      this.countdown.update();
+    }
   }
 
-  handleCountdownFinished() {}
+  handleCountdownFinished() {
+    this.navigation();
+  }
+
+  timerSettup(width) {
+    const timerLabel = this.add.text(width * 0.5, 150, '5:00', { fontSize: 32 }).setOrigin(0.5);
+    const timeRemain = this.counter.getRemain();
+    console.log(timeRemain);
+    this.countdown = new CountdownController(this, timerLabel);
+    this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
+  }
+
+  navigation() {
+    this.scene.remove('gameSetting');
+    this.scene = this.mainGame.object.scene;
+    if (this.counter) {
+      this.mainGameTimerLabel.visible = true;
+      this.scene.resume(this.key, { counter: this.countdown, mainGameCounter: this.counter });
+    } else {
+      this.scene.resume(this.key);
+    }
+  }
 }

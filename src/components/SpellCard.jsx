@@ -8,6 +8,7 @@ import newDeck from '../phaser/scenes/cardCollectionScenes/newDeck';
 import gamePreloader from '../phaser/scenes/GameScenes/gamePreloader';
 import deckSelection from '../phaser/scenes/GameScenes/deckSelection';
 import cardSwitch from '../phaser/scenes/GameScenes/cardSwitch';
+import roundResult from '../phaser/scenes/GameScenes/roundResult';
 import React, { useEffect } from 'react';
 
 const config = {
@@ -32,6 +33,7 @@ const config = {
     deckSelection,
     gamePreloader,
     cardSwitch,
+    roundResult,
   ],
 };
 
