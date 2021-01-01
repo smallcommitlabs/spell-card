@@ -3,11 +3,18 @@ import NavigationButton from '../../components/naviButton';
 import QuestionBoard from '../../components/answerQuestion/questionBoard';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 import CountdownController from '../../components/countdownController';
+import PlayerHealth from '../../player/playerHealth';
 
 export default class playGame extends Phaser.Scene {
   //  /**@type {Phaser.GameObjects.Text} */
   //  tiemrLabel
 
+  init(data) {
+    this.selectedCards = data.selectedCards;
+    this.player1Health = data.player1Health;
+    this.player2Health = data.player2Health;
+    console.log(this.selectedCards);
+  }
   constructor() {
     super('game');
     this.showMenu = true;
@@ -24,13 +31,38 @@ export default class playGame extends Phaser.Scene {
     this.cardDeck = this.add.image(869, 456, 'CardBack').setScale(0.315, 0.28);
     this.cardGraveyard = this.add.image(98, 456, 'CardBack').setScale(0.315, 0.28);
 
+    // player
+    this.physics.add
+      .sprite(width * 0.2, height * 0.4, 'player')
+      .setOrigin(0.5)
+      .setScale(0.15);
+
+    this.physics.add
+      .sprite(width * 0.8, height * 0.4, 'player')
+      .setOrigin(0.5)
+      .setScale(0.15);
+
+    // Health
+    if (!this.player1Health) {
+      this.player1Health = new PlayerHealth(60);
+      this.player2Health = new PlayerHealth(60);
+    }
+    this.add
+      .text(width * 0.1, height * 0.1, this.player1Health.getHealth(), { fontSize: 30 })
+      .setOrigin(0.5);
+    this.add
+      .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
+      .setOrigin(0.5);
+
     // Listen to the resume event
     this.events.on('resume', function (sys, data) {
       console.log(sys);
       if (data) {
+        // console.log(data + "hi");
         const counter = data.counter;
         // Get the remaining time in the popup scene
         const timeRemain = counter.getRemain();
+        console.log(timeRemain);
         const mainGameTimerLabel = data.mainGameCounter;
         // restart the timer
         mainGameTimerLabel.resume(timeRemain);
@@ -44,18 +76,14 @@ export default class playGame extends Phaser.Scene {
       .setInteractive();
     this.popUpScreen(settingBtn, 'setting', SettingMenu);
 
-    // Mock card
-    const mockCard = this.add
-      .image(240, 450, 'attack8')
-      .setOrigin(0.5)
-      .setScale(0.1)
-      .setInteractive();
-    this.popUpScreen(mockCard, 'questionBoard', QuestionBoard);
+    this.loadCards();
 
     // Timer
+    // const time = 300000;
+    const time = 20000;
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
     this.countdown = new CountdownController(this, this.timerLabel);
-    this.countdown.start(this.handleCountdownFinished.bind(this), 300000);
+    this.countdown.start(this.handleCountdownFinished.bind(this), time);
   }
 
   update() {
@@ -63,7 +91,7 @@ export default class playGame extends Phaser.Scene {
   }
 
   // Creates the pop-up screen
-  popUpScreen(button, popUpName, popUpInput) {
+  popUpScreen(button, popUpName, popUpInput, data, callback) {
     button.on(
       'pointerdown',
       function () {
@@ -71,6 +99,9 @@ export default class playGame extends Phaser.Scene {
           object: this,
           counter: this.countdown,
           timerLabel: this.timerLabel,
+          question: data,
+          key: 'game',
+          callback: callback.bind(this),
         });
         // hide the timer
         this.timerLabel.visible = false;
@@ -81,7 +112,30 @@ export default class playGame extends Phaser.Scene {
     );
   }
 
+  // executes when the timer is finish
   handleCountdownFinished() {
-    // this.scene.start('game');
+    this.scene.start('roundResult', {
+      player1Health: this.player1Health,
+      player2Health: this.player2Health,
+      cards: this.selectedCards,
+    });
+  }
+
+  // Load the selected cards on to the screen
+  loadCards() {
+    let x = 240;
+    for (const i of this.selectedCards) {
+      const card = this.add
+        .image(x, 450, i.getCard().image)
+        .setOrigin(0.5)
+        .setScale(0.1)
+        .setInteractive();
+      x += 122;
+
+      // Add popup question board screen to card
+      this.popUpScreen(card, 'questionBoard', QuestionBoard, x, () => {
+        card.disableInteractive();
+      });
+    }
   }
 }
