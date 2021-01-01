@@ -78,14 +78,6 @@ export default class playGame extends Phaser.Scene {
 
     this.loadCards();
 
-    // Mock card
-    // const mockCard = this.add
-    //   .image(240, 450, 'attack8')
-    //   .setOrigin(0.5)
-    //   .setScale(0.1)
-    //   .setInteractive();
-    // this.popUpScreen(mockCard, 'questionBoard', QuestionBoard);
-
     // Timer
     // const time = 300000;
     const time = 20000;
@@ -120,6 +112,7 @@ export default class playGame extends Phaser.Scene {
     );
   }
 
+  // executes when the timer is finish
   handleCountdownFinished() {
     this.scene.start('roundResult', {
       player1Health: this.player1Health,
@@ -128,6 +121,7 @@ export default class playGame extends Phaser.Scene {
     });
   }
 
+  // Load the selected cards on to the screen
   loadCards() {
     let x = 240;
     for (const i of this.selectedCards) {
@@ -138,6 +132,7 @@ export default class playGame extends Phaser.Scene {
         .setInteractive();
       x += 122;
 
+      // Add popup question board screen to card
       this.popUpScreen(card, 'questionBoard', QuestionBoard, x, () => {
         card.disableInteractive();
       });

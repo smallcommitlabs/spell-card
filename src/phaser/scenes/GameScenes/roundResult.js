@@ -3,7 +3,6 @@ import SettingMenu from '../../components/gameSetting/settingMenu';
 
 export default class roundResult extends Phaser.Scene {
   init(data) {
-    // console.log(data);
     this.player1Health = data.player1Health;
     this.player2Health = data.player2Health;
     this.cards = data.cards;
@@ -14,7 +13,6 @@ export default class roundResult extends Phaser.Scene {
   }
 
   create() {
-    console.log(this.scene);
     const { width, height } = this.scale;
     this.add
       .image(width * 0.5, height * 0.5, 'gameBackground')
@@ -77,6 +75,7 @@ export default class roundResult extends Phaser.Scene {
     );
   }
 
+  // Add animation and effects for cards
   processCard(width, height) {
     const timeline = this.tweens.createTimeline();
 
@@ -103,10 +102,12 @@ export default class roundResult extends Phaser.Scene {
     timeline.play();
   }
 
+  // Make the object invisble
   onStart(target) {
     target.visible = true;
   }
 
+  // Carry out the damage of a card to the player
   action(type, damage, target) {
     target.visible = false;
     if (type === 'Attack' || type === 'Magic') {

@@ -57,10 +57,12 @@ export default class questionBoard extends Phaser.Scene {
     this.countdown.update();
   }
 
+  // execute when the timer is finished
   handleCountdownFinished() {
     this.navigation();
   }
 
+  // Remove the current popup screen and resume the mainGame scene
   navigation() {
     this.scene.remove('questionBoard');
     // Make the timer in the mainGame to be visible
