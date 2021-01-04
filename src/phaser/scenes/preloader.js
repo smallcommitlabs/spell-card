@@ -7,6 +7,7 @@ import value8 from '../assets/1.jpg';
 import value2 from '../assets/2.jpg';
 import value4 from '../assets/3.jpg';
 import value6 from '../assets/4.jpg';
+import player from '../assets/player.png';
 
 class preloader extends Phaser.Scene {
   constructor() {
@@ -25,6 +26,7 @@ class preloader extends Phaser.Scene {
     this.load.image('attack2', value2);
     this.load.image('attack4', value4);
     this.load.image('attack6', value6);
+    this.load.image('player', player);
   }
 
   create() {
