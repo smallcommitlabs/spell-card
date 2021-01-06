@@ -65,7 +65,10 @@ export default class roundResult extends Phaser.Scene {
     if (!this.timeline.isPlaying()) {
       console.log(this.player1Health.getHealth(), +'     ' + this.player2Health.getHealth());
       if (this.player1Health.getHealth() <= 0 || this.player2Health.getHealth() <= 0) {
-        this.scene.start('mainMenu');
+        this.scene.start('gameResult', {
+          player1Health: this.player1Health,
+          player2Health: this.player2Health,
+        });
       } else {
         this.scene.start('game', {
           player1Health: this.player1Health,
