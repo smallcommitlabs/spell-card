@@ -56,6 +56,25 @@ export default class roundResult extends Phaser.Scene {
   update() {
     this.player1.setText(this.player1Health.getHealth());
     this.player2.setText(this.player2Health.getHealth());
+    if (this.player1Health.getHealth() <= 0) {
+      this.player1.setText('0');
+    }
+    if (this.player2Health.getHealth() <= 0) {
+      this.player2.setText('0');
+    }
+    if (!this.timeline.isPlaying()) {
+      console.log(this.player1Health.getHealth(), +'     ' + this.player2Health.getHealth());
+      if (this.player1Health.getHealth() <= 0 || this.player2Health.getHealth() <= 0) {
+        this.scene.start('mainMenu');
+      } else {
+        this.scene.start('game', {
+          player1Health: this.player1Health,
+          player2Health: this.player2Health,
+          // Mock data
+          selectedCards: this.cards,
+        });
+      }
+    }
   }
 
   // Creates the pop-up screen
@@ -77,7 +96,7 @@ export default class roundResult extends Phaser.Scene {
 
   // Add animation and effects for cards
   processCard(width, height) {
-    const timeline = this.tweens.createTimeline();
+    this.timeline = this.tweens.createTimeline();
 
     for (const i of this.cards) {
       const card = i.getCard();
@@ -89,7 +108,7 @@ export default class roundResult extends Phaser.Scene {
         .image(width * 0.2 + 50, height * 0.4, image)
         .setOrigin(0.5)
         .setScale(0.15);
-      timeline.add({
+      this.timeline.add({
         targets: target,
         x: 600,
         onStart: this.onStart.bind(this, target),
@@ -99,7 +118,7 @@ export default class roundResult extends Phaser.Scene {
       });
       target.visible = false;
     }
-    timeline.play();
+    this.timeline.play();
   }
 
   // Make the object invisble
