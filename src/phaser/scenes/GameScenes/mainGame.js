@@ -80,7 +80,9 @@ export default class playGame extends Phaser.Scene {
 
     // Timer
     // const time = 300000;
+    
     const time = 5000;
+
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
     this.countdown = new CountdownController(this, this.timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), time);
@@ -92,10 +94,12 @@ export default class playGame extends Phaser.Scene {
 
   // Creates the pop-up screen
   popUpScreen(button, popUpName, popUpInput, data, callback) {
+
     let callbackFun = null;
     if (callback) {
       callbackFun = callback.bind(this);
     }
+
     button.on(
       'pointerdown',
       function () {
@@ -106,6 +110,7 @@ export default class playGame extends Phaser.Scene {
           question: data,
           key: 'game',
           callback: callbackFun,
+
         });
         // hide the timer
         this.timerLabel.visible = false;

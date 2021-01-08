@@ -36,6 +36,7 @@ const config = {
     cardSwitch,
     roundResult,
     gameResult,
+
   ],
 };
 

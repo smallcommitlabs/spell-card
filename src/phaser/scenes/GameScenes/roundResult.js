@@ -56,6 +56,7 @@ export default class roundResult extends Phaser.Scene {
   update() {
     this.player1.setText(this.player1Health.getHealth());
     this.player2.setText(this.player2Health.getHealth());
+
     if (this.player1Health.getHealth() <= 0) {
       this.player1.setText('0');
     }
@@ -99,7 +100,9 @@ export default class roundResult extends Phaser.Scene {
 
   // Add animation and effects for cards
   processCard(width, height) {
+    
     this.timeline = this.tweens.createTimeline();
+
 
     for (const i of this.cards) {
       const card = i.getCard();
@@ -111,7 +114,9 @@ export default class roundResult extends Phaser.Scene {
         .image(width * 0.2 + 50, height * 0.4, image)
         .setOrigin(0.5)
         .setScale(0.15);
+      
       this.timeline.add({
+
         targets: target,
         x: 600,
         onStart: this.onStart.bind(this, target),
@@ -121,7 +126,9 @@ export default class roundResult extends Phaser.Scene {
       });
       target.visible = false;
     }
+
     this.timeline.play();
+
   }
 
   // Make the object invisble
