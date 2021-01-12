@@ -62,7 +62,6 @@
       }
     ],
     "arrow-body-style": ["error", "as-needed"],
-    "brace-style": ["error", "1tbs"],
-    "array-bracket-spacing": ["error", "always"]
+    "brace-style": ["error", "1tbs"]
   }
 }

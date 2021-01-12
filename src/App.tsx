@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { hydrateAuth } from './redux/auth/thunks/hydrateAuth';
+import { RootState, useAppDispatch } from './redux/store';
 import MainRoutes from './routes/MainRoutes';
 import PublicRoutes from './routes/PublicRoutes';
-import { AuthClient } from './util/AuthClient';
 
 const App: React.FC = () => {
-  const isAuth = AuthClient.isAuth();
+  const dispatch = useAppDispatch();
 
-  return <Router>{isAuth ? <MainRoutes /> : <PublicRoutes />}</Router>;
+  const authSelector = (state: RootState) => state.auth;
+
+  const { isAuthenticated, resolvingAuthState } = useSelector(authSelector);
+
+  useEffect(() => {
+    dispatch(hydrateAuth());
+  }, [dispatch]);
+
+  return (
+    <>
+      {resolvingAuthState ? (
+        <p>loading...</p>
+      ) : (
+        <Router>{isAuthenticated ? <MainRoutes /> : <PublicRoutes />}</Router>
+      )}
+    </>
+  );
 };
 
 export default App;
