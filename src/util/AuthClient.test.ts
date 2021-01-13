@@ -9,20 +9,20 @@ test('successful signin should return true', () => {
   expect(res).toBeTruthy();
 });
 
-test('isAuth should return false if not logged in', () => {
-  const isAuthenticated = AuthClient.isAuth();
+test('isAuth should return false if not logged in', async () => {
+  const isAuthenticated = await AuthClient.isAuth();
   expect(isAuthenticated).toBeFalsy();
 });
 
-test('isAuth should return true after successful signin', () => {
-  AuthClient.signIn('test', 'test');
-  const isAuthenticated = AuthClient.isAuth();
+test('isAuth should return true after successful signin', async () => {
+  await AuthClient.signIn('test', 'test');
+  const isAuthenticated = await AuthClient.isAuth();
   expect(isAuthenticated).toBeTruthy();
 });
 
-test('after signing in and out again isAuth should be false', () => {
-  AuthClient.signIn('test', 'test');
-  AuthClient.signOut();
-  const isAuthenticated = AuthClient.isAuth();
+test('after signing in and out again isAuth should be false', async () => {
+  await AuthClient.signIn('test', 'test');
+  await AuthClient.signOut();
+  const isAuthenticated = await AuthClient.isAuth();
   expect(isAuthenticated).toBeFalsy();
 });
