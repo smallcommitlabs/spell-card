@@ -24,14 +24,22 @@ export default class Card {
     return this.cardInform;
   }
 
-  clickedStatus(card) {
-    card.on('pointerdown', function (pointer) {
+  getSelectedInfo() {
+    return this.isSelected;
+  }
+
+  setCardSelectedStatus() {
+    this.isSelected = status;
+  }
+
+  clickedStatus(cardBtn, cardObj) {
+    cardBtn.on('pointerdown', function (pointer) {
       if (!card.isSelected) {
-        this.isSelected = true;
-        card.setTint(0xff0000);
+        cardObj.setCardSelectedStatus(true);
+        cardBtn.setTint(0xff0000);
       } else {
-        this.isSelected = false;
-        card.clearTint();
+        cardObj.setCardSelectedStatus(false);
+        cardBtn.clearTint();
       }
     });
   }

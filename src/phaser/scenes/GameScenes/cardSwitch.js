@@ -27,7 +27,7 @@ export default class cardSwich extends Phaser.Scene {
 
     this.countdown = new countdownController(this, timerLabel);
 
-    this.countdown.start(this.handleCountdownFinished.bind(this), 20000);
+    this.countdown.start(this.handleCountdownFinished.bind(this), 50000);
 
     this.givenCards = this.process.getRandomCards(5);
     console.log(this.givenCards);
@@ -66,7 +66,7 @@ export default class cardSwich extends Phaser.Scene {
       // Re-shuffle the cards as the cards returned are added to the back of the array.
       this.process.createRandomCardList();
       this.countdown.stop();
-      this.handleCountdownFinished();
+      this.scene.start('game', { selectedCards: replacementCards });
     });
   }
 
@@ -88,7 +88,7 @@ export default class cardSwich extends Phaser.Scene {
         .setScale(0.15, 0.133)
         .setInteractive();
       cardNumber++;
-      i.clickedStatus(card);
+      this.givenCards[i].clickedStatus(card, this.givenCards[i]);
     }
   }
 }
