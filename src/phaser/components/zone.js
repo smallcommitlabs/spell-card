@@ -7,7 +7,6 @@ export default class zone {
    * @param {Phaser.GameObjects} gameObject
    */
   constructor(gameObject) {
-    console.log(gameObject);
     this.gameObject = gameObject;
   }
 

@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import SettingMenu from '../../components/gameSetting/settingMenu';
+import PlayerData from '../../player/playerData';
 
 export default class roundResult extends Phaser.Scene {
   init(data) {
@@ -10,6 +11,7 @@ export default class roundResult extends Phaser.Scene {
 
   constructor() {
     super('roundResult');
+    this.PlayerData = new PlayerData();
   }
 
   create() {
@@ -64,7 +66,6 @@ export default class roundResult extends Phaser.Scene {
       this.player2.setText('0');
     }
     if (!this.timeline.isPlaying()) {
-      console.log(this.player1Health.getHealth(), +'     ' + this.player2Health.getHealth());
       if (this.player1Health.getHealth() <= 0 || this.player2Health.getHealth() <= 0) {
         this.scene.start('gameResult', {
           player1Health: this.player1Health,
@@ -100,9 +101,7 @@ export default class roundResult extends Phaser.Scene {
 
   // Add animation and effects for cards
   processCard(width, height) {
-    
     this.timeline = this.tweens.createTimeline();
-
 
     for (const i of this.cards) {
       const card = i.getCard();
@@ -114,9 +113,8 @@ export default class roundResult extends Phaser.Scene {
         .image(width * 0.2 + 50, height * 0.4, image)
         .setOrigin(0.5)
         .setScale(0.15);
-      
-      this.timeline.add({
 
+      this.timeline.add({
         targets: target,
         x: 600,
         onStart: this.onStart.bind(this, target),
@@ -128,7 +126,6 @@ export default class roundResult extends Phaser.Scene {
     }
 
     this.timeline.play();
-
   }
 
   // Make the object invisble
