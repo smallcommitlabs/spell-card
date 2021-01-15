@@ -7,6 +7,7 @@ export default class roundResult extends Phaser.Scene {
     this.player1Health = data.player1Health;
     this.player2Health = data.player2Health;
     this.cards = data.cards;
+    this.length = data.length;
   }
 
   constructor() {
@@ -50,6 +51,7 @@ export default class roundResult extends Phaser.Scene {
       .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
 
+    this.punishment();
     this.processCard(width, height);
 
     // this.player1Health.setHealth(40);
@@ -139,5 +141,10 @@ export default class roundResult extends Phaser.Scene {
     if (type === 'Attack' || type === 'Magic') {
       this.player2Health.setHealth(damage);
     }
+  }
+
+  punishment() {
+    const nonanswerDamage = this.length - this.cards.length;
+    this.player1Health.setHealth(nonanswerDamage);
   }
 }
