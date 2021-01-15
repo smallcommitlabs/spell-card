@@ -9,6 +9,7 @@ import gamePreloader from '../phaser/scenes/GameScenes/gamePreloader';
 import deckSelection from '../phaser/scenes/GameScenes/deckSelection';
 import cardSwitch from '../phaser/scenes/GameScenes/cardSwitch';
 import roundResult from '../phaser/scenes/GameScenes/roundResult';
+import gameResult from '../phaser/scenes/GameScenes/gameResult';
 import React, { useEffect } from 'react';
 
 const config = {
@@ -19,7 +20,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true,
+      debug: false,
       gravity: { y: 0 },
     },
   },
@@ -34,6 +35,8 @@ const config = {
     gamePreloader,
     cardSwitch,
     roundResult,
+    gameResult,
+
   ],
 };
 
