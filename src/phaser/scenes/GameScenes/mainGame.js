@@ -94,11 +94,10 @@ export default class playGame extends Phaser.Scene {
   update() {
     this.countdown.update();
   }
-  
+
   // Creates the pop-up screen
-  
+
   popUpScreen(button, popUpName, popUpInput, data, callback, card) {
-    
     button.on(
       'pointerdown',
       function () {
@@ -110,7 +109,7 @@ export default class playGame extends Phaser.Scene {
           correct: this.correctCards,
           card: card,
           key: 'game',
-          callback: callbackFun,
+          callback: callback,
         });
         // hide the timer
         this.timerLabel.visible = false;
