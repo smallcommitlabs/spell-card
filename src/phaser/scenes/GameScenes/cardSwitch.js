@@ -48,15 +48,15 @@ export default class cardSwich extends Phaser.Scene {
       const replacementCards = new Array();
       // THis is not working because this.givenCards[i] is not referencing the same isSelected and does not change
       // in this instance itself i think and only in the card class instance or something like that
-      for (let i = 0; i < this.givenCards.length; i++) {
-        console.log(this.givenCards[i].isSelected);
-        if (this.givenCards[i].isSelected) {
+      for (const i of this.givenCards) {
+        console.log(i.isSelected);
+        if (i.isSelected) {
           console.log('i like cheese');
-          this.process.replaceCards(this.givenCards[i]);
+          this.process.replaceCards(i);
           cardsReplaced++;
         } else {
           console.log('but im lactose');
-          replacementCards[cardsKept] = this.givenCards[i];
+          replacementCards[cardsKept] = i;
           cardsKept++;
         }
       }
@@ -88,7 +88,7 @@ export default class cardSwich extends Phaser.Scene {
         .setScale(0.15, 0.133)
         .setInteractive();
       cardNumber++;
-      this.givenCards[i].clickedStatus(card, this.givenCards[i]);
+      i.clickedStatus(card, i);
     }
   }
 }

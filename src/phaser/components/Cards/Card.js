@@ -28,13 +28,13 @@ export default class Card {
     return this.isSelected;
   }
 
-  setCardSelectedStatus() {
+  setCardSelectedStatus(status) {
     this.isSelected = status;
   }
 
   clickedStatus(cardBtn, cardObj) {
     cardBtn.on('pointerdown', function (pointer) {
-      if (!card.isSelected) {
+      if (!cardObj.isSelected) {
         cardObj.setCardSelectedStatus(true);
         cardBtn.setTint(0xff0000);
       } else {
@@ -42,5 +42,6 @@ export default class Card {
         cardBtn.clearTint();
       }
     });
+    console.log(this.isSelected);
   }
 }
