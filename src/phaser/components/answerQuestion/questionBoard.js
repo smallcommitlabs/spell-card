@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import CountdownController from '../../components/countdownController';
+import PlayerData from '../../player/playerData';
 
 export default class questionBoard extends Phaser.Scene {
   // fetch the data passed by the previous scene
@@ -11,11 +12,13 @@ export default class questionBoard extends Phaser.Scene {
     this.question = data.question;
     this.callback = data.callback;
     this.correctCards = data.correct;
+    this.incorrectCards = data.incorrectCards;
     this.selectedCard = data.card;
   }
 
   constructor() {
     super('questionBoard');
+    this.playerData = new PlayerData();
   }
 
   create() {
@@ -59,6 +62,8 @@ export default class questionBoard extends Phaser.Scene {
     incorrectBtn.on('pointerdown', () => {
       this.callback();
       this.navigation();
+      this.incorrectCards.push(this.selectedCard);
+      this.playerData.replaceCards(this.selectedCard);
     });
   }
 
@@ -85,6 +90,7 @@ export default class questionBoard extends Phaser.Scene {
       counter: this.countdown,
       mainGameCounter: this.counter,
       correctCards: this.correctCards,
+      incorrectCards: this.incorrectCards,
     });
   }
 }
