@@ -1,15 +1,18 @@
 import Phaser from 'phaser';
 import SettingMenu from '../../components/gameSetting/settingMenu';
+import PlayerData from '../../player/playerData';
 
 export default class roundResult extends Phaser.Scene {
   init(data) {
     this.player1Health = data.player1Health;
     this.player2Health = data.player2Health;
     this.cards = data.cards;
+    this.length = data.length;
   }
 
   constructor() {
     super('roundResult');
+    this.PlayerData = new PlayerData();
   }
 
   create() {
@@ -48,6 +51,7 @@ export default class roundResult extends Phaser.Scene {
       .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
 
+    this.punishment();
     this.processCard(width, height);
 
     // this.player1Health.setHealth(40);
@@ -56,6 +60,7 @@ export default class roundResult extends Phaser.Scene {
   update() {
     this.player1.setText(this.player1Health.getHealth());
     this.player2.setText(this.player2Health.getHealth());
+
     if (this.player1Health.getHealth() <= 0) {
       this.player1.setText('0');
     }
@@ -63,7 +68,6 @@ export default class roundResult extends Phaser.Scene {
       this.player2.setText('0');
     }
     if (!this.timeline.isPlaying()) {
-      console.log(this.player1Health.getHealth(), +'     ' + this.player2Health.getHealth());
       if (this.player1Health.getHealth() <= 0 || this.player2Health.getHealth() <= 0) {
         this.scene.start('gameResult', {
           player1Health: this.player1Health,
@@ -111,6 +115,7 @@ export default class roundResult extends Phaser.Scene {
         .image(width * 0.2 + 50, height * 0.4, image)
         .setOrigin(0.5)
         .setScale(0.15);
+
       this.timeline.add({
         targets: target,
         x: 600,
@@ -121,6 +126,7 @@ export default class roundResult extends Phaser.Scene {
       });
       target.visible = false;
     }
+
     this.timeline.play();
   }
 
@@ -135,5 +141,10 @@ export default class roundResult extends Phaser.Scene {
     if (type === 'Attack' || type === 'Magic') {
       this.player2Health.setHealth(damage);
     }
+  }
+
+  punishment() {
+    const nonanswerDamage = this.length - this.cards.length;
+    this.player1Health.setHealth(nonanswerDamage);
   }
 }

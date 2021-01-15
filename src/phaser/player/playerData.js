@@ -23,6 +23,8 @@ export default class cards {
   loadCard() {
     let a = 0;
 
+    // Double the cards
+
     for (const i of Deck.card) {
       let card = null;
       if (i.class === 'Attack') {
@@ -32,13 +34,11 @@ export default class cards {
       } else if (i.class === 'Magic') {
         card = new MagicCard(i);
       } else {
-        console.log('none');
       }
       this.card[a] = card;
       this.randomCards[a] = card;
       a++;
     }
-    console.log(this.card);
   }
 
   /**
