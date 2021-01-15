@@ -31,6 +31,7 @@ export default class cardSwich extends Phaser.Scene {
 
     this.givenCards = this.process.getRandomCards(5);
     console.log(this.givenCards);
+    console.log(Object.keys(this.givenCards));
 
     this.cardHandler(width, height);
 
@@ -78,19 +79,16 @@ export default class cardSwich extends Phaser.Scene {
   }
 
   cardHandler(width, height) {
-    let card;
     let cardNumber = 1;
     const x = width * 0.2 - 35;
     const y = height * 0.5;
-    for (let i = 0; i < this.givenCards.length; i++) {
-      // Select the image for the card here
-      card = this.add
-        .sprite(x * cardNumber, y, this.givenCards[i].getCard().image.toString())
+    for (const i of this.givenCards) {
+      const card = this.add
+        .image(x * cardNumber, y, i.getCard().image)
         .setScale(0.15, 0.133)
         .setInteractive();
       cardNumber++;
-
-      this.givenCards[i].clickedStatus(card);
+      i.clickedStatus(card);
     }
   }
 }
