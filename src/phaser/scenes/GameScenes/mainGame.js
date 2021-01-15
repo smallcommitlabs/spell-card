@@ -21,6 +21,8 @@ export default class playGame extends Phaser.Scene {
   }
 
   create() {
+    this.correctCards = new Array();
+
     console.log(this.scene);
     const { width, height } = this.scale;
     this.add
@@ -66,6 +68,7 @@ export default class playGame extends Phaser.Scene {
         const mainGameTimerLabel = data.mainGameCounter;
         // restart the timer
         mainGameTimerLabel.resume(timeRemain);
+        this.correctCards = data.correct;
       }
     });
 
@@ -93,12 +96,7 @@ export default class playGame extends Phaser.Scene {
   }
 
   // Creates the pop-up screen
-  popUpScreen(button, popUpName, popUpInput, data, callback) {
-
-    let callbackFun = null;
-    if (callback) {
-      callbackFun = callback.bind(this);
-    }
+  popUpScreen(button, popUpName, popUpInput, data, callback, card) {
 
     button.on(
       'pointerdown',
@@ -108,6 +106,8 @@ export default class playGame extends Phaser.Scene {
           counter: this.countdown,
           timerLabel: this.timerLabel,
           question: data,
+          correct: this.correctCards,
+          card: card,
           key: 'game',
           callback: callbackFun,
 
@@ -126,7 +126,8 @@ export default class playGame extends Phaser.Scene {
     this.scene.start('roundResult', {
       player1Health: this.player1Health,
       player2Health: this.player2Health,
-      cards: this.selectedCards,
+      cards: this.correctCards,
+      length: this.selectedCards.length,
     });
   }
 
@@ -142,9 +143,16 @@ export default class playGame extends Phaser.Scene {
       x += 122;
 
       // Add popup question board screen to card
-      this.popUpScreen(card, 'questionBoard', QuestionBoard, x, () => {
-        card.disableInteractive();
-      });
+      this.popUpScreen(
+        card,
+        'questionBoard',
+        QuestionBoard,
+        x,
+        () => {
+          card.disableInteractive();
+        },
+        i
+      );
     }
   }
 }
