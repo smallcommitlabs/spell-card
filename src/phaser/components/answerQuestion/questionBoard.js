@@ -10,6 +10,8 @@ export default class questionBoard extends Phaser.Scene {
     this.mainGameTimerLabel = data.timerLabel;
     this.question = data.question;
     this.callback = data.callback;
+    this.correctCards = data.correct;
+    this.selectedCard = data.card;
   }
 
   constructor() {
@@ -47,6 +49,15 @@ export default class questionBoard extends Phaser.Scene {
     const confirmBtn = this.add.text(300, 400, 'Confirm', { fontSize: 34 });
     confirmBtn.setInteractive();
     confirmBtn.on('pointerdown', () => {
+      this.correctCards.push(this.selectedCard);
+      this.callback();
+      this.navigation();
+    });
+
+    // Answered wrong button
+    const incorrectBtn = this.add.text(300, 450, 'Incorrect', { fontSize: 34 });
+    incorrectBtn.setInteractive();
+    incorrectBtn.on('pointerdown', () => {
       this.callback();
       this.navigation();
     });
@@ -70,6 +81,10 @@ export default class questionBoard extends Phaser.Scene {
     // get the scenePlugin from the previous scene to get the the scene keys
     this.scene = this.mainGame.object.scene;
     // resume the mainGame scene and pass the countdown object from the scene and the previous scene
-    this.scene.resume('game', { counter: this.countdown, mainGameCounter: this.counter });
+    this.scene.resume('game', {
+      counter: this.countdown,
+      mainGameCounter: this.counter,
+      correctCards: this.correctCards,
+    });
   }
 }
