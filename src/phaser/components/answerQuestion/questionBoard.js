@@ -10,7 +10,6 @@ export default class questionBoard extends Phaser.Scene {
     this.mainGameTimerLabel = data.timerLabel;
     this.question = data.question;
     this.callback = data.callback;
-
     this.correctCards = data.correct;
     this.selectedCard = data.card;
   }
@@ -32,7 +31,6 @@ export default class questionBoard extends Phaser.Scene {
     // Create timer
     const timerLabel = this.add.text(width * 0.5, 150, '5:00', { fontSize: 32 }).setOrigin(0.5);
     const timeRemain = this.counter.getRemain();
-    console.log(timeRemain);
     this.countdown = new CountdownController(this, timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
 

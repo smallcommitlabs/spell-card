@@ -16,6 +16,7 @@ export default class roundResult extends Phaser.Scene {
   }
 
   create() {
+    console.log('round result');
     const { width, height } = this.scale;
     this.add
       .image(width * 0.5, height * 0.5, 'gameBackground')

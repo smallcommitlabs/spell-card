@@ -15,7 +15,6 @@ export default class setting extends Phaser.Scene {
 
   create() {
     const { width, height } = this.scale;
-    console.log(this.counter);
 
     // this.cameras.main.backgroundColor.setTo(106,78,86);
     // let rt = this.add.renderTexture(0, 0, width, height).setOrigin(0);
@@ -57,7 +56,6 @@ export default class setting extends Phaser.Scene {
   timerSettup(width) {
     const timerLabel = this.add.text(width * 0.5, 150, '5:00', { fontSize: 32 }).setOrigin(0.5);
     const timeRemain = this.counter.getRemain();
-    console.log(timeRemain);
     this.countdown = new CountdownController(this, timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
   }

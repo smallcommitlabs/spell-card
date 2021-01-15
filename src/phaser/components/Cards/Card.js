@@ -42,6 +42,5 @@ export default class Card {
         cardBtn.clearTint();
       }
     });
-    console.log(this.isSelected);
   }
 }
