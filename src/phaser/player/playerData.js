@@ -65,19 +65,26 @@ export default class cards {
    * This method gets the last cards from the randomCards array and places them
    */
   getRandomCards(numOfCards) {
-    const returnedCards = new Array();
+    let returnedCards = new Array();
     let j = 0;
 
+    if (numOfCards > this.randomCards.length) {
+      console.log(this.randomCards);
+      returnedCards = Array.from(this.randomCards);
+      this.randomCards = new Array();
+      return returnedCards;
+    }
+
+    console.log(this.randomCards);
     for (let i = this.randomCards.length - 1; i >= this.randomCards.length - numOfCards; i--) {
       // If the wanted index is smaller than 0, then the deck has ended.
       if (i < 0) break;
+      console.log(this.randomCards[i]);
+      console.log(i);
       returnedCards[j] = this.randomCards[i];
       j++;
     }
-    if (numOfCards > this.randomCards.length) {
-      this.randomCards.length = 0;
-      return returnedCards;
-    }
+
     // Change the length of the deck and remove the cards that have been added to hand
     this.randomCards.length = this.randomCards.length - numOfCards;
     return returnedCards;
