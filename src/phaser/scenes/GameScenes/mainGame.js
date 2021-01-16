@@ -22,6 +22,8 @@ export default class playGame extends Phaser.Scene {
   }
 
   create() {
+    this.cardNotAnser = Array.from(this.selectedCards);
+    console.log(this.cardNotAnser);
     this.correctCards = new Array();
     this.incorrectCards = new Array();
 
@@ -85,7 +87,7 @@ export default class playGame extends Phaser.Scene {
     // Timer
     // const time = 300000;
 
-    const time = 20000;
+    const time = 10000;
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
     this.countdown = new CountdownController(this, this.timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), time);
@@ -106,6 +108,7 @@ export default class playGame extends Phaser.Scene {
           counter: this.countdown,
           timerLabel: this.timerLabel,
           question: data,
+          notAns: this.cardNotAnser,
           correct: this.correctCards,
           incorrectCards: this.incorrectCards,
           card: card,
@@ -123,19 +126,26 @@ export default class playGame extends Phaser.Scene {
 
   // executes when the timer is finish
   handleCountdownFinished() {
+    for (const i of this.cardNotAnser) {
+      console.log(i);
+      this.playerData.replaceCards(i);
+    }
+    console.log(this.selectedCards);
+    this.playerData.createRandomCardList();
+
     this.scene.start('roundResult', {
       player1Health: this.player1Health,
       player2Health: this.player2Health,
       correctCards: this.correctCards,
       length: this.selectedCards.length,
     });
-    this.playerData.createRandomCardList();
   }
 
   // Load the selected cards on to the screen
   loadCards() {
     let x = 240;
     for (const i of this.selectedCards) {
+      console.log(this.selectedCards);
       const card = this.add
         .image(x, 450, i.getCard().image)
         .setOrigin(0.5)

@@ -155,6 +155,7 @@ export default class roundResult extends Phaser.Scene {
 
   getCards() {
     const newCards = this.playerData.getRandomCards(5);
+    console.log(newCards);
     return newCards;
   }
 }

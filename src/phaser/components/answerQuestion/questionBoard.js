@@ -14,6 +14,7 @@ export default class questionBoard extends Phaser.Scene {
     this.correctCards = data.correct;
     this.incorrectCards = data.incorrectCards;
     this.selectedCard = data.card;
+    this.cardNotAns = data.notAns;
   }
 
   constructor() {
@@ -54,6 +55,7 @@ export default class questionBoard extends Phaser.Scene {
       this.correctCards.push(this.selectedCard);
       this.callback();
       this.navigation();
+      this.removeAnsweredCard(this.selectedCard);
     });
 
     // Answered wrong button
@@ -64,6 +66,7 @@ export default class questionBoard extends Phaser.Scene {
       this.navigation();
       this.incorrectCards.push(this.selectedCard);
       this.playerData.replaceCards(this.selectedCard);
+      this.removeAnsweredCard(this.selectedCard);
     });
   }
 
@@ -92,5 +95,17 @@ export default class questionBoard extends Phaser.Scene {
       correctCards: this.correctCards,
       incorrectCards: this.incorrectCards,
     });
+  }
+
+  removeAnsweredCard(card) {
+    const cardName = card.getCard().name;
+    // console.log(cardName);
+    for (let i = 0; i < this.cardNotAns.length; i++) {
+      if (this.cardNotAns[i].getCard().name === cardName) {
+        this.cardNotAns.splice(i, 1);
+        console.log(this.cardNotAns);
+        break;
+      }
+    }
   }
 }
