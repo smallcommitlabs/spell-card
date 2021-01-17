@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
+  "engines": {
+    "npm": "use yarn instead of npm."
+  },
   "dependencies": {
     "@aws-amplify/auth": "^3.4.16",
     "@reduxjs/toolkit": "^1.5.0",
