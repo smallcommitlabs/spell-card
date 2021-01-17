@@ -63,6 +63,7 @@ export default class roundResult extends Phaser.Scene {
     this.player2.setText(this.player2Health.getHealth());
 
     // Set health to be 0 when its equal or less than 0
+
     if (this.player1Health.getHealth() <= 0) {
       this.player1.setText('0');
     }
