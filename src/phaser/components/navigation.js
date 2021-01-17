@@ -9,7 +9,6 @@ export default class navigation {
    * @param {Phaser.GameObjects.Image} component
    */
   navigationToScene(sceneToNaviTo, component) {
-    console.log(sceneToNaviTo);
     this.sceneToNaviTo = sceneToNaviTo;
     this.component = component;
 
@@ -18,7 +17,6 @@ export default class navigation {
   }
 
   mouseClick() {
-    console.log(this.scene);
     this.scene.scene.start(this.sceneToNaviTo);
   }
 

@@ -25,7 +25,6 @@ export default class countdownController {
    * @param {number} duration
    */
   start(callback, duration) {
-    console.log(this);
     this.duration = duration;
     this.time = duration;
     this.stop();
@@ -51,14 +50,12 @@ export default class countdownController {
 
   stop() {
     if (this.timerEvent) {
-      console.log('stop');
       this.timerEvent.destroy();
       this.timerEvent = undefined;
     }
   }
 
   resume(duation) {
-    console.log(duation);
     this.start(this.callback, duation);
   }
 

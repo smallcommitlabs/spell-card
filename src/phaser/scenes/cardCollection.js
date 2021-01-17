@@ -18,8 +18,6 @@ export default class cardCollection extends Phaser.Scene {
 
     this.add.text(width * 0.5, 50, 'Card Collection', { fontSize: 62 }).setOrigin(0.5);
 
-    // console.log(this.add.sprite)
-
     this.allCardText = this.add
       .text(width * 0.1, height * 0.25 - 24, 'All Card', { fontSize: 24 })
       .setInteractive();
@@ -67,9 +65,7 @@ export default class cardCollection extends Phaser.Scene {
     }
   }
 
-  update() {
-    console.log();
-  }
+  update() {}
 
   loadDeck() {
     const { width, height } = this.scale;

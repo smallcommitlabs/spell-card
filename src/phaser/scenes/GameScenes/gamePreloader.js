@@ -7,7 +7,6 @@ export default class gamePreloader extends Phaser.Scene {
   }
 
   preload() {
-    console.log('Loading........ Connecting...');
     const process = new playerData();
     process.createRandomCardList();
   }
