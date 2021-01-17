@@ -16,7 +16,6 @@ export default class roundResult extends Phaser.Scene {
   }
 
   create() {
-    console.log('round result');
     const { width, height } = this.scale;
     this.add
       .image(width * 0.5, height * 0.5, 'gameBackground')
@@ -59,16 +58,23 @@ export default class roundResult extends Phaser.Scene {
   }
 
   update() {
+    // Update the player health
     this.player1.setText(this.player1Health.getHealth());
     this.player2.setText(this.player2Health.getHealth());
 
+    // Set health to be 0 when its equal or less than 0
     if (this.player1Health.getHealth() <= 0) {
       this.player1.setText('0');
     }
+
     if (this.player2Health.getHealth() <= 0) {
       this.player2.setText('0');
     }
+
+    // If the animation finished
     if (!this.timeline.isPlaying()) {
+      // If the the player health is equal 0 or no more cards, switch to gameResult
+      // Else restart a new round
       if (
         this.player1Health.getHealth() <= 0 ||
         this.player2Health.getHealth() <= 0 ||
@@ -82,7 +88,6 @@ export default class roundResult extends Phaser.Scene {
         this.scene.start('game', {
           player1Health: this.player1Health,
           player2Health: this.player2Health,
-          // Mock data
           selectedCards: this.getCards(),
         });
       }
@@ -98,9 +103,6 @@ export default class roundResult extends Phaser.Scene {
           object: this,
           key: 'roundResult',
         });
-        // hide the timer
-        // pause the scene
-        // this.scene.pause('roundResult');
       },
       this
     );
@@ -153,6 +155,7 @@ export default class roundResult extends Phaser.Scene {
     this.player1Health.setHealth(nonanswerDamage);
   }
 
+  // Get new cards for a new round
   getCards() {
     const newCards = this.playerData.getRandomCards(5);
     console.log(newCards);

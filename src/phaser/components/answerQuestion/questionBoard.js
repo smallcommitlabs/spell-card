@@ -97,9 +97,9 @@ export default class questionBoard extends Phaser.Scene {
     });
   }
 
+  // Remove the answered cards from the list
   removeAnsweredCard(card) {
     const cardName = card.getCard().name;
-    // console.log(cardName);
     for (let i = 0; i < this.cardNotAns.length; i++) {
       if (this.cardNotAns[i].getCard().name === cardName) {
         this.cardNotAns.splice(i, 1);

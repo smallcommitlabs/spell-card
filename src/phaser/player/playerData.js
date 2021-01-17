@@ -68,6 +68,8 @@ export default class cards {
     let returnedCards = new Array();
     let j = 0;
 
+    // If the current remain cards is less than the what it require, return the all the
+    // remaining cardss
     if (numOfCards > this.randomCards.length) {
       console.log(this.randomCards);
       returnedCards = Array.from(this.randomCards);
@@ -75,7 +77,6 @@ export default class cards {
       return returnedCards;
     }
 
-    console.log(this.randomCards);
     for (let i = this.randomCards.length - 1; i >= this.randomCards.length - numOfCards; i--) {
       // If the wanted index is smaller than 0, then the deck has ended.
       if (i < 0) break;
@@ -97,8 +98,8 @@ export default class cards {
     console.log(this.randomCards.length);
   }
 
+  // Get check the number remaining cards
   getCardRemainNumber() {
-    console.log(this.randomCards.length);
     return this.randomCards.length;
   }
 }

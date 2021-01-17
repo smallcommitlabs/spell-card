@@ -23,11 +23,9 @@ export default class playGame extends Phaser.Scene {
 
   create() {
     this.cardNotAnser = Array.from(this.selectedCards);
-    console.log(this.cardNotAnser);
     this.correctCards = new Array();
     this.incorrectCards = new Array();
 
-    console.log(this.scene);
     const { width, height } = this.scale;
     this.add
       .image(width * 0.5, height * 0.5, 'gameBackground')
@@ -68,10 +66,7 @@ export default class playGame extends Phaser.Scene {
         // Get the remaining time in the popup scene
         const timeRemain = counter.getRemain();
         const mainGameTimerLabel = data.mainGameCounter;
-        // restart the timer
         mainGameTimerLabel.resume(timeRemain);
-        // this.correctCards = data.correct;
-        // console.log(this.correctCards);
       }
     });
 
@@ -154,7 +149,6 @@ export default class playGame extends Phaser.Scene {
       x += 122;
 
       // Add popup question board screen to card
-
       this.popUpScreen(
         card,
         'questionBoard',
