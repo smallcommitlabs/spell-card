@@ -5,9 +5,11 @@ export default class Card {
   }
   useEffect() {}
 
+  // return if the card is been selected
   isSelected() {
     return this.isSelected;
   }
+
   useCard() {
     this.cardInform.discarded = true;
   }
@@ -20,10 +22,12 @@ export default class Card {
     return scene.physics.add.sprite(x, y, this.cardInform, this.cardInform);
   }
 
+  // Return the card information array
   getCard() {
     return this.cardInform;
   }
 
+  // Check if the card is been selected
   getSelectedInfo() {
     return this.isSelected;
   }
@@ -32,6 +36,7 @@ export default class Card {
     this.isSelected = status;
   }
 
+  // Add or remove tint from card
   clickedStatus(cardBtn, cardObj) {
     cardBtn.on('pointerdown', function (pointer) {
       if (!cardObj.isSelected) {
@@ -42,6 +47,5 @@ export default class Card {
         cardBtn.clearTint();
       }
     });
-    console.log(this.isSelected);
   }
 }
