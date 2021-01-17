@@ -84,12 +84,14 @@ export default class roundResult extends Phaser.Scene {
           player1Health: this.player1Health,
           player2Health: this.player2Health,
         });
+        this.scene.remove('gameSetting');
       } else {
         this.scene.start('game', {
           player1Health: this.player1Health,
           player2Health: this.player2Health,
           selectedCards: this.getCards(),
         });
+        this.scene.remove('gameSetting');
       }
     }
   }
