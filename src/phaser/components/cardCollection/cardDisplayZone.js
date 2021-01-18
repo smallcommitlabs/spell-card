@@ -15,7 +15,6 @@ export default class cardDisplayZone extends Phaser.Scene {
   }
 
   create() {
-    console.log(this.input);
     const text = this.add.text(700, 400, this.input, { fontSize: 24 });
     const { width, height } = this.scale;
     const zone = this.zone.creactZone(width * 0.08, height * 0.25, width * 0.45, height * 0.55);
@@ -43,7 +42,6 @@ export default class cardDisplayZone extends Phaser.Scene {
     } else {
       this.left.disableInteractive();
     }
-    console.log(this.pageNum);
     this.pageNumText.setText(this.pageNum + 1);
   }
 
@@ -55,9 +53,7 @@ export default class cardDisplayZone extends Phaser.Scene {
     let y = zone.y + 40;
     const xper = 1;
     for (let i = 0; i < 2; ++i) {
-      console.log('i');
       for (let j = 0; j < 3; ++j) {
-        console.log('j');
         card = this.add
           .sprite(x * xper, y, 'CardBack')
           .setOrigin(0)
