@@ -51,7 +51,6 @@ export default class cardSwich extends Phaser.Scene {
       // THis is not working because this.givenCards[i] is not referencing the same isSelected and does not change
       // in this instance itself i think and only in the card class instance or something like that
       for (const i of this.givenCards) {
-        console.log(i.isSelected);
         if (i.isSelected) {
           this.process.replaceCards(i);
           cardsReplaced++;

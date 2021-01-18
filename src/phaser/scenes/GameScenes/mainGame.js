@@ -15,7 +15,6 @@ export default class playGame extends Phaser.Scene {
     this.player2Health = data.player2Health;
     this.botCards = data.selectedBotCards;
     this.botProcess = data.botProcess;
-    console.log(this.selectedCards);
   }
   constructor() {
     super('game');
@@ -132,6 +131,7 @@ export default class playGame extends Phaser.Scene {
       player2Health: this.player2Health,
       cards: this.correctCards,
       length: this.selectedCards.length,
+      botCards: this.botCorrectCards,
     });
   }
 

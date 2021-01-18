@@ -92,6 +92,7 @@ export default class cards {
         correctBotCards.push(i);
       }
     }
+    console.log(correctBotCards);
     return correctBotCards;
   }
 }
