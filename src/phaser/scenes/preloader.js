@@ -18,7 +18,6 @@ class preloader extends Phaser.Scene {
   preload() {
     const process = new playerData();
     process.loadCard();
-    console.log('preload');
     this.load.image('gameBackground', gameBackground);
     this.load.image('CardBack', CardBack);
     this.load.image('attack', attack);
@@ -30,7 +29,6 @@ class preloader extends Phaser.Scene {
   }
 
   create() {
-    console.log('create');
     this.scene.start('mainMenu');
   }
 }

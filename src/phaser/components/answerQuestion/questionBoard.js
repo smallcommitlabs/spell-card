@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import CountdownController from '../../components/countdownController';
+import PlayerData from '../../player/playerData';
 
 export default class questionBoard extends Phaser.Scene {
   // fetch the data passed by the previous scene
@@ -11,11 +12,14 @@ export default class questionBoard extends Phaser.Scene {
     this.question = data.question;
     this.callback = data.callback;
     this.correctCards = data.correct;
+    this.incorrectCards = data.incorrectCards;
     this.selectedCard = data.card;
+    this.cardNotAns = data.notAns;
   }
 
   constructor() {
     super('questionBoard');
+    this.playerData = new PlayerData();
   }
 
   create() {
@@ -31,7 +35,6 @@ export default class questionBoard extends Phaser.Scene {
     // Create timer
     const timerLabel = this.add.text(width * 0.5, 150, '5:00', { fontSize: 32 }).setOrigin(0.5);
     const timeRemain = this.counter.getRemain();
-    console.log(timeRemain);
     this.countdown = new CountdownController(this, timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
 
@@ -52,6 +55,7 @@ export default class questionBoard extends Phaser.Scene {
       this.correctCards.push(this.selectedCard);
       this.callback();
       this.navigation();
+      this.removeAnsweredCard(this.selectedCard);
     });
 
     // Answered wrong button
@@ -60,6 +64,9 @@ export default class questionBoard extends Phaser.Scene {
     incorrectBtn.on('pointerdown', () => {
       this.callback();
       this.navigation();
+      this.incorrectCards.push(this.selectedCard);
+      this.playerData.replaceCards(this.selectedCard);
+      this.removeAnsweredCard(this.selectedCard);
     });
   }
 
@@ -81,10 +88,24 @@ export default class questionBoard extends Phaser.Scene {
     // get the scenePlugin from the previous scene to get the the scene keys
     this.scene = this.mainGame.object.scene;
     // resume the mainGame scene and pass the countdown object from the scene and the previous scene
+
     this.scene.resume('game', {
       counter: this.countdown,
       mainGameCounter: this.counter,
       correctCards: this.correctCards,
+      incorrectCards: this.incorrectCards,
     });
+  }
+
+  // Remove the answered cards from the list
+  removeAnsweredCard(card) {
+    const cardName = card.getCard().name;
+    for (let i = 0; i < this.cardNotAns.length; i++) {
+      if (this.cardNotAns[i].getCard().name === cardName) {
+        this.cardNotAns.splice(i, 1);
+        console.log(this.cardNotAns);
+        break;
+      }
+    }
   }
 }

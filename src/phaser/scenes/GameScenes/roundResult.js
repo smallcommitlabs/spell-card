@@ -1,17 +1,19 @@
 import Phaser from 'phaser';
 import SettingMenu from '../../components/gameSetting/settingMenu';
+import PlayerData from '../../player/playerData';
 
 export default class roundResult extends Phaser.Scene {
   init(data) {
     this.player1Health = data.player1Health;
     this.player2Health = data.player2Health;
-    this.cards = data.cards;
+    this.correctCards = data.correctCards;
     this.length = data.length;
     this.botCards = data.botCards;
   }
 
   constructor() {
     super('roundResult');
+    this.playerData = new PlayerData();
   }
 
   create() {
@@ -57,29 +59,41 @@ export default class roundResult extends Phaser.Scene {
   }
 
   update() {
+    // Update the player health
     this.player1.setText(this.player1Health.getHealth());
     this.player2.setText(this.player2Health.getHealth());
+
+    // Set health to be 0 when its equal or less than 0
 
     if (this.player1Health.getHealth() <= 0) {
       this.player1.setText('0');
     }
+
     if (this.player2Health.getHealth() <= 0) {
       this.player2.setText('0');
     }
+
+    // If the animation finished
     if (!this.timeline.isPlaying()) {
-      console.log(this.player1Health.getHealth(), +'     ' + this.player2Health.getHealth());
-      if (this.player1Health.getHealth() <= 0 || this.player2Health.getHealth() <= 0) {
+      // If the the player health is equal 0 or no more cards, switch to gameResult
+      // Else restart a new round
+      if (
+        this.player1Health.getHealth() <= 0 ||
+        this.player2Health.getHealth() <= 0 ||
+        this.playerData.getCardRemainNumber() === 0
+      ) {
         this.scene.start('gameResult', {
           player1Health: this.player1Health,
           player2Health: this.player2Health,
         });
+        this.scene.remove('gameSetting');
       } else {
         this.scene.start('game', {
           player1Health: this.player1Health,
           player2Health: this.player2Health,
-          // Mock data
-          selectedCards: this.cards,
+          selectedCards: this.getCards(),
         });
+        this.scene.remove('gameSetting');
       }
     }
   }
@@ -93,19 +107,16 @@ export default class roundResult extends Phaser.Scene {
           object: this,
           key: 'roundResult',
         });
-        // hide the timer
-        // pause the scene
-        // this.scene.pause('roundResult');
       },
       this
     );
   }
 
-  // Add animation and effects for cards
+  // Add animation and effects for correctCards
   processCard(width, height) {
     this.timeline = this.tweens.createTimeline();
 
-    for (const i of this.cards) {
+    for (const i of this.correctCards) {
       const card = i.getCard();
       const cardClass = card.class;
       const rank = card.rank;
@@ -144,7 +155,14 @@ export default class roundResult extends Phaser.Scene {
   }
 
   punishment() {
-    const nonanswerDamage = this.length - this.cards.length;
+    const nonanswerDamage = this.length - this.correctCards.length;
     this.player1Health.setHealth(nonanswerDamage);
+  }
+
+  // Get new cards for a new round
+  getCards() {
+    const newCards = this.playerData.getRandomCards(5);
+    console.log(newCards);
+    return newCards;
   }
 }

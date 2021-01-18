@@ -23,6 +23,8 @@ export default class cards {
   loadCard() {
     let a = 0;
 
+    // Double the cards
+
     for (const i of Deck.card) {
       let card = null;
       if (i.class === 'Attack') {
@@ -32,13 +34,11 @@ export default class cards {
       } else if (i.class === 'Magic') {
         card = new MagicCard(i);
       } else {
-        console.log('none');
       }
       this.card[a] = card;
       this.randomCards[a] = card;
       a++;
     }
-    console.log(this.card);
   }
 
   /**
@@ -65,14 +65,27 @@ export default class cards {
    * This method gets the last cards from the randomCards array and places them
    */
   getRandomCards(numOfCards) {
-    const returnedCards = new Array();
+    let returnedCards = new Array();
     let j = 0;
+
+    // If the current remain cards is less than the what it require, return the all the
+    // remaining cardss
+    if (numOfCards > this.randomCards.length) {
+      console.log(this.randomCards);
+      returnedCards = Array.from(this.randomCards);
+      this.randomCards = new Array();
+      return returnedCards;
+    }
+
     for (let i = this.randomCards.length - 1; i >= this.randomCards.length - numOfCards; i--) {
       // If the wanted index is smaller than 0, then the deck has ended.
       if (i < 0) break;
+      console.log(this.randomCards[i]);
+      console.log(i);
       returnedCards[j] = this.randomCards[i];
       j++;
     }
+
     // Change the length of the deck and remove the cards that have been added to hand
     this.randomCards.length = this.randomCards.length - numOfCards;
     return returnedCards;
@@ -80,7 +93,14 @@ export default class cards {
 
   // At the start of the game if the user wants to return their cards, this will readd the card to randomCards.
   replaceCards(readdedCard) {
+    console.log(this.randomCards.length);
     this.randomCards.push(readdedCard);
+    console.log(this.randomCards.length);
+  }
+
+  // Get check the number remaining cards
+  getCardRemainNumber() {
+    return this.randomCards.length;
   }
 
   botChance(botCards) {

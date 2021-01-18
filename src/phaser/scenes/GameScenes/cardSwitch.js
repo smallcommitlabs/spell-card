@@ -2,7 +2,6 @@ import Phaser from 'phaser';
 import NavigationButton from '../../components/naviButton';
 import countdownController from '../../components/countdownController';
 import playerData from '../../player/playerData';
-import Card from '../../components/Cards/Card';
 
 export default class cardSwich extends Phaser.Scene {
   /** @type {CountdownController} */
@@ -50,6 +49,7 @@ export default class cardSwich extends Phaser.Scene {
       let replacementCards = new Array();
       // THis is not working because this.givenCards[i] is not referencing the same isSelected and does not change
       // in this instance itself i think and only in the card class instance or something like that
+
       for (const i of this.givenCards) {
         if (i.isSelected) {
           this.process.replaceCards(i);
@@ -60,6 +60,7 @@ export default class cardSwich extends Phaser.Scene {
         }
       }
       this.process.createRandomCardList();
+
       replacementCards = replacementCards.concat(this.process.getRandomCards(cardsReplaced));
       // Re-shuffle the cards as the cards returned are added to the back of the array.
       this.process.createRandomCardList();
