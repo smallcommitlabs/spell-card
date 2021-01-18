@@ -82,4 +82,16 @@ export default class cards {
   replaceCards(readdedCard) {
     this.randomCards.push(readdedCard);
   }
+
+  botChance(botCards) {
+    const correctBotCards = new Array();
+    const min = 0;
+    const max = 10;
+    for (const i of botCards) {
+      if (Math.random() * (max - min) + min > 3) {
+        correctBotCards.push(i);
+      }
+    }
+    return correctBotCards;
+  }
 }

@@ -13,6 +13,8 @@ export default class cardSwich extends Phaser.Scene {
     this.navigation = new NavigationButton(this);
     this.givenCards = new Array();
     this.process = new playerData();
+    this.botCards = new Array();
+    this.botProcess = new playerData();
   }
 
   create() {
@@ -30,8 +32,8 @@ export default class cardSwich extends Phaser.Scene {
     this.countdown.start(this.handleCountdownFinished.bind(this), 50000);
 
     this.givenCards = this.process.getRandomCards(5);
-    console.log(this.givenCards);
-    console.log(Object.keys(this.givenCards));
+
+    this.botCards = this.botProcess.getRandomCards(5);
 
     this.cardHandler(width, height);
 
@@ -63,7 +65,11 @@ export default class cardSwich extends Phaser.Scene {
       // Re-shuffle the cards as the cards returned are added to the back of the array.
       this.process.createRandomCardList();
       this.countdown.stop();
-      this.scene.start('game', { selectedCards: replacementCards });
+      this.scene.start('game', {
+        selectedCards: replacementCards,
+        selectedBotCards: this.botCards,
+        botProcess: this.botProcess,
+      });
     });
   }
 
