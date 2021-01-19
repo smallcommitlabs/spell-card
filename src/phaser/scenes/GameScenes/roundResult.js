@@ -138,6 +138,28 @@ export default class roundResult extends Phaser.Scene {
       target.visible = false;
     }
 
+    for (const i of this.botCards) {
+      const card = i.getCard();
+      const cardClass = card.class;
+      const rank = card.rank;
+      const image = card.image;
+
+      const target = this.add
+        .image(width * 0.6 + 50, height * 0.4, image)
+        .setOrigin(0.5)
+        .setScale(0.15);
+
+      this.timeline.add({
+        targets: target,
+        x: 350,
+        onStart: this.onStart.bind(this, target),
+        ease: 'Power1',
+        duration: 2000,
+        onComplete: this.action.bind(this, cardClass, rank, target),
+      });
+      target.visible = false;
+    }
+
     this.timeline.play();
   }
 
