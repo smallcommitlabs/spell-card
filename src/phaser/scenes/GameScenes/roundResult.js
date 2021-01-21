@@ -7,8 +7,9 @@ export default class roundResult extends Phaser.Scene {
     this.player1Health = data.player1Health;
     this.player2Health = data.player2Health;
     this.correctCards = data.correctCards;
-    this.length = data.length;
+    this.lengthPlayer = data.lengthPlayer;
     this.botCards = data.botCards;
+    this.lengthBot = data.lengthBot;
   }
 
   constructor() {
@@ -52,7 +53,8 @@ export default class roundResult extends Phaser.Scene {
       .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
 
-    this.punishment();
+    this.punishment(this.correctCards, this.lengthPlayer, this.player1Health);
+    this.punishment(this.botCards, this.lengthBot, this.player2Health);
     this.processCard(width * 0.3 + 50, height * 0.4, this.correctCards, this.player2Health);
     this.processCard(width * 0.6 + 50, height * 0.4, this.botCards, this.player1Health);
 
@@ -150,9 +152,9 @@ export default class roundResult extends Phaser.Scene {
     }
   }
 
-  punishment() {
-    const nonanswerDamage = this.length - this.correctCards.length;
-    this.player1Health.setHealth(nonanswerDamage);
+  punishment(cards, length, player) {
+    const nonanswerDamage = length - cards.length;
+    player.setHealth(nonanswerDamage);
   }
 
   // Get new cards for a new round

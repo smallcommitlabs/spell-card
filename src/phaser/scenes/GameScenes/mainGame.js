@@ -140,8 +140,9 @@ export default class playGame extends Phaser.Scene {
       player1Health: this.player1Health,
       player2Health: this.player2Health,
       correctCards: this.correctCards,
-      length: this.selectedCards.length,
+      lengthPlayer: this.selectedCards.length,
       botCards: this.botCorrectCards,
+      lengthBot: this.botCards.length,
     });
   }
 
