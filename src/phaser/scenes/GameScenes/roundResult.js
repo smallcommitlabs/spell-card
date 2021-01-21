@@ -53,7 +53,8 @@ export default class roundResult extends Phaser.Scene {
       .setOrigin(0.5);
 
     this.punishment();
-    this.processCard(width, height);
+    this.processCard(width * 0.3 + 50, height * 0.4, this.correctCards, this.player2Health);
+    this.processCard(width * 0.6 + 50, height * 0.4, this.botCards, this.player1Health);
 
     // this.player1Health.setHealth(40);
   }
@@ -113,53 +114,26 @@ export default class roundResult extends Phaser.Scene {
   }
 
   // Add animation and effects for correctCards
-  processCard(width, height) {
+  processCard(width, height, cards, player) {
     this.timeline = this.tweens.createTimeline();
 
-    for (const i of this.correctCards) {
+    for (const i of cards) {
       const card = i.getCard();
       const cardClass = card.class;
       const rank = card.rank;
       const image = card.image;
-
-      const target = this.add
-        .image(width * 0.2 + 50, height * 0.4, image)
-        .setOrigin(0.5)
-        .setScale(0.15);
+      const target = this.add.image(width, height, image).setOrigin(0.5).setScale(0.15);
 
       this.timeline.add({
         targets: target,
-        x: 600,
+        x: 475,
         onStart: this.onStart.bind(this, target),
         ease: 'Power1',
         duration: 2000,
-        onComplete: this.action.bind(this, cardClass, rank, target),
+        onComplete: this.action.bind(this, cardClass, rank, target, player),
       });
       target.visible = false;
     }
-
-    for (const i of this.botCards) {
-      const card = i.getCard();
-      const cardClass = card.class;
-      const rank = card.rank;
-      const image = card.image;
-
-      const target = this.add
-        .image(width * 0.6 + 50, height * 0.4, image)
-        .setOrigin(0.5)
-        .setScale(0.15);
-
-      this.timeline.add({
-        targets: target,
-        x: 350,
-        onStart: this.onStart.bind(this, target),
-        ease: 'Power1',
-        duration: 2000,
-        onComplete: this.action.bind(this, cardClass, rank, target),
-      });
-      target.visible = false;
-    }
-
     this.timeline.play();
   }
 
@@ -169,10 +143,10 @@ export default class roundResult extends Phaser.Scene {
   }
 
   // Carry out the damage of a card to the player
-  action(type, damage, target) {
+  action(type, damage, target, player) {
     target.visible = false;
     if (type === 'Attack' || type === 'Magic') {
-      this.player2Health.setHealth(damage);
+      player.setHealth(damage);
     }
   }
 
