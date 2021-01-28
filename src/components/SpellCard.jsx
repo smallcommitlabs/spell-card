@@ -12,27 +12,19 @@ import roundResult from '../phaser/scenes/GameScenes/roundResult';
 import gameResult from '../phaser/scenes/GameScenes/gameResult';
 import React, { useEffect } from 'react';
 
-// const height= window.innerHeight;
-const getHeight = () => {
-  let height = window.innerHeight - 110;
-  if (height < 540) {
-    height = 540;
-  }
-  return height;
-};
-const getWidth = () => {
-  let width = getHeight() * (960 / 540);
-  if (width < 960) {
-    width = 960;
-  }
-  return width;
-};
-
 const config = {
   type: Phaser.AUTO,
   parent: 'phaser',
-  width: getWidth(),
-  height: getHeight(),
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: 1920,
+    height: 1080,
+    // min:{
+    //   width:470,
+    //   height:280,
+    // }
+  },
   physics: {
     default: 'arcade',
     arcade: {
