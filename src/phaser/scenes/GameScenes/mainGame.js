@@ -14,6 +14,8 @@ export default class playGame extends Phaser.Scene {
     this.selectedCards = data.selectedCards;
     this.player1Health = data.player1Health;
     this.player2Health = data.player2Health;
+    this.botCards = data.selectedBotCards;
+    this.botProcess = data.botProcess;
   }
   constructor() {
     super('game');
@@ -24,6 +26,9 @@ export default class playGame extends Phaser.Scene {
   create() {
     this.cardNotAnser = Array.from(this.selectedCards);
     this.correctCards = new Array();
+
+    this.botCorrectCards = new Array();
+
     this.incorrectCards = new Array();
 
     const { width, height } = this.scale;
@@ -57,6 +62,9 @@ export default class playGame extends Phaser.Scene {
     this.add
       .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
+
+    // Chance to get bot cards to play against enemy
+    this.botCorrectCards = this.botProcess.botChance(this.botCards);
 
     // Listen to the resume event
     this.events.on('resume', function (sys, data) {
@@ -131,7 +139,9 @@ export default class playGame extends Phaser.Scene {
       player1Health: this.player1Health,
       player2Health: this.player2Health,
       correctCards: this.correctCards,
-      length: this.selectedCards.length,
+      lengthPlayer: this.selectedCards.length,
+      botCards: this.botCorrectCards,
+      lengthBot: this.botCards.length,
     });
   }
 
