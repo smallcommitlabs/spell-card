@@ -17,13 +17,17 @@ const config = {
   parent: 'phaser',
   scale: {
     mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
     width: 1920,
     height: 1080,
-    // min:{
-    //   width:470,
-    //   height:280,
-    // }
+    min: {
+      width: 960,
+      height: 540,
+    },
+    max: {
+      width: 1920,
+      height: 1080,
+    },
+    autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
   },
   physics: {
     default: 'arcade',
