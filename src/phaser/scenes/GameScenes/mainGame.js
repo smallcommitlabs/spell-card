@@ -13,10 +13,10 @@ export default class playGame extends Phaser.Scene {
   init(data) {
     this.selectedCards = data.selectedCards;
     this.player1Health = data.player1Health;
-    this.player2Health = data.player2Health;
-    this.botCards = data.selectedBotCards;
-    this.botProcess = data.botProcess;
+    this.player2Health = data.dojoBoss.returnBossHealth();
+    this.dojoBoss = data.dojoBoss;
   }
+
   constructor() {
     super('game');
     this.showMenu = true;
@@ -26,8 +26,6 @@ export default class playGame extends Phaser.Scene {
   create() {
     this.cardNotAnser = Array.from(this.selectedCards);
     this.correctCards = new Array();
-
-    this.botCorrectCards = new Array();
 
     this.incorrectCards = new Array();
 
@@ -53,18 +51,13 @@ export default class playGame extends Phaser.Scene {
 
     // Health
     if (!this.player1Health) {
-      this.player1Health = new PlayerHealth(60);
-      this.player2Health = new PlayerHealth(60);
+      this.player1Health = new PlayerHealth(30);
+      this.player2Health = this.dojoBoss.returnBossHealth();
     }
     this.add
       .text(width * 0.1, height * 0.1, this.player1Health.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
-    this.add
-      .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
-      .setOrigin(0.5);
-
-    // Chance to get bot cards to play against enemy
-    this.botCorrectCards = this.botProcess.botChance(this.botCards);
+    this.add.text(width * 0.9, height * 0.1, this.player2Health, { fontSize: 30 }).setOrigin(0.5);
 
     // Listen to the resume event
     this.events.on('resume', function (sys, data) {
@@ -139,10 +132,9 @@ export default class playGame extends Phaser.Scene {
     this.scene.start('roundResult', {
       player1Health: this.player1Health,
       player2Health: this.player2Health,
+      dojoBoss: this.dojoBoss,
       correctCards: this.correctCards,
       lengthPlayer: this.selectedCards.length,
-      botCards: this.botCorrectCards,
-      lengthBot: this.botCards.length,
     });
   }
 
