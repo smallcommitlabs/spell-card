@@ -123,7 +123,6 @@ export default class playGame extends Phaser.Scene {
   // executes when the timer is finish
   handleCountdownFinished() {
     for (const i of this.cardNotAnser) {
-      console.log(i);
       this.playerData.replaceCards(i);
     }
     console.log(this.selectedCards);

@@ -1,4 +1,3 @@
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 import Phaser from 'phaser';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 import PlayerData from '../../player/playerData';
@@ -53,19 +52,24 @@ export default class roundResult extends Phaser.Scene {
       .text(width * 0.9, height * 0.1, this.player2Health, { fontSize: 30 })
       .setOrigin(0.5);
 
+    console.log('cheese');
     this.punishment(this.correctCards, this.lengthPlayer, this.player1Health);
     this.processCard(width * 0.3 + 50, height * 0.4, this.correctCards);
-    this.bossAttack();
 
-    // this.player1Health.setHealth(40);
+    // this.player1Health.dealDamage(40);
   }
 
   update() {
     // Update the player health
     this.player1.setText(this.player1Health.getHealth());
-    this.player2.setText(this.dojoBoss.returnBossHealth());
     this.player2Health = this.dojoBoss.returnBossHealth();
+    console.log('chicken');
+    this.player2.setText(this.dojoBoss.returnBossHealth());
 
+    if (!this.timeline.isPlaying()) {
+      this.bossAttack();
+      console.log('NOT PLAYING');
+    }
     // Set health to be 0 when its equal or less than 0
 
     if (this.player1Health.getHealth() <= 0) {
@@ -148,14 +152,16 @@ export default class roundResult extends Phaser.Scene {
   // Carry out the damage of a card to the player
   action(type, damage, target) {
     target.visible = false;
+    console.log('ACTION!');
     if (type === 'Attack' || type === 'Magic') {
       this.dojoBoss.decreaseHealth(damage);
     }
   }
 
   punishment(cards, length, player) {
+    console.log('punished');
     const nonanswerDamage = length - cards.length;
-    player.setHealth(nonanswerDamage);
+    player.dealDamage(nonanswerDamage);
   }
 
   // Get new cards for a new round
@@ -167,12 +173,6 @@ export default class roundResult extends Phaser.Scene {
 
   // Bosses attack
   bossAttack() {
-    const min = 0;
-    const max = 10;
-    for (let i = 0; i < 3; i++) {
-      if (Math.random() * (max - min) + min > 3) {
-        this.player1Health = this.player1Health - this.dojoBoss.attack();
-      }
-    }
+    this.player1Health.dealDamage(this.dojoBoss.attack());
   }
 }
