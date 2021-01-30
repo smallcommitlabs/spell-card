@@ -27,10 +27,10 @@ export default class gamingScene {
       .setOrigin(0.5)
       .setScale(0.15);
 
-    this.scene.add
+    this.player1 = this.scene.add
       .text(width * 0.1, height * 0.1, player1Health.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
-    this.scene.add
+    this.player2 = this.scene.add
       .text(width * 0.9, height * 0.1, player2Health.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
 
@@ -44,20 +44,23 @@ export default class gamingScene {
     }
   }
 
+  update(player1HealthValue, player2HealthValue) {
+    this.player1.setText(player1HealthValue);
+    this.player2.setText(player2HealthValue);
+  }
+
   settingScreen(button, popUpName, popUpInput, key) {
     button.on(
       'pointerdown',
       function () {
-        this.scene.scene.add(popUpName, popUpInput, true, {
+        this.scene.add(popUpName, popUpInput, true, {
           object: this,
           key: key,
         });
-        // hide the timer
-        this.timerLabel.visible = false;
         // pause the scene
         this.scene.pause(key);
       },
-      this
+      this.scene
     );
   }
 }
