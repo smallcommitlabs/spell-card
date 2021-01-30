@@ -1,3 +1,4 @@
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 import Phaser from 'phaser';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 import PlayerData from '../../player/playerData';
@@ -54,6 +55,7 @@ export default class roundResult extends Phaser.Scene {
 
     this.punishment(this.correctCards, this.lengthPlayer, this.player1Health);
     this.processCard(width * 0.3 + 50, height * 0.4, this.correctCards);
+    this.bossAttack();
 
     // this.player1Health.setHealth(40);
   }
@@ -62,6 +64,7 @@ export default class roundResult extends Phaser.Scene {
     // Update the player health
     this.player1.setText(this.player1Health.getHealth());
     this.player2.setText(this.dojoBoss.returnBossHealth());
+    this.player2Health = this.dojoBoss.returnBossHealth();
 
     // Set health to be 0 when its equal or less than 0
 
@@ -114,7 +117,7 @@ export default class roundResult extends Phaser.Scene {
   }
 
   // Add animation and effects for correctCards
-  processCard(width, height, cards, player) {
+  processCard(width, height, cards) {
     this.timeline = this.tweens.createTimeline();
 
     for (const i of cards) {
@@ -160,5 +163,16 @@ export default class roundResult extends Phaser.Scene {
     const newCards = this.playerData.getRandomCards(5);
     console.log(newCards);
     return newCards;
+  }
+
+  // Bosses attack
+  bossAttack() {
+    const min = 0;
+    const max = 10;
+    for (let i = 0; i < 3; i++) {
+      if (Math.random() * (max - min) + min > 3) {
+        this.player1Health = this.player1Health - this.dojoBoss.attack();
+      }
+    }
   }
 }
