@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import GamingScene from '../../components/gamingScene';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 import PlayerData from '../../player/playerData';
 
@@ -12,42 +13,14 @@ export default class roundResult extends Phaser.Scene {
 
   constructor() {
     super('roundResult');
-
     this.playerData = new PlayerData();
+    this.gamingScene = new GamingScene(this, 'roundResult');
   }
 
   create() {
     const { width, height } = this.scale;
-    this.add.image(width * 0.5, height * 0.5, 'gameBackground').setOrigin(0.5);
 
-    this.cardDeck = this.add.image(1738, 912, 'CardBack').setScale(0.63, 0.58);
-    this.cardGraveyard = this.add.image(196, 912, 'CardBack').setScale(0.63, 0.58);
-
-    // Setting button setup
-    const settingBtn = this.add
-      .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
-      .setOrigin(0.5)
-      .setInteractive();
-    this.popUpScreen(settingBtn, 'setting', SettingMenu);
-
-    // player
-    this.physics.add
-      .sprite(width * 0.2, height * 0.4, 'player')
-      .setOrigin(0.5)
-      .setScale(0.15);
-
-    this.physics.add
-      .sprite(width * 0.8, height * 0.4, 'player')
-      .setOrigin(0.5)
-      .setScale(0.15);
-
-    // Health
-    this.player1 = this.add
-      .text(width * 0.1, height * 0.1, this.player1Health.getHealth(), { fontSize: 30 })
-      .setOrigin(0.5);
-    this.player2 = this.add
-      .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
-      .setOrigin(0.5);
+    this.gamingScene.buildScene(this.player1Health, this.player2Health, false);
 
     this.punishment();
     this.processCard(width, height);
@@ -57,8 +30,7 @@ export default class roundResult extends Phaser.Scene {
 
   update() {
     // Update the player health
-    this.player1.setText(this.player1Health.getHealth());
-    this.player2.setText(this.player2Health.getHealth());
+    this.gamingScene.update(this.player1Health.getHealth(), this.player2Health.getHealth());
 
     // Set health to be 0 when its equal or less than 0
 
@@ -95,20 +67,6 @@ export default class roundResult extends Phaser.Scene {
     }
   }
 
-  // Creates the pop-up screen
-  popUpScreen(button, popUpName, popUpInput, data) {
-    button.on(
-      'pointerdown',
-      function () {
-        this.scene.add(popUpName, popUpInput, true, {
-          object: this,
-          key: 'roundResult',
-        });
-      },
-      this
-    );
-  }
-
   // Add animation and effects for correctCards
   processCard(width, height) {
     this.timeline = this.tweens.createTimeline();
@@ -134,7 +92,6 @@ export default class roundResult extends Phaser.Scene {
       });
       target.visible = false;
     }
-
     this.timeline.play();
   }
 
