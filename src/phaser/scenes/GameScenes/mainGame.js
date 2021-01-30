@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import NavigationButton from '../../components/naviButton';
+import GamingScene from '../../components/gamingScene';
 import QuestionBoard from '../../components/answerQuestion/questionBoard';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 import CountdownController from '../../components/countdownController';
@@ -14,49 +14,36 @@ export default class playGame extends Phaser.Scene {
     this.selectedCards = data.selectedCards;
     this.player1Health = data.player1Health;
     this.player2Health = data.player2Health;
+    this.timeRemain = data.timeRemain;
   }
   constructor() {
     super('game');
     this.showMenu = true;
     this.playerData = new PlayerData();
+    this.gamingScene = new GamingScene(this, 'game');
   }
 
   create() {
+    const { width, height } = this.scale;
+
     this.cardNotAnser = Array.from(this.selectedCards);
     this.correctCards = new Array();
     this.incorrectCards = new Array();
-
-    const { width, height } = this.scale;
-    const bg = this.add
-      .image(width * 0.5, height * 0.5, 'gameBackground')
-      // .setScale(0.5)
-      .setOrigin(0.5);
-
-    this.cardDeck = this.add.image(1738, 912, 'CardBack').setScale(0.63, 0.58);
-    this.cardGraveyard = this.add.image(196, 912, 'CardBack').setScale(0.63, 0.58);
-
-    // player
-    this.physics.add
-      .sprite(width * 0.2, height * 0.4, 'player')
-      .setOrigin(0.5)
-      .setScale(0.15);
-
-    this.physics.add
-      .sprite(width * 0.8, height * 0.4, 'player')
-      .setOrigin(0.5)
-      .setScale(0.15);
 
     // Health
     if (!this.player1Health) {
       this.player1Health = new PlayerHealth(60);
       this.player2Health = new PlayerHealth(60);
     }
-    this.add
-      .text(width * 0.1, height * 0.1, this.player1Health.getHealth(), { fontSize: 30 })
-      .setOrigin(0.5);
-    this.add
-      .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
-      .setOrigin(0.5);
+
+    this.gamingScene.buildScene(this.player1Health, this.player2Health, true);
+
+    // Setting button setup
+    const settingBtn = this.add
+      .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
+      .setOrigin(0.5)
+      .setInteractive();
+    this.popUpScreen(settingBtn, 'setting', SettingMenu);
 
     // Listen to the resume event
     this.events.on('resume', function (sys, data) {
@@ -68,13 +55,6 @@ export default class playGame extends Phaser.Scene {
         mainGameTimerLabel.resume(timeRemain);
       }
     });
-
-    // Setting button setup
-    const settingBtn = this.add
-      .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
-      .setOrigin(0.5)
-      .setInteractive();
-    this.popUpScreen(settingBtn, 'setting', SettingMenu);
 
     this.loadCards();
 
@@ -107,6 +87,8 @@ export default class playGame extends Phaser.Scene {
           incorrectCards: this.incorrectCards,
           card: card,
           key: 'game',
+          player1Health: this.player1Health,
+          pllayer2Healtg: this.player2Health,
           callback: callback,
         });
         // hide the timer
