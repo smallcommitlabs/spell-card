@@ -32,13 +32,13 @@ export default class playGame extends Phaser.Scene {
     this.incorrectCards = new Array();
 
     const { width, height } = this.scale;
-    this.add
+    const bg = this.add
       .image(width * 0.5, height * 0.5, 'gameBackground')
-      .setScale(0.5)
+      // .setScale(0.5)
       .setOrigin(0.5);
 
-    this.cardDeck = this.add.image(869, 456, 'CardBack').setScale(0.315, 0.28);
-    this.cardGraveyard = this.add.image(98, 456, 'CardBack').setScale(0.315, 0.28);
+    this.cardDeck = this.add.image(1738, 912, 'CardBack').setScale(0.63, 0.58);
+    this.cardGraveyard = this.add.image(196, 912, 'CardBack').setScale(0.63, 0.58);
 
     // player
     this.physics.add
@@ -69,7 +69,6 @@ export default class playGame extends Phaser.Scene {
     // Listen to the resume event
     this.events.on('resume', function (sys, data) {
       if (data) {
-        // console.log(data + "hi");
         const counter = data.counter;
         // Get the remaining time in the popup scene
         const timeRemain = counter.getRemain();
@@ -148,15 +147,15 @@ export default class playGame extends Phaser.Scene {
 
   // Load the selected cards on to the screen
   loadCards() {
-    let x = 240;
+    let x = 480;
     for (const i of this.selectedCards) {
       console.log(this.selectedCards);
       const card = this.add
-        .image(x, 450, i.getCard().image)
+        .image(x, 900, i.getCard().image)
         .setOrigin(0.5)
-        .setScale(0.1)
+        .setScale(0.2)
         .setInteractive();
-      x += 122;
+      x += 244;
 
       // Add popup question board screen to card
       this.popUpScreen(

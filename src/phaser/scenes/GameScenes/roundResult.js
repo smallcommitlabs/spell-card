@@ -14,18 +14,16 @@ export default class roundResult extends Phaser.Scene {
 
   constructor() {
     super('roundResult');
+
     this.playerData = new PlayerData();
   }
 
   create() {
     const { width, height } = this.scale;
-    this.add
-      .image(width * 0.5, height * 0.5, 'gameBackground')
-      .setScale(0.5)
-      .setOrigin(0.5);
+    this.add.image(width * 0.5, height * 0.5, 'gameBackground').setOrigin(0.5);
 
-    this.cardDeck = this.add.image(869, 456, 'CardBack').setScale(0.315, 0.28);
-    this.cardGraveyard = this.add.image(98, 456, 'CardBack').setScale(0.315, 0.28);
+    this.cardDeck = this.add.image(1738, 912, 'CardBack').setScale(0.63, 0.58);
+    this.cardGraveyard = this.add.image(196, 912, 'CardBack').setScale(0.63, 0.58);
 
     // Setting button setup
     const settingBtn = this.add
@@ -128,9 +126,9 @@ export default class roundResult extends Phaser.Scene {
 
       this.timeline.add({
         targets: target,
-        x: 475,
+        x: 1400,
         onStart: this.onStart.bind(this, target),
-        ease: 'Power1',
+        ease: 'Power0',
         duration: 2000,
         onComplete: this.action.bind(this, cardClass, rank, target, player),
       });
