@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import CountdownController from '../../components/countdownController';
 import PlayerData from '../../player/playerData';
+import playerAttack from '../../scenes/GameScenes/playerAttack';
 
 export default class questionBoard extends Phaser.Scene {
   // fetch the data passed by the previous scene
@@ -57,7 +58,7 @@ export default class questionBoard extends Phaser.Scene {
       this.correctCards.push(this.selectedCard);
       this.callback();
       this.removeAnsweredCard(this.selectedCard);
-      this.navigation();
+      this.navigation(true);
     });
 
     // Answered wrong button
@@ -68,7 +69,7 @@ export default class questionBoard extends Phaser.Scene {
       this.incorrectCards.push(this.selectedCard);
       this.playerData.replaceCards(this.selectedCard);
       this.removeAnsweredCard(this.selectedCard);
-      this.navigation();
+      this.navigation(false);
     });
   }
 
@@ -87,19 +88,22 @@ export default class questionBoard extends Phaser.Scene {
     this.closeScenePrep();
 
     this.scene.resume('game', {
-      counter: this.countdown,
+      countdown: this.countdown,
       mainGameCounter: this.counter,
     });
   }
 
-  navigation() {
+  navigation(correctness) {
     this.closeScenePrep();
+    console.log(this.countdown);
 
-    this.scene.start('playerAttack', {
-      counter: this.countdown,
+    this.scene.add('playerAttack', playerAttack, true, {
+      countdown: this.countdown,
       mainGameCounter: this.counter,
       player1Health: this.player1Health,
       player2Health: this.player2Health,
+      selectedCard: this.selectedCard,
+      correctness: correctness,
     });
   }
 
