@@ -38,6 +38,9 @@ export default class playGame extends Phaser.Scene {
 
     this.gamingScene.buildScene(this.player1Health, this.player2Health, true);
 
+    this.player1 = this.gamingScene.returnPlayer1Text();
+    this.player2 = this.gamingScene.returnPlayer2Text();
+
     // Setting button setup
     const settingBtn = this.add
       .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
@@ -94,6 +97,7 @@ export default class playGame extends Phaser.Scene {
           key: 'game',
           player1Health: this.player1Health,
           player2Health: this.player2Health,
+          background: this.gamingScene,
           callback: callback,
         });
         // hide the timer

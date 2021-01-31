@@ -6,6 +6,7 @@ export default class playerAttack extends Phaser.Scene {
     console.log(data);
     this.player1Health = data.player1Health;
     this.player2Health = data.player2Health;
+    this.background = data.background;
     this.currentCard = data.selectedCard;
     this.correctness = data.correctness;
     this.countdown = data.countdown;
@@ -47,6 +48,7 @@ export default class playerAttack extends Phaser.Scene {
         });
         this.scene.remove('gameSetting');
       } else {
+        this.background.update(this.player1Health.getHealth(), this.player2Health.getHealth());
         this.scene.remove('gameSetting');
         this.scene.remove('playerAttack');
         console.log('Resyne');

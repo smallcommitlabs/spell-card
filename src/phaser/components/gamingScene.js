@@ -63,4 +63,12 @@ export default class gamingScene {
       this.scene
     );
   }
+
+  returnPlayer1Text() {
+    return this.player1;
+  }
+
+  returnPlayer2Text() {
+    return this.player2;
+  }
 }

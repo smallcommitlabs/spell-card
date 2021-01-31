@@ -18,6 +18,7 @@ export default class questionBoard extends Phaser.Scene {
     this.cardNotAns = data.notAns;
     this.player1Health = data.player1Health;
     this.player2Health = data.player2Health;
+    this.background = data.background;
   }
 
   constructor() {
@@ -102,6 +103,7 @@ export default class questionBoard extends Phaser.Scene {
       mainGameCounter: this.counter,
       player1Health: this.player1Health,
       player2Health: this.player2Health,
+      background: this.background,
       selectedCard: this.selectedCard,
       correctness: correctness,
     });
