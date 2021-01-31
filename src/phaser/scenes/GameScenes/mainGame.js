@@ -88,7 +88,7 @@ export default class playGame extends Phaser.Scene {
           card: card,
           key: 'game',
           player1Health: this.player1Health,
-          pllayer2Healtg: this.player2Health,
+          player2Health: this.player2Health,
           callback: callback,
         });
         // hide the timer
