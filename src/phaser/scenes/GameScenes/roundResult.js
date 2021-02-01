@@ -51,6 +51,9 @@ export default class roundResult extends Phaser.Scene {
     this.player2 = this.add
       .text(width * 0.9, height * 0.1, this.player2Health, { fontSize: 30 })
       .setOrigin(0.5);
+    this.bossShield = this.add
+      .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
+      .setOrigin(0.5);
 
     console.log('cheese');
     this.punishment(this.correctCards, this.lengthPlayer, this.player1Health);
@@ -70,6 +73,7 @@ export default class roundResult extends Phaser.Scene {
       this.bossAttack();
       console.log('NOT PLAYING');
     }
+
     // Set health to be 0 when its equal or less than 0
 
     if (this.player1Health.getHealth() <= 0) {
@@ -173,6 +177,8 @@ export default class roundResult extends Phaser.Scene {
 
   // Bosses attack
   bossAttack() {
-    this.player1Health.dealDamage(this.dojoBoss.attack());
+    for (let i = 0; i < 3; i++) {
+      this.player1Health.dealDamage(this.dojoBoss.randomAttack());
+    }
   }
 }

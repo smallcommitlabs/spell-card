@@ -58,6 +58,9 @@ export default class playGame extends Phaser.Scene {
       .text(width * 0.1, height * 0.1, this.player1Health.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
     this.add.text(width * 0.9, height * 0.1, this.player2Health, { fontSize: 30 }).setOrigin(0.5);
+    this.add
+      .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
+      .setOrigin(0.5);
 
     // Listen to the resume event
     this.events.on('resume', function (sys, data) {

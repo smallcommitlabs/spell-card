@@ -9,15 +9,15 @@ export default class Boss {
     return this.health;
   }
 
+  returnBossArmour() {
+    return this.armour;
+  }
+
   decreaseHealth(damage) {
     this.health = this.health - damage;
   }
 
   decreaseArmour(damage) {
     return this.armour - damage;
-  }
-
-  increaseArmour(value) {
-    return this.armour + value;
   }
 }
