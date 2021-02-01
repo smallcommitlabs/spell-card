@@ -15,7 +15,7 @@ export default class playerHealth {
    *
    * @param {number} damage
    */
-  setHealth(damage) {
+  dealDamage(damage) {
     this.health -= damage;
   }
 }
