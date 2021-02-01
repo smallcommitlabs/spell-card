@@ -28,8 +28,8 @@ export default class questionBoard extends Phaser.Scene {
     const retangle = this.add.rectangle(0, 0, width, height, 0x000000).setOrigin(0);
     retangle.alpha = 0.5;
 
-    this.add.text(300, 250, 'Answer question..... \n \n What is ' + this.question, {
-      fontSize: 21,
+    this.add.text(600, 500, 'Answer question..... \n \n What is ' + this.question, {
+      fontSize: 42,
     });
 
     // Create timer
@@ -39,7 +39,7 @@ export default class questionBoard extends Phaser.Scene {
     this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
 
     // Close button
-    const close = this.add.text(200, 200, 'X', { fontSize: 30 }).setInteractive();
+    const close = this.add.text(200, 200, 'X', { fontSize: 60 }).setInteractive();
     close.on(
       'pointerdown',
       () => {
@@ -49,7 +49,7 @@ export default class questionBoard extends Phaser.Scene {
     );
 
     // Confirm button
-    const confirmBtn = this.add.text(300, 400, 'Confirm', { fontSize: 34 });
+    const confirmBtn = this.add.text(600, 800, 'Confirm', { fontSize: 68 });
     confirmBtn.setInteractive();
     confirmBtn.on('pointerdown', () => {
       this.correctCards.push(this.selectedCard);
@@ -59,7 +59,7 @@ export default class questionBoard extends Phaser.Scene {
     });
 
     // Answered wrong button
-    const incorrectBtn = this.add.text(300, 450, 'Incorrect', { fontSize: 34 });
+    const incorrectBtn = this.add.text(600, 900, 'Incorrect', { fontSize: 68 });
     incorrectBtn.setInteractive();
     incorrectBtn.on('pointerdown', () => {
       this.callback();

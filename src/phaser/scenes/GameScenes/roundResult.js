@@ -8,24 +8,21 @@ export default class roundResult extends Phaser.Scene {
     this.player2Health = data.player2Health;
     this.correctCards = data.correctCards;
     this.lengthPlayer = data.lengthPlayer;
-    this.botCards = data.botCards;
-    this.lengthBot = data.lengthBot;
+    this.dojoBoss = data.dojoBoss;
   }
 
   constructor() {
     super('roundResult');
+
     this.playerData = new PlayerData();
   }
 
   create() {
     const { width, height } = this.scale;
-    this.add
-      .image(width * 0.5, height * 0.5, 'gameBackground')
-      .setScale(0.5)
-      .setOrigin(0.5);
+    this.add.image(width * 0.5, height * 0.5, 'gameBackground').setOrigin(0.5);
 
-    this.cardDeck = this.add.image(869, 456, 'CardBack').setScale(0.315, 0.28);
-    this.cardGraveyard = this.add.image(98, 456, 'CardBack').setScale(0.315, 0.28);
+    this.cardDeck = this.add.image(1738, 912, 'CardBack').setScale(0.63, 0.58);
+    this.cardGraveyard = this.add.image(196, 912, 'CardBack').setScale(0.63, 0.58);
 
     // Setting button setup
     const settingBtn = this.add
@@ -50,21 +47,30 @@ export default class roundResult extends Phaser.Scene {
       .text(width * 0.1, height * 0.1, this.player1Health.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
     this.player2 = this.add
-      .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
+      .text(width * 0.9, height * 0.1, this.player2Health, { fontSize: 30 })
+      .setOrigin(0.5);
+    this.bossShield = this.add
+      .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
       .setOrigin(0.5);
 
+    console.log('cheese');
     this.punishment(this.correctCards, this.lengthPlayer, this.player1Health);
-    this.punishment(this.botCards, this.lengthBot, this.player2Health);
-    this.processCard(width * 0.3 + 50, height * 0.4, this.correctCards, this.player2Health);
-    this.processCard(width * 0.6 + 50, height * 0.4, this.botCards, this.player1Health);
+    this.processCard(width * 0.3 + 50, height * 0.4, this.correctCards);
 
-    // this.player1Health.setHealth(40);
+    // this.player1Health.dealDamage(40);
   }
 
   update() {
     // Update the player health
     this.player1.setText(this.player1Health.getHealth());
-    this.player2.setText(this.player2Health.getHealth());
+    this.player2Health = this.dojoBoss.returnBossHealth();
+    console.log('chicken');
+    this.player2.setText(this.dojoBoss.returnBossHealth());
+
+    if (!this.timeline.isPlaying()) {
+      this.bossAttack();
+      console.log('NOT PLAYING');
+    }
 
     // Set health to be 0 when its equal or less than 0
 
@@ -72,7 +78,7 @@ export default class roundResult extends Phaser.Scene {
       this.player1.setText('0');
     }
 
-    if (this.player2Health.getHealth() <= 0) {
+    if (this.player2Health <= 0) {
       this.player2.setText('0');
     }
 
@@ -82,7 +88,7 @@ export default class roundResult extends Phaser.Scene {
       // Else restart a new round
       if (
         this.player1Health.getHealth() <= 0 ||
-        this.player2Health.getHealth() <= 0 ||
+        this.player2Health <= 0 ||
         this.playerData.getCardRemainNumber() === 0
       ) {
         this.scene.start('gameResult', {
@@ -93,8 +99,9 @@ export default class roundResult extends Phaser.Scene {
       } else {
         this.scene.start('game', {
           player1Health: this.player1Health,
-          player2Health: this.player2Health,
+          player2Health: this.dojoBoss.returnBossHealth(),
           selectedCards: this.getCards(),
+          dojoBoss: this.dojoBoss,
         });
         this.scene.remove('gameSetting');
       }
@@ -116,7 +123,7 @@ export default class roundResult extends Phaser.Scene {
   }
 
   // Add animation and effects for correctCards
-  processCard(width, height, cards, player) {
+  processCard(width, height, cards) {
     this.timeline = this.tweens.createTimeline();
 
     for (const i of cards) {
@@ -128,11 +135,11 @@ export default class roundResult extends Phaser.Scene {
 
       this.timeline.add({
         targets: target,
-        x: 475,
+        x: 1400,
         onStart: this.onStart.bind(this, target),
-        ease: 'Power1',
+        ease: 'Power0',
         duration: 2000,
-        onComplete: this.action.bind(this, cardClass, rank, target, player),
+        onComplete: this.action.bind(this, cardClass, rank, target),
       });
       target.visible = false;
     }
@@ -145,16 +152,18 @@ export default class roundResult extends Phaser.Scene {
   }
 
   // Carry out the damage of a card to the player
-  action(type, damage, target, player) {
+  action(type, damage, target) {
     target.visible = false;
+    console.log('ACTION!');
     if (type === 'Attack' || type === 'Magic') {
-      player.setHealth(damage);
+      this.dojoBoss.decreaseHealth(damage);
     }
   }
 
   punishment(cards, length, player) {
+    console.log('punished');
     const nonanswerDamage = length - cards.length;
-    player.setHealth(nonanswerDamage);
+    player.dealDamage(nonanswerDamage);
   }
 
   // Get new cards for a new round
@@ -162,5 +171,12 @@ export default class roundResult extends Phaser.Scene {
     const newCards = this.playerData.getRandomCards(5);
     console.log(newCards);
     return newCards;
+  }
+
+  // Bosses attack
+  bossAttack() {
+    for (let i = 0; i < 3; i++) {
+      this.player1Health.dealDamage(this.dojoBoss.randomAttack());
+    }
   }
 }

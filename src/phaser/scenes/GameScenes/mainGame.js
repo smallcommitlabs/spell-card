@@ -13,10 +13,10 @@ export default class playGame extends Phaser.Scene {
   init(data) {
     this.selectedCards = data.selectedCards;
     this.player1Health = data.player1Health;
-    this.player2Health = data.player2Health;
-    this.botCards = data.selectedBotCards;
-    this.botProcess = data.botProcess;
+    this.player2Health = data.dojoBoss.returnBossHealth();
+    this.dojoBoss = data.dojoBoss;
   }
+
   constructor() {
     super('game');
     this.showMenu = true;
@@ -27,18 +27,16 @@ export default class playGame extends Phaser.Scene {
     this.cardNotAnser = Array.from(this.selectedCards);
     this.correctCards = new Array();
 
-    this.botCorrectCards = new Array();
-
     this.incorrectCards = new Array();
 
     const { width, height } = this.scale;
-    this.add
+    const bg = this.add
       .image(width * 0.5, height * 0.5, 'gameBackground')
-      .setScale(0.5)
+      // .setScale(0.5)
       .setOrigin(0.5);
 
-    this.cardDeck = this.add.image(869, 456, 'CardBack').setScale(0.315, 0.28);
-    this.cardGraveyard = this.add.image(98, 456, 'CardBack').setScale(0.315, 0.28);
+    this.cardDeck = this.add.image(1738, 912, 'CardBack').setScale(0.63, 0.58);
+    this.cardGraveyard = this.add.image(196, 912, 'CardBack').setScale(0.63, 0.58);
 
     // player
     this.physics.add
@@ -53,23 +51,20 @@ export default class playGame extends Phaser.Scene {
 
     // Health
     if (!this.player1Health) {
-      this.player1Health = new PlayerHealth(60);
-      this.player2Health = new PlayerHealth(60);
+      this.player1Health = new PlayerHealth(30);
+      this.player2Health = this.dojoBoss.returnBossHealth();
     }
     this.add
       .text(width * 0.1, height * 0.1, this.player1Health.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
+    this.add.text(width * 0.9, height * 0.1, this.player2Health, { fontSize: 30 }).setOrigin(0.5);
     this.add
-      .text(width * 0.9, height * 0.1, this.player2Health.getHealth(), { fontSize: 30 })
+      .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
       .setOrigin(0.5);
-
-    // Chance to get bot cards to play against enemy
-    this.botCorrectCards = this.botProcess.botChance(this.botCards);
 
     // Listen to the resume event
     this.events.on('resume', function (sys, data) {
       if (data) {
-        // console.log(data + "hi");
         const counter = data.counter;
         // Get the remaining time in the popup scene
         const timeRemain = counter.getRemain();
@@ -130,7 +125,6 @@ export default class playGame extends Phaser.Scene {
   // executes when the timer is finish
   handleCountdownFinished() {
     for (const i of this.cardNotAnser) {
-      console.log(i);
       this.playerData.replaceCards(i);
     }
     console.log(this.selectedCards);
@@ -139,24 +133,23 @@ export default class playGame extends Phaser.Scene {
     this.scene.start('roundResult', {
       player1Health: this.player1Health,
       player2Health: this.player2Health,
+      dojoBoss: this.dojoBoss,
       correctCards: this.correctCards,
       lengthPlayer: this.selectedCards.length,
-      botCards: this.botCorrectCards,
-      lengthBot: this.botCards.length,
     });
   }
 
   // Load the selected cards on to the screen
   loadCards() {
-    let x = 240;
+    let x = 480;
     for (const i of this.selectedCards) {
       console.log(this.selectedCards);
       const card = this.add
-        .image(x, 450, i.getCard().image)
+        .image(x, 900, i.getCard().image)
         .setOrigin(0.5)
-        .setScale(0.1)
+        .setScale(0.2)
         .setInteractive();
-      x += 122;
+      x += 244;
 
       // Add popup question board screen to card
       this.popUpScreen(
