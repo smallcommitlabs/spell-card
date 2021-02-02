@@ -13,9 +13,11 @@ export default class playGame extends Phaser.Scene {
   init(data) {
     this.selectedCards = data.selectedCards;
     this.player1Health = data.player1Health;
-    this.player2Health = data.player2Health;
     this.timeRemain = data.timeRemain;
+    this.player2Health = data.dojoBoss.returnBossHealth();
+    this.dojoBoss = data.dojoBoss;
   }
+
   constructor() {
     super('game');
     this.showMenu = true;
@@ -28,19 +30,24 @@ export default class playGame extends Phaser.Scene {
 
     this.cardNotAnser = Array.from(this.selectedCards);
     this.correctCards = new Array();
+
     this.incorrectCards = new Array();
 
     // Health
     if (!this.player1Health) {
-      this.player1Health = new PlayerHealth(60);
-      this.player2Health = new PlayerHealth(60);
+      this.player1Health = new PlayerHealth(30);
+      this.player2Health = this.dojoBoss.returnBossHealth();
     }
+
 
     this.gamingScene.buildScene(this.player1Health, this.player2Health, true);
 
     this.player1 = this.gamingScene.returnPlayer1Text();
     this.player2 = this.gamingScene.returnPlayer2Text();
 
+    this.add
+      .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
+      .setOrigin(0.5);
     // Setting button setup
     const settingBtn = this.add
       .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
@@ -112,7 +119,6 @@ export default class playGame extends Phaser.Scene {
   // executes when the timer is finish
   handleCountdownFinished() {
     for (const i of this.cardNotAnser) {
-      console.log(i);
       this.playerData.replaceCards(i);
     }
     console.log(this.selectedCards);
@@ -121,8 +127,9 @@ export default class playGame extends Phaser.Scene {
     this.scene.start('roundResult', {
       player1Health: this.player1Health,
       player2Health: this.player2Health,
+      dojoBoss: this.dojoBoss,
       correctCards: this.correctCards,
-      length: this.selectedCards.length,
+      lengthPlayer: this.selectedCards.length,
     });
   }
 

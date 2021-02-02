@@ -8,11 +8,13 @@ export default class roundResult extends Phaser.Scene {
     this.player1Health = data.player1Health;
     this.player2Health = data.player2Health;
     this.correctCards = data.correctCards;
-    this.length = data.length;
+    this.lengthPlayer = data.lengthPlayer;
+    this.dojoBoss = data.dojoBoss;
   }
 
   constructor() {
     super('roundResult');
+
     this.playerData = new PlayerData();
     this.gamingScene = new GamingScene(this, 'roundResult');
   }
@@ -25,12 +27,25 @@ export default class roundResult extends Phaser.Scene {
     this.punishment();
     // this.processCard(width, height);
 
-    // this.player1Health.setHealth(40);
+    this.bossShield = this.add
+      .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
+      .setOrigin(0.5);
+
+    // this.player1Health.dealDamage(40);
   }
 
   update() {
     // Update the player health
-    this.gamingScene.update(this.player1Health.getHealth(), this.player2Health.getHealth());
+
+    this.gamingScene.update(this.player1Health.getHealth(), this.dojoBoss.returnBossHealth());
+
+    this.player2Health = this.dojoBoss.returnBossHealth();
+
+    if (!this.timeline.isPlaying()) {
+      this.bossAttack();
+      console.log('NOT PLAYING');
+    }
+
 
     // Set health to be 0 when its equal or less than 0
 
@@ -38,7 +53,7 @@ export default class roundResult extends Phaser.Scene {
       this.gamingScene.update(0, this.player2Health.getHealth());
     }
 
-    if (this.player2Health.getHealth() <= 0) {
+    if (this.dojoBoss.returnBossHealth() <= 0) {
       this.gamingScene.update(this.player1Health.getHealth(), 0);
     }
 
@@ -48,12 +63,12 @@ export default class roundResult extends Phaser.Scene {
     // Else restart a new round
     if (
       this.player1Health.getHealth() <= 0 ||
-      this.player2Health.getHealth() <= 0 ||
+      this.dojoBoss.returnBossHealth() <= 0 ||
       this.playerData.getCardRemainNumber() === 0
     ) {
       this.scene.start('gameResult', {
         player1Health: this.player1Health,
-        player2Health: this.player2Health,
+        player2Health: this.dojoBoss,
       });
       this.scene.remove('gameSetting');
     } else {
@@ -61,56 +76,17 @@ export default class roundResult extends Phaser.Scene {
         player1Health: this.player1Health,
         player2Health: this.player2Health,
         selectedCards: this.getCards(),
+        dojoBoss: this.dojoBoss,
       });
       this.scene.remove('gameSetting');
     }
-    // }
   }
 
-  // // Add animation and effects for correctCards
-  // processCard(width, height) {
-  //   this.timeline = this.tweens.createTimeline();
 
-  //   for (const i of this.correctCards) {
-  //     const card = i.getCard();
-  //     const cardClass = card.class;
-  //     const rank = card.rank;
-  //     const image = card.image;
-
-  //     const target = this.add
-  //       .image(width * 0.2 + 50, height * 0.4, image)
-  //       .setOrigin(0.5)
-  //       .setScale(0.15);
-
-  //     this.timeline.add({
-  //       targets: target,
-  //       x: 1400,
-  //       onStart: this.onStart.bind(this, target),
-  //       ease: 'Power0',
-  //       duration: 2000,
-  //       onComplete: this.action.bind(this, cardClass, rank, target),
-  //     });
-  //     target.visible = false;
-  //   }
-  //   this.timeline.play();
-  // }
-
-  // Make the object invisble
-  // onStart(target) {
-  //   target.visible = true;
-  // }
-
-  // Carry out the damage of a card to the player
-  // action(type, damage, target) {
-  //   target.visible = false;
-  //   if (type === 'Attack' || type === 'Magic') {
-  //     this.player2Health.setHealth(damage);
-  //   }
-  // }
-
-  punishment() {
-    const nonanswerDamage = this.length - this.correctCards.length;
-    this.player1Health.setHealth(nonanswerDamage);
+  punishment(cards, length, player) {
+    console.log('punished');
+    const nonanswerDamage = length - cards.length;
+    player.dealDamage(nonanswerDamage);
   }
 
   // Get new cards for a new round
@@ -118,5 +94,12 @@ export default class roundResult extends Phaser.Scene {
     const newCards = this.playerData.getRandomCards(5);
     console.log(newCards);
     return newCards;
+  }
+
+  // Bosses attack
+  bossAttack() {
+    for (let i = 0; i < 3; i++) {
+      this.player1Health.dealDamage(this.dojoBoss.randomAttack());
+    }
   }
 }
