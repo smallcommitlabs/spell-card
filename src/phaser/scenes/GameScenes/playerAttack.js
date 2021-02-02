@@ -25,6 +25,7 @@ export default class playerAttack extends Phaser.Scene {
   }
 
   update() {
+    // Update player health
     this.gamingScene.update(this.player1Health.getHealth(), this.player2Health.getHealth());
 
     // Set health to be 0 when its equal or less than 0
@@ -71,11 +72,13 @@ export default class playerAttack extends Phaser.Scene {
     const rank = card.rank;
     const image = card.image;
 
+    // Target that the animation is aiming at
     const target = this.add
       .image(width * 0.2 + 50, height * 0.4, image)
       .setOrigin(0.5)
       .setScale(0.15);
 
+    // correct and incorrect card animations
     if (this.correctness) {
       this.timeline.add({
         targets: target,
@@ -98,6 +101,7 @@ export default class playerAttack extends Phaser.Scene {
     }
 
     target.visible = false;
+    // Play animation
     this.timeline.play();
   }
 
@@ -105,6 +109,7 @@ export default class playerAttack extends Phaser.Scene {
     target.visible = true;
   }
 
+  // to indentify the type of attack
   action(type, damage, target) {
     target.visible = false;
     if (type === 'Attack' || type === 'Magic') {

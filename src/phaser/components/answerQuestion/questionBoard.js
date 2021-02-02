@@ -94,6 +94,7 @@ export default class questionBoard extends Phaser.Scene {
     });
   }
 
+  // Naivgation from question board to playerAttack
   navigation(correctness) {
     this.closeScenePrep();
     console.log(this.countdown);
@@ -109,6 +110,7 @@ export default class questionBoard extends Phaser.Scene {
     });
   }
 
+  // Close the question boards scene
   closeScenePrep() {
     this.scene.remove('questionBoard');
     // Make the timer in the mainGame to be visible
