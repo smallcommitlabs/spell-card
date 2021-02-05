@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import CountdownController from '../../components/countdownController';
 import PlayerData from '../../player/playerData';
+import playerAttack from '../../scenes/GameScenes/playerAttack';
 
 export default class questionBoard extends Phaser.Scene {
   // fetch the data passed by the previous scene
@@ -15,6 +16,9 @@ export default class questionBoard extends Phaser.Scene {
     this.incorrectCards = data.incorrectCards;
     this.selectedCard = data.card;
     this.cardNotAns = data.notAns;
+    this.player1Health = data.player1Health;
+    this.player2Health = data.player2Health;
+    this.background = data.background;
   }
 
   constructor() {
@@ -43,7 +47,7 @@ export default class questionBoard extends Phaser.Scene {
     close.on(
       'pointerdown',
       () => {
-        this.navigation();
+        this.closeScene();
       },
       this
     );
@@ -54,8 +58,8 @@ export default class questionBoard extends Phaser.Scene {
     confirmBtn.on('pointerdown', () => {
       this.correctCards.push(this.selectedCard);
       this.callback();
-      this.navigation();
       this.removeAnsweredCard(this.selectedCard);
+      this.navigation(true);
     });
 
     // Answered wrong button
@@ -63,10 +67,10 @@ export default class questionBoard extends Phaser.Scene {
     incorrectBtn.setInteractive();
     incorrectBtn.on('pointerdown', () => {
       this.callback();
-      this.navigation();
       this.incorrectCards.push(this.selectedCard);
       this.playerData.replaceCards(this.selectedCard);
       this.removeAnsweredCard(this.selectedCard);
+      this.navigation(false);
     });
   }
 
@@ -77,24 +81,43 @@ export default class questionBoard extends Phaser.Scene {
 
   // execute when the timer is finished
   handleCountdownFinished() {
-    this.navigation();
+    this.closeScene();
   }
 
   // Remove the current popup screen and resume the mainGame scene
-  navigation() {
+  closeScene() {
+    this.closeScenePrep();
+
+    this.scene.resume('game', {
+      countdown: this.countdown,
+      mainGameCounter: this.counter,
+    });
+  }
+
+  // Naivgation from question board to playerAttack
+  navigation(correctness) {
+    this.closeScenePrep();
+    console.log(this.countdown);
+
+    this.scene.add('playerAttack', playerAttack, true, {
+      countdown: this.countdown,
+      mainGameCounter: this.counter,
+      player1Health: this.player1Health,
+      player2Health: this.player2Health,
+      background: this.background,
+      selectedCard: this.selectedCard,
+      correctness: correctness,
+    });
+  }
+
+  // Close the question boards scene
+  closeScenePrep() {
     this.scene.remove('questionBoard');
     // Make the timer in the mainGame to be visible
     this.mainGameTimerLabel.visible = true;
     // get the scenePlugin from the previous scene to get the the scene keys
     this.scene = this.mainGame.object.scene;
     // resume the mainGame scene and pass the countdown object from the scene and the previous scene
-
-    this.scene.resume('game', {
-      counter: this.countdown,
-      mainGameCounter: this.counter,
-      correctCards: this.correctCards,
-      incorrectCards: this.incorrectCards,
-    });
   }
 
   // Remove the answered cards from the list
