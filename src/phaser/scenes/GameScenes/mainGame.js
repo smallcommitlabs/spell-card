@@ -5,6 +5,7 @@ import SettingMenu from '../../components/gameSetting/settingMenu';
 import CountdownController from '../../components/countdownController';
 import PlayerHealth from '../../player/playerHealth';
 import PlayerData from '../../player/playerData';
+import DojoBoss from '../../boss/DojoBoss';
 
 export default class playGame extends Phaser.Scene {
   //  /**@type {Phaser.GameObjects.Text} */
@@ -12,9 +13,8 @@ export default class playGame extends Phaser.Scene {
 
   init(data) {
     this.selectedCards = data.selectedCards;
-    this.player1Health = data.player1Health;
+    this.player1 = data.player1;
     this.timeRemain = data.timeRemain;
-    this.player2Health = data.dojoBoss.returnBossHealth();
     this.dojoBoss = data.dojoBoss;
   }
 
@@ -34,16 +34,15 @@ export default class playGame extends Phaser.Scene {
     this.incorrectCards = new Array();
 
     // Health
-    if (!this.player1Health) {
-      this.player1Health = new PlayerHealth(30);
-      this.player2Health = this.dojoBoss.returnBossHealth();
+    if (!this.player1) {
+      this.player1 = new PlayerHealth(30);
+      this.dojoBoss = new DojoBoss(60, 0, 'Madara');
     }
 
-
-    this.gamingScene.buildScene(this.player1Health, this.player2Health, true);
+    this.gamingScene.buildScene(this.player1, this.dojoBoss, true);
 
     this.player1 = this.gamingScene.returnPlayer1Text();
-    this.player2 = this.gamingScene.returnPlayer2Text();
+    this.dojoBoss = this.gamingScene.returndojoBossText();
 
     this.add
       .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
@@ -102,8 +101,8 @@ export default class playGame extends Phaser.Scene {
           incorrectCards: this.incorrectCards,
           card: card,
           key: 'game',
-          player1Health: this.player1Health,
-          player2Health: this.player2Health,
+          player1: this.player1,
+          dojoBoss: this.dojoBoss,
           background: this.gamingScene,
           callback: callback,
         });
@@ -125,8 +124,7 @@ export default class playGame extends Phaser.Scene {
     this.playerData.createRandomCardList();
 
     this.scene.start('roundResult', {
-      player1Health: this.player1Health,
-      player2Health: this.player2Health,
+      player1: this.player1,
       dojoBoss: this.dojoBoss,
       correctCards: this.correctCards,
       lengthPlayer: this.selectedCards.length,

@@ -4,8 +4,8 @@ import GamingScene from '../../components/gamingScene';
 export default class playerAttack extends Phaser.Scene {
   init(data) {
     console.log(data);
-    this.player1Health = data.player1Health;
-    this.player2Health = data.player2Health;
+    this.player1 = data.player1;
+    this.dojoBoss = data.dojoBoss;
     this.background = data.background;
     this.currentCard = data.selectedCard;
     this.correctness = data.correctness;
@@ -20,42 +20,42 @@ export default class playerAttack extends Phaser.Scene {
 
   create() {
     const { width, height } = this.scale;
-    this.gamingScene.buildScene(this.player1Health, this.player2Health, false);
+    this.gamingScene.buildScene(this.player1, this.dojoBoss, false);
     this.processCard(width, height);
   }
 
   update() {
     // Update player health
-    this.gamingScene.update(this.player1Health.getHealth(), this.player2Health.getHealth());
+    this.gamingScene.update(this.player1.getHealth(), this.dojoBoss.returnBossHealth());
 
     // Set health to be 0 when its equal or less than 0
 
-    if (this.player1Health.getHealth() <= 0) {
-      this.gamingScene.update(0, this.player2Health.getHealth());
+    if (this.player1.getHealth() <= 0) {
+      this.gamingScene.update(0, this.dojoBoss.returnBossHealth());
     }
 
-    if (this.player2Health.getHealth() <= 0) {
-      this.gamingScene.update(this.player1Health.getHealth(), 0);
+    if (this.dojoBoss.returnBossHealth() <= 0) {
+      this.gamingScene.update(this.player1.getHealth(), 0);
     }
 
     // If the animation finished
     if (!this.timeline.isPlaying()) {
       // If the the player health is equal 0 or no more cards, switch to gameResult
       // Else restart a new round
-      if (this.player1Health.getHealth() <= 0 || this.player2Health.getHealth() <= 0) {
+      if (this.player1.getHealth() <= 0 || this.dojoBoss.returnBossHealth() <= 0) {
         this.scene.start('gameResult', {
-          player1Health: this.player1Health,
-          player2Health: this.player2Health,
+          player1: this.player1,
+          dojoBoss: this.dojoBoss,
         });
         this.scene.remove('gameSetting');
       } else {
-        this.background.update(this.player1Health.getHealth(), this.player2Health.getHealth());
+        this.background.update(this.player1.getHealth(), this.dojoBoss.returnBossHealth());
         this.scene.remove('gameSetting');
         this.scene.remove('playerAttack');
         console.log('Resyne');
         this.scene.resume('game', {
-          player1Health: this.player1Health,
-          player2Health: this.player2Health,
+          player1: this.player1,
+          dojoBoss: this.dojoBoss,
           countdown: this.countdown,
           mainGameCounter: this.mainGameCounter,
         });
@@ -97,7 +97,7 @@ export default class playerAttack extends Phaser.Scene {
         duration: 600,
         onComplete: this.action.bind(this, cardClass, rank, target),
       });
-      this.player1Health.setHealth(1);
+      this.player1.dealDamage(1);
     }
 
     target.visible = false;
@@ -113,7 +113,7 @@ export default class playerAttack extends Phaser.Scene {
   action(type, damage, target) {
     target.visible = false;
     if (type === 'Attack' || type === 'Magic') {
-      this.player2Health.setHealth(damage);
+      this.dojoBoss.decreaseHealth(damage);
     }
   }
 }
