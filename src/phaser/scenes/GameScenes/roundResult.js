@@ -36,7 +36,12 @@ export default class roundResult extends Phaser.Scene {
   update() {
     // Update the player health
 
-    this.gamingScene.update(this.player1.getHealth(), this.dojoBoss.returnBossHealth());
+    this.gamingScene.update(
+      this.player1.getHealth(),
+      this.dojoBoss.returnBossHealth(),
+      0,
+      this.dojoBoss.returnBossArmour()
+    );
 
     this.dojoBoss = this.dojoBoss.returnBossHealth();
 
@@ -47,12 +52,18 @@ export default class roundResult extends Phaser.Scene {
 
     // Set health to be 0 when its equal or less than 0
 
+    // THIS REQUIRES PLAYER ARMOUR VALUE
     if (this.player1.getHealth() <= 0) {
-      this.gamingScene.update(0, this.dojoBoss.returnBossHealth());
+      this.gamingScene.update(
+        0,
+        this.dojoBoss.returnBossHealth(),
+        0,
+        this.dojoBoss.returnBossArmour()
+      );
     }
-
+    // THIS REQUIRES PLAYER ARMOUR VALUE
     if (this.dojoBoss.returnBossHealth() <= 0) {
-      this.gamingScene.update(this.player1.getHealth(), 0);
+      this.gamingScene.update(this.player1.getHealth(), 0, 0, this.dojoBoss.returnBossArmour());
     }
 
     // If the animation finished

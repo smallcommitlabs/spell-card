@@ -6,7 +6,7 @@ export default class gamingScene {
     this.key = key;
   }
 
-  buildScene(player1Health, player2Health, hasTimer) {
+  buildScene(player1, boss, hasTimer) {
     const { width, height } = this.scene.scale;
     this.scene.add
       .image(width * 0.5, height * 0.5, 'gameBackground')
@@ -27,13 +27,19 @@ export default class gamingScene {
       .setOrigin(0.5)
       .setScale(0.15);
 
-    this.player1 = this.scene.add
-      .text(width * 0.1, height * 0.1, player1Health.getHealth(), { fontSize: 30 })
+    // Layout for boss and player health and armour stats
+    this.player1Health = this.scene.add
+      .text(width * 0.1, height * 0.1, player1.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
-    this.player2 = this.scene.add
-      .text(width * 0.9, height * 0.1, player2Health.getHealth(), { fontSize: 30 })
+    this.bossHealth = this.scene.add
+      .text(width * 0.9, height * 0.1, boss.returnBossHealth(), { fontSize: 30 })
       .setOrigin(0.5);
-
+    this.player1Armour = this.scene.add
+      .text(width * 0.15, height * 0.1, 0, { fontSize: 30 })
+      .setOrigin(0.5);
+    this.bossArmour = this.scene.add
+      .text(width * 0.85, height * 0.1, boss.returnBossArmour(), { fontSize: 30 })
+      .setOrigin(0.5);
     if (!hasTimer) {
       // Setting button setup
       const settingBtn = this.scene.add
@@ -44,9 +50,11 @@ export default class gamingScene {
     }
   }
 
-  update(player1HealthValue, player2HealthValue) {
-    this.player1.setText(player1HealthValue);
-    this.player2.setText(player2HealthValue);
+  update(player1HealthValue, bossHealthValue, player1ArmourValue, bossArmourValue) {
+    this.player1Health.setText(player1HealthValue);
+    this.bossHealth.setText(bossHealthValue);
+    this.player1Armour.setText(player1ArmourValue);
+    this.bossArmour.setText(bossArmourValue);
   }
 
   settingScreen(button, popUpName, popUpInput, key) {
@@ -64,11 +72,19 @@ export default class gamingScene {
     );
   }
 
-  returnPlayer1Text() {
-    return this.player1;
+  returnPlayer1Health() {
+    return this.player1Health;
   }
 
-  returnPlayer2Text() {
-    return this.player2;
+  returnBossHealth() {
+    return this.bossHealth;
+  }
+
+  returnPlayer1Armour() {
+    return this.player1Armour;
+  }
+
+  returnBossArmour() {
+    return this.player2Armour;
   }
 }

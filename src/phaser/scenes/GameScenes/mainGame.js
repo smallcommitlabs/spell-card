@@ -41,12 +41,12 @@ export default class playGame extends Phaser.Scene {
 
     this.gamingScene.buildScene(this.player1, this.dojoBoss, true);
 
-    this.player1 = this.gamingScene.returnPlayer1Text();
-    this.dojoBoss = this.gamingScene.returndojoBossText();
+    // Add text for player and boss health and armour
+    this.player1Health = this.gamingScene.returnPlayer1Health();
+    this.dojoBossHealth = this.gamingScene.returnBossHealth();
+    this.player1Armour = this.gamingScene.returnPlayer1Armour();
+    this.dojoBossArmour = this.gamingScene.returnBossArmour();
 
-    this.add
-      .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
-      .setOrigin(0.5);
     // Setting button setup
     const settingBtn = this.add
       .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
