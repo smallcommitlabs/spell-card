@@ -28,7 +28,7 @@ export default class playGame extends Phaser.Scene {
   create() {
     const { width, height } = this.scale;
 
-    this.cardNotAnser = Array.from(this.selectedCards);
+    this.cardNotAnswer = Array.from(this.selectedCards);
     this.correctCards = new Array();
 
     this.incorrectCards = new Array();
@@ -96,7 +96,7 @@ export default class playGame extends Phaser.Scene {
           counter: this.countdown,
           timerLabel: this.timerLabel,
           question: data,
-          notAns: this.cardNotAnser,
+          notAns: this.cardNotAnswer,
           correct: this.correctCards,
           incorrectCards: this.incorrectCards,
           card: card,
@@ -117,7 +117,7 @@ export default class playGame extends Phaser.Scene {
 
   // executes when the timer is finish
   handleCountdownFinished() {
-    for (const i of this.cardNotAnser) {
+    for (const i of this.cardNotAnswer) {
       this.playerData.replaceCards(i);
     }
     console.log(this.selectedCards);

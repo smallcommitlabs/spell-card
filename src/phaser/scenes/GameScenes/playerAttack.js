@@ -61,7 +61,12 @@ export default class playerAttack extends Phaser.Scene {
         });
         this.scene.remove('gameSetting');
       } else {
-        this.background.update(this.player1.getHealth(), this.dojoBoss.returnBossHealth());
+        this.background.update(
+          this.player1.getHealth(),
+          this.dojoBoss.returnBossHealth(),
+          0,
+          this.dojoBoss.returnBossArmour()
+        );
         this.scene.remove('gameSetting');
         this.scene.remove('playerAttack');
         console.log('Resyne');

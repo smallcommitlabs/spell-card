@@ -19,23 +19,14 @@ export default class roundResult extends Phaser.Scene {
   }
 
   create() {
-    const { width, height } = this.scale;
-
     this.gamingScene.buildScene(this.player1, this.dojoBoss, false);
-
-    this.punishment();
-    // this.processCard(width, height);
-
-    this.bossShield = this.add
-      .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
-      .setOrigin(0.5);
-
-    // this.player1.dealDamage(40);
+    this.punishment(this.correctCards, this.lengthPlayer, this.player1);
+    this.bossAttack();
   }
 
   update() {
     // Update the player health
-
+    // This update requires player armour
     this.gamingScene.update(
       this.player1.getHealth(),
       this.dojoBoss.returnBossHealth(),
@@ -43,12 +34,7 @@ export default class roundResult extends Phaser.Scene {
       this.dojoBoss.returnBossArmour()
     );
 
-    this.dojoBoss = this.dojoBoss.returnBossHealth();
-
-    if (!this.timeline.isPlaying()) {
-      this.bossAttack();
-      console.log('NOT PLAYING');
-    }
+    // this.dojoBoss = this.dojoBoss.returnBossHealth();
 
     // Set health to be 0 when its equal or less than 0
 
