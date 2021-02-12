@@ -3,7 +3,7 @@ import GamingScene from '../../components/gamingScene';
 import QuestionBoard from '../../components/answerQuestion/questionBoard';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 import CountdownController from '../../components/countdownController';
-import PlayerHealth from '../../player/playerStats';
+import PlayerStats from '../../player/playerStats';
 import PlayerData from '../../player/playerData';
 import DojoBoss from '../../boss/DojoBoss';
 
@@ -33,7 +33,7 @@ export default class playGame extends Phaser.Scene {
 
     // Health
     if (!this.player1) {
-      this.player1 = new PlayerHealth(30);
+      this.player1 = new PlayerStats(30, 0);
       this.dojoBoss = new DojoBoss(60, 0, 'Madara');
     }
 

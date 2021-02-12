@@ -1,4 +1,4 @@
-export default class playerHealth {
+export default class playerStats {
   /**
    *
    * @param {number} health
