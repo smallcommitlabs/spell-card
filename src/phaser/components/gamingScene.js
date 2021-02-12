@@ -49,10 +49,13 @@ export default class gamingScene {
       this.settingScreen(settingBtn, 'setting', SettingMenu);
     }
   }
-  update(player1HealthValue, bossHealthValue, player1ArmourValue, bossArmourValue) {
+  updatePlayer(player1HealthValue, player1ArmourValue) {
     this.player1Health.setText(player1HealthValue);
-    this.bossHealth.setText(bossHealthValue);
     this.player1Armour.setText(player1ArmourValue);
+  }
+
+  updateBoss(bossHealthValue, bossArmourValue) {
+    this.bossHealth.setText(bossHealthValue);
     this.bossArmour.setText(bossArmourValue);
   }
 
