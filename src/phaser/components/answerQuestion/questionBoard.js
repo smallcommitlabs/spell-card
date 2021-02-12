@@ -16,8 +16,8 @@ export default class questionBoard extends Phaser.Scene {
     this.incorrectCards = data.incorrectCards;
     this.selectedCard = data.card;
     this.cardNotAns = data.notAns;
-    this.player1Health = data.player1Health;
-    this.player2Health = data.player2Health;
+    this.player1 = data.player1;
+    this.dojoBoss = data.dojoBoss;
     this.background = data.background;
   }
 
@@ -102,8 +102,8 @@ export default class questionBoard extends Phaser.Scene {
     this.scene.add('playerAttack', playerAttack, true, {
       countdown: this.countdown,
       mainGameCounter: this.counter,
-      player1Health: this.player1Health,
-      player2Health: this.player2Health,
+      player1: this.player1,
+      dojoBoss: this.dojoBoss,
       background: this.background,
       selectedCard: this.selectedCard,
       correctness: correctness,
