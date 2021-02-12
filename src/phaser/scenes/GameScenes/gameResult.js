@@ -3,8 +3,8 @@ import NaviButton from '../../components/naviButton';
 
 export default class gameResult extends Phaser.Scene {
   init(data) {
-    this.player1Health = data.player1Health;
-    this.player2Health = data.player2Health;
+    this.player1 = data.player1;
+    this.dojoBoss = data.dojoBoss;
   }
 
   constructor() {

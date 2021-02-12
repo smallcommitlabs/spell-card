@@ -5,10 +5,10 @@ import PlayerData from '../../player/playerData';
 
 export default class roundResult extends Phaser.Scene {
   init(data) {
-    this.player1Health = data.player1Health;
-    this.player2Health = data.player2Health;
+    this.player1 = data.player1;
+    this.dojoBoss = data.dojoBoss;
     this.correctCards = data.correctCards;
-    this.length = data.length;
+    this.lengthPlayer = data.lengthPlayer;
   }
 
   constructor() {
@@ -18,28 +18,36 @@ export default class roundResult extends Phaser.Scene {
   }
 
   create() {
-    const { width, height } = this.scale;
-
-    this.gamingScene.buildScene(this.player1Health, this.player2Health, false);
-
-    this.punishment();
-    // this.processCard(width, height);
-
-    // this.player1Health.setHealth(40);
+    this.gamingScene.buildScene(this.player1, this.dojoBoss, false);
+    this.punishment(this.correctCards, this.lengthPlayer, this.player1);
+    this.bossAttack();
   }
 
   update() {
     // Update the player health
-    this.gamingScene.update(this.player1Health.getHealth(), this.player2Health.getHealth());
+
+    // This update requires player armour
+    this.gamingScene.update(
+      this.player1.getHealth(),
+      this.dojoBoss.returnBossHealth(),
+      0,
+      this.dojoBoss.returnBossArmour()
+    );
 
     // Set health to be 0 when its equal or less than 0
 
-    if (this.player1Health.getHealth() <= 0) {
-      this.gamingScene.update(0, this.player2Health.getHealth());
+    // THIS REQUIRES PLAYER ARMOUR VALUE
+    if (this.player1.getHealth() <= 0) {
+      this.gamingScene.update(
+        0,
+        this.dojoBoss.returnBossHealth(),
+        0,
+        this.dojoBoss.returnBossArmour()
+      );
     }
-
-    if (this.player2Health.getHealth() <= 0) {
-      this.gamingScene.update(this.player1Health.getHealth(), 0);
+    // THIS REQUIRES PLAYER ARMOUR VALUE
+    if (this.dojoBoss.returnBossHealth() <= 0) {
+      this.gamingScene.update(this.player1.getHealth(), 0, 0, this.dojoBoss.returnBossArmour());
     }
 
     // If the animation finished
@@ -47,70 +55,29 @@ export default class roundResult extends Phaser.Scene {
     // If the the player health is equal 0 or no more cards, switch to gameResult
     // Else restart a new round
     if (
-      this.player1Health.getHealth() <= 0 ||
-      this.player2Health.getHealth() <= 0 ||
+      this.player1.getHealth() <= 0 ||
+      this.dojoBoss.returnBossHealth() <= 0 ||
       this.playerData.getCardRemainNumber() === 0
     ) {
       this.scene.start('gameResult', {
-        player1Health: this.player1Health,
-        player2Health: this.player2Health,
+        player1: this.player1,
+        dojoBoss: this.dojoBoss,
       });
       this.scene.remove('gameSetting');
     } else {
       this.scene.start('game', {
-        player1Health: this.player1Health,
-        player2Health: this.player2Health,
+        player1: this.player1,
+        dojoBoss: this.dojoBoss,
         selectedCards: this.getCards(),
       });
       this.scene.remove('gameSetting');
     }
-    // }
   }
 
-  // // Add animation and effects for correctCards
-  // processCard(width, height) {
-  //   this.timeline = this.tweens.createTimeline();
-
-  //   for (const i of this.correctCards) {
-  //     const card = i.getCard();
-  //     const cardClass = card.class;
-  //     const rank = card.rank;
-  //     const image = card.image;
-
-  //     const target = this.add
-  //       .image(width * 0.2 + 50, height * 0.4, image)
-  //       .setOrigin(0.5)
-  //       .setScale(0.15);
-
-  //     this.timeline.add({
-  //       targets: target,
-  //       x: 1400,
-  //       onStart: this.onStart.bind(this, target),
-  //       ease: 'Power0',
-  //       duration: 2000,
-  //       onComplete: this.action.bind(this, cardClass, rank, target),
-  //     });
-  //     target.visible = false;
-  //   }
-  //   this.timeline.play();
-  // }
-
-  // Make the object invisble
-  // onStart(target) {
-  //   target.visible = true;
-  // }
-
-  // Carry out the damage of a card to the player
-  // action(type, damage, target) {
-  //   target.visible = false;
-  //   if (type === 'Attack' || type === 'Magic') {
-  //     this.player2Health.setHealth(damage);
-  //   }
-  // }
-
-  punishment() {
-    const nonanswerDamage = this.length - this.correctCards.length;
-    this.player1Health.setHealth(nonanswerDamage);
+  punishment(cards, length, player) {
+    console.log('punished');
+    const nonanswerDamage = length - cards.length;
+    player.dealDamage(nonanswerDamage);
   }
 
   // Get new cards for a new round
@@ -118,5 +85,12 @@ export default class roundResult extends Phaser.Scene {
     const newCards = this.playerData.getRandomCards(5);
     console.log(newCards);
     return newCards;
+  }
+
+  // Bosses attack
+  bossAttack() {
+    for (let i = 0; i < 3; i++) {
+      this.player1.dealDamage(this.dojoBoss.randomAttack());
+    }
   }
 }

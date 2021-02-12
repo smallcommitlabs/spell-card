@@ -7,6 +7,10 @@ export default class cardSwich extends Phaser.Scene {
   /** @type {CountdownController} */
   countdown;
 
+  init(data) {
+    this.dojoBoss = data.dojoBoss;
+  }
+
   constructor() {
     super('cardSwitch');
     this.navigation = new NavigationButton(this);
@@ -30,9 +34,6 @@ export default class cardSwich extends Phaser.Scene {
 
     this.givenCards = this.process.getRandomCards(5);
 
-    console.log(this.givenCards);
-    console.log(Object.keys(this.givenCards));
-
     this.cardHandler(width, height);
 
     // replace the given cards properly into the array and it is stored within this.givenCards
@@ -50,7 +51,6 @@ export default class cardSwich extends Phaser.Scene {
       // in this instance itself i think and only in the card class instance or something like that
 
       for (const i of this.givenCards) {
-        console.log(i.isSelected);
         if (i.isSelected) {
           this.process.replaceCards(i);
           cardsReplaced++;
@@ -65,8 +65,10 @@ export default class cardSwich extends Phaser.Scene {
       // Re-shuffle the cards as the cards returned are added to the back of the array.
       this.process.createRandomCardList();
       this.countdown.stop();
-
-      this.scene.start('game', { selectedCards: replacementCards });
+      this.scene.start('game', {
+        selectedCards: replacementCards,
+        dojoBoss: this.dojoBoss,
+      });
     });
   }
 
