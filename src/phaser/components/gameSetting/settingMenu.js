@@ -21,7 +21,7 @@ export default class setting extends Phaser.Scene {
 
     const retangle = this.add.rectangle(0, 0, width, height, 0x000000).setOrigin(0);
     retangle.alpha = 0.5;
-    const surrender = this.add.text(300, 300, 'Surrender', { fontSize: 24 }).setInteractive();
+    const surrender = this.add.text(600, 600, 'Surrender', { fontSize: 48 }).setInteractive();
 
     if (this.counter) {
       this.timerSettup(width);
@@ -33,7 +33,7 @@ export default class setting extends Phaser.Scene {
       this.scene.start('mainMenu');
     });
 
-    const close = this.add.text(200, 200, 'X', { fontSize: 30 }).setInteractive();
+    const close = this.add.text(200, 200, 'X', { fontSize: 60 }).setInteractive();
     close.on(
       'pointerdown',
       () => {

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import CountdownController from '../../components/countdownController';
 import PlayerData from '../../player/playerData';
+import playerAttack from '../../scenes/GameScenes/playerAttack';
 
 export default class questionBoard extends Phaser.Scene {
   // fetch the data passed by the previous scene
@@ -15,6 +16,9 @@ export default class questionBoard extends Phaser.Scene {
     this.incorrectCards = data.incorrectCards;
     this.selectedCard = data.card;
     this.cardNotAns = data.notAns;
+    this.player1Health = data.player1Health;
+    this.player2Health = data.player2Health;
+    this.background = data.background;
   }
 
   constructor() {
@@ -28,8 +32,8 @@ export default class questionBoard extends Phaser.Scene {
     const retangle = this.add.rectangle(0, 0, width, height, 0x000000).setOrigin(0);
     retangle.alpha = 0.5;
 
-    this.add.text(300, 250, 'Answer question..... \n \n What is ' + this.question, {
-      fontSize: 21,
+    this.add.text(600, 500, 'Answer question..... \n \n What is ' + this.question, {
+      fontSize: 42,
     });
 
     // Create timer
@@ -39,34 +43,34 @@ export default class questionBoard extends Phaser.Scene {
     this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
 
     // Close button
-    const close = this.add.text(200, 200, 'X', { fontSize: 30 }).setInteractive();
+    const close = this.add.text(200, 200, 'X', { fontSize: 60 }).setInteractive();
     close.on(
       'pointerdown',
       () => {
-        this.navigation();
+        this.closeScene();
       },
       this
     );
 
     // Confirm button
-    const confirmBtn = this.add.text(300, 400, 'Confirm', { fontSize: 34 });
+    const confirmBtn = this.add.text(600, 800, 'Confirm', { fontSize: 68 });
     confirmBtn.setInteractive();
     confirmBtn.on('pointerdown', () => {
       this.correctCards.push(this.selectedCard);
       this.callback();
-      this.navigation();
       this.removeAnsweredCard(this.selectedCard);
+      this.navigation(true);
     });
 
     // Answered wrong button
-    const incorrectBtn = this.add.text(300, 450, 'Incorrect', { fontSize: 34 });
+    const incorrectBtn = this.add.text(600, 900, 'Incorrect', { fontSize: 68 });
     incorrectBtn.setInteractive();
     incorrectBtn.on('pointerdown', () => {
       this.callback();
-      this.navigation();
       this.incorrectCards.push(this.selectedCard);
       this.playerData.replaceCards(this.selectedCard);
       this.removeAnsweredCard(this.selectedCard);
+      this.navigation(false);
     });
   }
 
@@ -77,24 +81,43 @@ export default class questionBoard extends Phaser.Scene {
 
   // execute when the timer is finished
   handleCountdownFinished() {
-    this.navigation();
+    this.closeScene();
   }
 
   // Remove the current popup screen and resume the mainGame scene
-  navigation() {
+  closeScene() {
+    this.closeScenePrep();
+
+    this.scene.resume('game', {
+      countdown: this.countdown,
+      mainGameCounter: this.counter,
+    });
+  }
+
+  // Naivgation from question board to playerAttack
+  navigation(correctness) {
+    this.closeScenePrep();
+    console.log(this.countdown);
+
+    this.scene.add('playerAttack', playerAttack, true, {
+      countdown: this.countdown,
+      mainGameCounter: this.counter,
+      player1Health: this.player1Health,
+      player2Health: this.player2Health,
+      background: this.background,
+      selectedCard: this.selectedCard,
+      correctness: correctness,
+    });
+  }
+
+  // Close the question boards scene
+  closeScenePrep() {
     this.scene.remove('questionBoard');
     // Make the timer in the mainGame to be visible
     this.mainGameTimerLabel.visible = true;
     // get the scenePlugin from the previous scene to get the the scene keys
     this.scene = this.mainGame.object.scene;
     // resume the mainGame scene and pass the countdown object from the scene and the previous scene
-
-    this.scene.resume('game', {
-      counter: this.countdown,
-      mainGameCounter: this.counter,
-      correctCards: this.correctCards,
-      incorrectCards: this.incorrectCards,
-    });
   }
 
   // Remove the answered cards from the list
