@@ -3,7 +3,7 @@ import GamingScene from '../../components/gamingScene';
 import QuestionBoard from '../../components/answerQuestion/questionBoard';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 import CountdownController from '../../components/countdownController';
-import PlayerHealth from '../../player/playerHealth';
+import PlayerHealth from '../../player/playerStats';
 import PlayerData from '../../player/playerData';
 import DojoBoss from '../../boss/DojoBoss';
 
