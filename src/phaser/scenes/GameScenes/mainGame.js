@@ -5,6 +5,7 @@ import SettingMenu from '../../components/gameSetting/settingMenu';
 import CountdownController from '../../components/countdownController';
 import PlayerHealth from '../../player/playerHealth';
 import PlayerData from '../../player/playerData';
+import DojoBoss from '../../boss/DojoBoss';
 
 export default class playGame extends Phaser.Scene {
   //  /**@type {Phaser.GameObjects.Text} */
@@ -12,9 +13,8 @@ export default class playGame extends Phaser.Scene {
 
   init(data) {
     this.selectedCards = data.selectedCards;
-    this.player1Health = data.player1Health;
+    this.player1 = data.player1;
     this.timeRemain = data.timeRemain;
-    this.player2Health = data.dojoBoss.returnBossHealth();
     this.dojoBoss = data.dojoBoss;
   }
 
@@ -28,25 +28,25 @@ export default class playGame extends Phaser.Scene {
   create() {
     const { width, height } = this.scale;
 
-    this.cardNotAnser = Array.from(this.selectedCards);
+    this.cardNotAnswer = Array.from(this.selectedCards);
     this.correctCards = new Array();
 
     this.incorrectCards = new Array();
 
     // Health
-    if (!this.player1Health) {
-      this.player1Health = new PlayerHealth(30);
-      this.player2Health = this.dojoBoss.returnBossHealth();
+    if (!this.player1) {
+      this.player1 = new PlayerHealth(30);
+      this.dojoBoss = new DojoBoss(60, 0, 'Madara');
     }
 
-    this.gamingScene.buildScene(this.player1Health, this.player2Health, true);
+    this.gamingScene.buildScene(this.player1, this.dojoBoss, true);
 
-    this.player1 = this.gamingScene.returnPlayer1Text();
-    this.player2 = this.gamingScene.returnPlayer2Text();
+    // Add text for player and boss health and armour
+    this.player1Health = this.gamingScene.returnPlayer1Health();
+    this.dojoBossHealth = this.gamingScene.returnBossHealth();
+    this.player1Armour = this.gamingScene.returnPlayer1Armour();
+    this.dojoBossArmour = this.gamingScene.returnBossArmour();
 
-    this.add
-      .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
-      .setOrigin(0.5);
     // Setting button setup
     const settingBtn = this.add
       .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
@@ -96,13 +96,13 @@ export default class playGame extends Phaser.Scene {
           counter: this.countdown,
           timerLabel: this.timerLabel,
           question: data,
-          notAns: this.cardNotAnser,
+          notAns: this.cardNotAnswer,
           correct: this.correctCards,
           incorrectCards: this.incorrectCards,
           card: card,
           key: 'game',
-          player1Health: this.player1Health,
-          player2Health: this.player2Health,
+          player1: this.player1,
+          dojoBoss: this.dojoBoss,
           background: this.gamingScene,
           callback: callback,
         });
@@ -117,15 +117,14 @@ export default class playGame extends Phaser.Scene {
 
   // executes when the timer is finish
   handleCountdownFinished() {
-    for (const i of this.cardNotAnser) {
+    for (const i of this.cardNotAnswer) {
       this.playerData.replaceCards(i);
     }
     console.log(this.selectedCards);
     this.playerData.createRandomCardList();
 
     this.scene.start('roundResult', {
-      player1Health: this.player1Health,
-      player2Health: this.player2Health,
+      player1: this.player1,
       dojoBoss: this.dojoBoss,
       correctCards: this.correctCards,
       lengthPlayer: this.selectedCards.length,
