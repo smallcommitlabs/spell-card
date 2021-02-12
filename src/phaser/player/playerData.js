@@ -1,4 +1,4 @@
-import Deck from './player';
+import Deck from './playerInfor';
 import AttackCard from '../components/Cards/attackCard';
 import DefenceCard from '../components/Cards/defenseCard';
 import MagicCard from '../components/Cards/magicCard';
