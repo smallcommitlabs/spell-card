@@ -35,7 +35,7 @@ export default class playGame extends Phaser.Scene {
 
     // Health
     if (!this.player1) {
-      this.player1 = new PlayerHealth(30);
+      this.player1 = new PlayerHealth(30, 0);
       this.dojoBoss = new DojoBoss(60, 0, 'Madara');
     }
 
@@ -74,7 +74,7 @@ export default class playGame extends Phaser.Scene {
 
     // Timer
     // const time = 300000;
-    const time = 5000;
+    const time = 60000;
 
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
     this.countdown = new CountdownController(this, this.timerLabel);

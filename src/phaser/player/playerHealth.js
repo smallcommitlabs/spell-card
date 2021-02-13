@@ -3,8 +3,9 @@ export default class playerHealth {
    *
    * @param {number} health
    */
-  constructor(health) {
+  constructor(health, magic) {
     this.health = health;
+    this.magic = magic;
   }
 
   getHealth() {
@@ -17,5 +18,13 @@ export default class playerHealth {
    */
   dealDamage(damage) {
     this.health -= damage;
+  }
+
+  changeMagicStatus(magic) {
+    this.magic = this.magic + magic;
+  }
+
+  magicStatus() {
+    return this.magic;
   }
 }
