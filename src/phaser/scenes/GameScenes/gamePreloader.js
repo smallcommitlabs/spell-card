@@ -9,11 +9,10 @@ export default class gamePreloader extends Phaser.Scene {
 
   preload() {
     const process = new playerData();
-    this.dojoBoss = new DojoBoss(60, 0, 'Madara');
     process.createRandomCardList();
   }
 
   create() {
-    this.scene.start('cardSwitch', { dojoBoss: this.dojoBoss });
+    this.scene.start('cardSwitch');
   }
 }
