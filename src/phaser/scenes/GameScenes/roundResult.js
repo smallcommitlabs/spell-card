@@ -35,11 +35,11 @@ export default class roundResult extends Phaser.Scene {
 
     // THIS REQUIRES PLAYER ARMOUR VALUE
     if (this.player1.getHealth() <= 0) {
-      this.gamingScene.updatePlayer(0, 0);
+      this.gamingScene.updatePlayer(0, this.player1.getDefenceValue());
     }
-    // THIS REQUIRES PLAYER ARMOUR VALUE
+
     if (this.dojoBoss.returnBossHealth() <= 0) {
-      this.gamingScene.updateBoss(0, this.dojoBoss.returnBossArmour());
+      this.gamingScene.update(0, this.dojoBoss.returnBossArmour());
     }
 
     // If the animation finished
@@ -61,6 +61,7 @@ export default class roundResult extends Phaser.Scene {
         player1: this.player1,
         dojoBoss: this.dojoBoss,
         selectedCards: this.getCards(),
+        dojoBoss: this.dojoBoss,
       });
       this.scene.remove('gameSetting');
     }
