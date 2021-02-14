@@ -56,7 +56,6 @@ export default class playGame extends Phaser.Scene {
     this.events.on('resume', function (sys, data) {
       if (data) {
         const mainGameTimerLabel = data.mainGameCounter;
-        console.log(data);
         if (!data.countdown) {
           mainGameTimerLabel.resume(0);
         } else {
@@ -72,7 +71,7 @@ export default class playGame extends Phaser.Scene {
 
     // Timer
     // const time = 300000;
-    const time = 5000;
+    const time = 10000;
 
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
     this.countdown = new CountdownController(this, this.timerLabel);
@@ -118,7 +117,6 @@ export default class playGame extends Phaser.Scene {
     for (const i of this.cardNotAnswer) {
       this.playerData.replaceCards(i);
     }
-    console.log(this.selectedCards);
     this.playerData.createRandomCardList();
 
     this.scene.start('roundResult', {
@@ -133,7 +131,6 @@ export default class playGame extends Phaser.Scene {
   loadCards() {
     let x = 480;
     for (const i of this.selectedCards) {
-      console.log(this.selectedCards);
       const card = this.add
         .image(x, 900, i.getCard().image)
         .setOrigin(0.5)

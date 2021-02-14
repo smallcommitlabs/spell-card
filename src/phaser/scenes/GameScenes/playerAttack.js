@@ -32,7 +32,7 @@ export default class playerAttack extends Phaser.Scene {
 
     // THIS REQUIRES PALYER ARMOUR VALUE
     if (this.player1.getHealth() <= 0) {
-      this.gamingScene.updatePlayer(0, 0);
+      this.gamingScene.updatePlayer(0, this.player1.getDefenceValue());
     }
 
     // THIS REQUIRES PLAYER ARMOUR VALUE
@@ -52,7 +52,7 @@ export default class playerAttack extends Phaser.Scene {
         });
         this.scene.remove('gameSetting');
       } else {
-        this.background.updatePlayer(this.player1.getHealth(), 0);
+        this.background.updatePlayer(this.player1.getHealth(), this.player1.getDefenceValue());
 
         this.background.updateBoss(
           this.dojoBoss.returnBossHealth(),
@@ -123,6 +123,7 @@ export default class playerAttack extends Phaser.Scene {
     if (type === 'Attack' || type === 'Magic') {
       this.dojoBoss.decreaseHealth(damage);
     } else {
+      this.player1.addDefence(damage);
     }
   }
 }

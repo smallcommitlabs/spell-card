@@ -21,17 +21,17 @@ export default class playerStats {
   }
 
   addDefence(value) {
-    this.defenceValue += value;
+    this.armour += value;
   }
 
   reduceDefence(value) {
-    this.defenceValue -= value;
-    if (this.defenceValue <= 0) {
-      this.defenceValue = 0;
+    this.armour -= value;
+    if (this.armour <= 0) {
+      this.armour = 0;
     }
   }
 
   getDefenceValue() {
-    return this.defenceValue;
+    return this.armour;
   }
 }

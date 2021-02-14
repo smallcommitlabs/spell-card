@@ -27,7 +27,7 @@ export default class roundResult extends Phaser.Scene {
     // Update the player health
 
     // This update requires player armour
-    this.gamingScene.updatePlayer(this.player1.getHealth(), 0);
+    this.gamingScene.updatePlayer(this.player1.getHealth(), this.player1.getDefenceValue());
 
     this.gamingScene.updateBoss(this.dojoBoss.returnBossHealth(), this.dojoBoss.returnBossArmour());
 
@@ -67,7 +67,6 @@ export default class roundResult extends Phaser.Scene {
   }
 
   punishment(cards, length, player) {
-    console.log('punished');
     const nonanswerDamage = length - cards.length;
     player.dealDamage(nonanswerDamage);
   }
@@ -75,14 +74,24 @@ export default class roundResult extends Phaser.Scene {
   // Get new cards for a new round
   getCards() {
     const newCards = this.playerData.getRandomCards(5);
-    console.log(newCards);
     return newCards;
   }
 
   // Bosses attack
   bossAttack() {
     for (let i = 0; i < 3; i++) {
-      this.player1.dealDamage(this.dojoBoss.randomAttack());
+      const damage = this.dojoBoss.randomAttack();
+      console.log(damage);
+      console.log(this.player1.getDefenceValue());
+      if (this.player1.getDefenceValue() >= damage) {
+        console.log('first');
+        this.player1.reduceDefence(damage);
+      } else {
+        console.log('next');
+        const takes = damage - this.player1.getDefenceValue();
+        this.player1.reduceDefence(damage);
+        this.player1.dealDamage(takes);
+      }
     }
   }
 }

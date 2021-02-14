@@ -35,8 +35,9 @@ export default class gamingScene {
       .text(width * 0.9, height * 0.1, boss.returnBossHealth(), { fontSize: 30 })
       .setOrigin(0.5);
     this.player1Armour = this.scene.add
-      .text(width * 0.15, height * 0.1, 0, { fontSize: 30 })
+      .text(width * 0.15, height * 0.1, player1.getDefenceValue(), { fontSize: 30 })
       .setOrigin(0.5);
+
     this.bossArmour = this.scene.add
       .text(width * 0.85, height * 0.1, boss.returnBossArmour(), { fontSize: 30 })
       .setOrigin(0.5);
