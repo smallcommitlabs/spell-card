@@ -121,6 +121,12 @@ export default class playerAttack extends Phaser.Scene {
   action(type, damage, target) {
     target.visible = false;
     if (type === 'Attack' || type === 'Magic') {
+      if (this.dojoBoss.returnBossArmour() >= damage) {
+        this.dojoBoss.decreaseArmour(damage);
+      } else {
+        const take = damage - this.dojoBoss.returnBossArmour();
+        this.dojoBoss.decreaseHealth(damage);
+      }
       this.dojoBoss.decreaseHealth(damage);
     } else {
       this.player1.addDefence(damage);
