@@ -25,35 +25,26 @@ export default class playerAttack extends Phaser.Scene {
   }
 
   update() {
-    // Update player health
-    this.gamingScene.update(
-      this.player1.getHealth(),
-      this.dojoBoss.returnBossHealth(),
-      0,
-      this.dojoBoss.returnBossArmour()
-    );
+    // update boss health;
+    this.gamingScene.updateBoss(this.dojoBoss.returnBossHealth(), this.dojoBoss.returnBossArmour());
 
     // Set health to be 0 when its equal or less than 0
 
     // THIS REQUIRES PALYER ARMOUR VALUE
     if (this.player1.getHealth() <= 0) {
-      this.gamingScene.update(
-        0,
-        this.dojoBoss.returnBossHealth(),
-        0,
-        this.dojoBoss.returnBossArmour()
-      );
+      this.gamingScene.updatePlayer(0, this.player1.getDefenceValue());
     }
 
     // THIS REQUIRES PLAYER ARMOUR VALUE
     if (this.dojoBoss.returnBossHealth() <= 0) {
-      this.gamingScene.update(this.player1.getHealth(), 0, 0, this.dojoBoss.returnBossArmour());
+      this.gamingScene.updateBoss(0, this.dojoBoss.returnBossArmour());
     }
 
     // If the animation finished
     if (!this.timeline.isPlaying()) {
       // If the the player health is equal 0 or no more cards, switch to gameResult
       // Else restart a new round
+
       if (this.player1.getHealth() <= 0 || this.dojoBoss.returnBossHealth() <= 0) {
         this.scene.start('gameResult', {
           player1: this.player1,
@@ -61,15 +52,15 @@ export default class playerAttack extends Phaser.Scene {
         });
         this.scene.remove('gameSetting');
       } else {
-        this.background.update(
-          this.player1.getHealth(),
+        this.background.updatePlayer(this.player1.getHealth(), this.player1.getDefenceValue());
+
+        this.background.updateBoss(
           this.dojoBoss.returnBossHealth(),
-          0,
           this.dojoBoss.returnBossArmour()
         );
+
         this.scene.remove('gameSetting');
         this.scene.remove('playerAttack');
-        console.log('Resyne');
         this.scene.resume('game', {
           player1: this.player1,
           dojoBoss: this.dojoBoss,
@@ -129,14 +120,23 @@ export default class playerAttack extends Phaser.Scene {
   // to indentify the type of attack
   action(type, damage, target) {
     target.visible = false;
+
+   const totalDamage=damage + this.player1.magicStatus();
+    
     if (type === 'Attack') {
-      this.dojoBoss.decreaseHealth(damage + this.player1.magicStatus());
+      if (this.dojoBoss.returnBossArmour() >= totalDamage) {
+        this.dojoBoss.decreaseArmour(totalDamage);
+      } else {
+        const take = totalDamage - this.dojoBoss.returnBossArmour();
+        this.dojoBose.decreaseArmour(totalDamage);
+        this.dojoBoss.decreaseHealth(take);
+      }
       this.player1.changeMagicStatus(0);
     } else if (type === 'Magic') {
       this.player1.changeMagicStatus(damage);
       // is this a c or s lmao
     } else if (type === 'Defence') {
-      console.log('do defence');
+      this.player1.addDefence(totalDamage);
       this.player1.changeMagicStatus(0);
     }
   }

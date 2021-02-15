@@ -15,9 +15,15 @@ export default class Boss {
 
   decreaseHealth(damage) {
     this.health = this.health - damage;
+    if (this.health < 0) {
+      this.health = 0;
+    }
   }
 
   decreaseArmour(damage) {
-    return this.armour - damage;
+    this.armour = this.armour - damage;
+    if (this.armour < 0) {
+      this.armour = 0;
+    }
   }
 }

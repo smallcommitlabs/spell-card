@@ -13,7 +13,6 @@ export default class roundResult extends Phaser.Scene {
 
   constructor() {
     super('roundResult');
-
     this.playerData = new PlayerData();
     this.gamingScene = new GamingScene(this, 'roundResult');
   }
@@ -27,30 +26,21 @@ export default class roundResult extends Phaser.Scene {
 
   update() {
     // Update the player health
-    // This update requires player armour
-    this.gamingScene.update(
-      this.player1.getHealth(),
-      this.dojoBoss.returnBossHealth(),
-      0,
-      this.dojoBoss.returnBossArmour()
-    );
 
-    // this.dojoBoss = this.dojoBoss.returnBossHealth();
+    // This update requires player armour
+    this.gamingScene.updatePlayer(this.player1.getHealth(), this.player1.getDefenceValue());
+
+    this.gamingScene.updateBoss(this.dojoBoss.returnBossHealth(), this.dojoBoss.returnBossArmour());
 
     // Set health to be 0 when its equal or less than 0
 
     // THIS REQUIRES PLAYER ARMOUR VALUE
     if (this.player1.getHealth() <= 0) {
-      this.gamingScene.update(
-        0,
-        this.dojoBoss.returnBossHealth(),
-        0,
-        this.dojoBoss.returnBossArmour()
-      );
+      this.gamingScene.updatePlayer(0, this.player1.getDefenceValue());
     }
-    // THIS REQUIRES PLAYER ARMOUR VALUE
+
     if (this.dojoBoss.returnBossHealth() <= 0) {
-      this.gamingScene.update(this.player1.getHealth(), 0, 0, this.dojoBoss.returnBossArmour());
+      this.gamingScene.update(0, this.dojoBoss.returnBossArmour());
     }
 
     // If the animation finished
@@ -72,13 +62,13 @@ export default class roundResult extends Phaser.Scene {
         player1: this.player1,
         dojoBoss: this.dojoBoss,
         selectedCards: this.getCards(),
+        dojoBoss: this.dojoBoss,
       });
       this.scene.remove('gameSetting');
     }
   }
 
   punishment(cards, length, player) {
-    console.log('punished');
     const nonanswerDamage = length - cards.length;
     player.dealDamage(nonanswerDamage);
   }
@@ -86,14 +76,24 @@ export default class roundResult extends Phaser.Scene {
   // Get new cards for a new round
   getCards() {
     const newCards = this.playerData.getRandomCards(5);
-    console.log(newCards);
     return newCards;
   }
 
   // Bosses attack
   bossAttack() {
     for (let i = 0; i < 3; i++) {
-      this.player1.dealDamage(this.dojoBoss.randomAttack());
+      const damage = this.dojoBoss.randomAttack();
+      console.log(damage);
+      console.log(this.player1.getDefenceValue());
+      if (this.player1.getDefenceValue() >= damage) {
+        console.log('first');
+        this.player1.reduceDefence(damage);
+      } else {
+        console.log('next');
+        const takes = damage - this.player1.getDefenceValue();
+        this.player1.reduceDefence(damage);
+        this.player1.dealDamage(takes);
+      }
     }
   }
 }
