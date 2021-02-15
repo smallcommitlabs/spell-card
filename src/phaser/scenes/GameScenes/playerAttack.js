@@ -120,16 +120,24 @@ export default class playerAttack extends Phaser.Scene {
   // to indentify the type of attack
   action(type, damage, target) {
     target.visible = false;
-    if (type === 'Attack' || type === 'Magic') {
-      if (this.dojoBoss.returnBossArmour() >= damage) {
-        this.dojoBoss.decreaseArmour(damage);
+
+   const totalDamage=damage + this.player1.magicStatus();
+    
+    if (type === 'Attack') {
+      if (this.dojoBoss.returnBossArmour() >= totalDamage) {
+        this.dojoBoss.decreaseArmour(totalDamage);
       } else {
-        const take = damage - this.dojoBoss.returnBossArmour();
-        this.dojoBoss.decreaseHealth(damage);
+        const take = totalDamage - this.dojoBoss.returnBossArmour();
+        this.dojoBose.decreaseArmour(totalDamage);
+        this.dojoBoss.decreaseHealth(take);
       }
-      this.dojoBoss.decreaseHealth(damage);
-    } else {
-      this.player1.addDefence(damage);
+      this.player1.changeMagicStatus(0);
+    } else if (type === 'Magic') {
+      this.player1.changeMagicStatus(damage);
+      // is this a c or s lmao
+    } else if (type === 'Defence') {
+      this.player1.addDefence(totalDamage);
+      this.player1.changeMagicStatus(0);
     }
   }
 }

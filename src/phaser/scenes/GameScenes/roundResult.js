@@ -19,6 +19,7 @@ export default class roundResult extends Phaser.Scene {
 
   create() {
     this.gamingScene.buildScene(this.player1, this.dojoBoss, false);
+    this.player1.changeMagicStatus(0);
     this.punishment(this.correctCards, this.lengthPlayer, this.player1);
     this.bossAttack();
   }
