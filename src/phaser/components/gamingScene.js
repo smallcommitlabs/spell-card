@@ -1,4 +1,5 @@
 import SettingMenu from './gameSetting/settingMenu';
+import HealthSystem from './healthBarSystem/HealthSystem';
 
 export default class gamingScene {
   constructor(scene, key) {
@@ -16,6 +17,25 @@ export default class gamingScene {
     this.cardDeck = this.scene.add.image(1738, 912, 'CardBack').setScale(0.63, 0.58);
     this.cardGraveyard = this.scene.add.image(196, 912, 'CardBack').setScale(0.63, 0.58);
 
+    // Health Bar System
+    this.player1HealthSystem = new HealthSystem(
+      this.scene,
+      width * 0.1,
+      height * 0.1,
+      player1.getHealth(),
+      400,
+      50,
+      true
+    );
+    this.bossHealthSystem = new HealthSystem(
+      this.scene,
+      width * 0.65,
+      height * 0.1,
+      player1.getHealth(),
+      400,
+      50,
+      false
+    );
     // player
     this.scene.physics.add
       .sprite(width * 0.2, height * 0.4, 'player')
@@ -89,5 +109,13 @@ export default class gamingScene {
 
   returnBossArmour() {
     return this.player2Armour;
+  }
+
+  returnPlayerHealthSystem() {
+    return this.player1HealthSystem;
+  }
+
+  returnBossHealthSystem() {
+    return this.bossHealthSystem;
   }
 }
