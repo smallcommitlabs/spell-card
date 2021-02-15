@@ -143,7 +143,7 @@ export default class playerAttack extends Phaser.Scene {
         this.dojoBoss.decreaseArmour(totalDamage);
         this.dojoBoss.decreaseHealth(take);
       }
-      this.player1.changeMagicStatus(0);
+      this.player1.clearMagic();
       this.player1HealthSystem.setMagic(this.player1.magicStatus());
     } else if (type === 'Magic') {
       this.player1.changeMagicStatus(damage);
@@ -151,7 +151,7 @@ export default class playerAttack extends Phaser.Scene {
     } else if (type === 'Defence') {
       console.log('!!!!!!!!!!!!!!!!!!');
       this.player1.addDefence(totalDamage);
-      this.player1.changeMagicStatus(0);
+      this.player1.clearMagic();
     }
   }
 }
