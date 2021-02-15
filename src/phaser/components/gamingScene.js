@@ -35,8 +35,9 @@ export default class gamingScene {
       .text(width * 0.9, height * 0.1, boss.returnBossHealth(), { fontSize: 30 })
       .setOrigin(0.5);
     this.player1Armour = this.scene.add
-      .text(width * 0.15, height * 0.1, 0, { fontSize: 30 })
+      .text(width * 0.15, height * 0.1, player1.getDefenceValue(), { fontSize: 30 })
       .setOrigin(0.5);
+
     this.bossArmour = this.scene.add
       .text(width * 0.85, height * 0.1, boss.returnBossArmour(), { fontSize: 30 })
       .setOrigin(0.5);
@@ -49,11 +50,13 @@ export default class gamingScene {
       this.settingScreen(settingBtn, 'setting', SettingMenu);
     }
   }
-
-  update(player1HealthValue, bossHealthValue, player1ArmourValue, bossArmourValue) {
+  updatePlayer(player1HealthValue, player1ArmourValue) {
     this.player1Health.setText(player1HealthValue);
-    this.bossHealth.setText(bossHealthValue);
     this.player1Armour.setText(player1ArmourValue);
+  }
+
+  updateBoss(bossHealthValue, bossArmourValue) {
+    this.bossHealth.setText(bossHealthValue);
     this.bossArmour.setText(bossArmourValue);
   }
 
