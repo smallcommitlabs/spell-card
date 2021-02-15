@@ -11,12 +11,15 @@ export default class HealthBarComponent {
     this.colour = colour;
     this.p = (width - 4) / value;
 
+    console.log(this.value);
+
     this.bar = this.scene.add.graphics();
     this.draw();
   }
 
-  decrease(amount) {
-    this.value -= amount;
+  setHealth(amount) {
+    this.value = amount;
+    console.log(this.value);
     if (this.value < 0) {
       this.value = 0;
     }

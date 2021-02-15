@@ -2,13 +2,13 @@ import Phaser from 'phaser';
 import HealthBar from './HealthBar';
 
 export default class healthSystem {
-  constructor(scene, x, y, hp, height, width, left) {
+  constructor(scene, x, y, defence, magic, hp, height, width, left) {
     const colour = '0x63E563';
     this.width = width;
     this.x = x;
     this.y = y;
-    this.defence = 0;
-    this.magic = 0;
+    this.defence = defence;
+    this.magic = magic;
     this.left = left;
     this.scene = scene;
 
@@ -21,14 +21,14 @@ export default class healthSystem {
     let relativeX = this.x;
     if (!this.left) {
       relativeX += this.width + 470;
+    } else {
+      this.magicText = this.scene.add
+        .text(relativeX, this.y + 30, this.magic, { fontSize: 30 })
+        .setOrigin(0.5);
     }
 
-    this.defence = this.scene.add
+    this.defenceText = this.scene.add
       .text(relativeX + 80, this.y + 30, this.defence, { fontSize: 30 })
-      .setOrigin(0.5);
-
-    this.magic = this.scene.add
-      .text(relativeX, this.y + 30, this.magic, { fontSize: 30 })
       .setOrigin(0.5);
   }
 
@@ -36,27 +36,21 @@ export default class healthSystem {
     return this.magic;
   }
 
-  getDefence() {
+  getArmour() {
     return this.defence;
   }
 
-  increaseMagic(amount) {
-    this.magic += amount;
+  setArmour(amount) {
+    this.defence = amount;
+    this.defenceText.setText(this.defence);
   }
 
-  increaseDefence(amount) {
-    this.defence += amount;
-  }
-
-  decreaseMagic(amount) {
-    this.magic -= amount;
-  }
-
-  decreaseDefence(amount) {
-    this.defence -= amount;
+  setMagic(amount) {
+    this.magic = amount;
+    this.magicText.setText(this.magic);
   }
 
   setHealth(amount) {
-    this.hp.decrease(amount);
+    this.hp.setHealth(amount);
   }
 }
