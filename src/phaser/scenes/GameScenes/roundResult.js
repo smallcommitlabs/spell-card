@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 import GamingScene from '../../components/gamingScene';
-import SettingMenu from '../../components/gameSetting/settingMenu';
 import PlayerData from '../../player/playerData';
 
 export default class roundResult extends Phaser.Scene {

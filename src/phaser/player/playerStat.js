@@ -34,6 +34,8 @@ export default class playerStats {
 
   getDefenceValue() {
     return this.armour;
+  }
+
   changeMagicStatus(magic) {
     this.magic = this.magic + magic;
   }
