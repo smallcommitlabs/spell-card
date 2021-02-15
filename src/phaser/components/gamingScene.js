@@ -22,6 +22,8 @@ export default class gamingScene {
       this.scene,
       width * 0.1,
       height * 0.1,
+      player1.getDefenceValue(),
+      player1.magicStatus(),
       player1.getHealth(),
       400,
       50,
@@ -31,7 +33,9 @@ export default class gamingScene {
       this.scene,
       width * 0.65,
       height * 0.1,
-      player1.getHealth(),
+      boss.returnBossArmour(),
+      0,
+      boss.returnBossHealth(),
       400,
       50,
       false
@@ -117,5 +121,9 @@ export default class gamingScene {
 
   returnBossHealthSystem() {
     return this.bossHealthSystem;
+  }
+
+  setDefence(amount) {
+    this.player1HealthSystem.setHealth(amount);
   }
 }

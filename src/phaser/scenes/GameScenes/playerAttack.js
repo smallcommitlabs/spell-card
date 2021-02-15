@@ -30,15 +30,19 @@ export default class playerAttack extends Phaser.Scene {
 
     // Set health to be 0 when its equal or less than 0
 
-    // THIS REQUIRES PALYER ARMOUR VALUE
-    if (this.player1.getHealth() <= 0) {
-      this.gamingScene.updatePlayer(0, this.player1.getDefenceValue());
-    }
+    // // THIS REQUIRES PALYER ARMOUR VALUE
+    // if (this.player1.getHealth() <= 0) {
+    //   this.gamingScene.updatePlayer(0, this.player1.getDefenceValue());
+    // }
 
-    // THIS REQUIRES PLAYER ARMOUR VALUE
-    if (this.dojoBoss.returnBossHealth() <= 0) {
-      this.gamingScene.updateBoss(0, this.dojoBoss.returnBossArmour());
-    }
+    // // THIS REQUIRES PLAYER ARMOUR VALUE
+    // if (this.dojoBoss.returnBossHealth() <= 0) {
+    //   this.gamingScene.updateBoss(0, this.dojoBoss.returnBossArmour());
+    // }
+
+    // Get the HealthSystem object for the player and boss
+    this.player1HealthSystem = this.background.returnPlayerHealthSystem();
+    this.dojoHealthSystem = this.background.returnBossHealthSystem();
 
     // If the animation finished
     if (!this.timeline.isPlaying()) {
@@ -52,12 +56,19 @@ export default class playerAttack extends Phaser.Scene {
         });
         this.scene.remove('gameSetting');
       } else {
-        this.background.updatePlayer(this.player1.getHealth(), this.player1.getDefenceValue());
+        // this.background.updatePlayer(this.player1.getHealth(), this.player1.getDefenceValue());
 
-        this.background.updateBoss(
-          this.dojoBoss.returnBossHealth(),
-          this.dojoBoss.returnBossArmour()
-        );
+        this.dojoHealthSystem.setHealth(this.dojoBoss.returnBossArmour());
+        this.dojoHealthSystem.setArmour(this.dojoBoss.returnBossArmour());
+
+        this.player1HealthSystem.setHealth(this.player1.getHealth());
+        this.player1HealthSystem.setArmour(this.player1.getDefenceValue());
+        this.player1HealthSystem.setMagic(this.player1.magicStatus());
+
+        // this.background.updateBoss(
+        //   this.dojoBoss.returnBossHealth(),
+        //   this.dojoBoss.returnBossArmour()
+        // );
 
         this.scene.remove('gameSetting');
         this.scene.remove('playerAttack');
@@ -133,10 +144,12 @@ export default class playerAttack extends Phaser.Scene {
         this.dojoBoss.decreaseHealth(take);
       }
       this.player1.changeMagicStatus(0);
+      this.player1HealthSystem.setMagic(this.player1.magicStatus());
     } else if (type === 'Magic') {
       this.player1.changeMagicStatus(damage);
       // is this a c or s lmao
     } else if (type === 'Defence') {
+      console.log('!!!!!!!!!!!!!!!!!!');
       this.player1.addDefence(totalDamage);
       this.player1.changeMagicStatus(0);
     }
