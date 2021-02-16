@@ -58,7 +58,8 @@ export default class playerAttack extends Phaser.Scene {
       } else {
         // this.background.updatePlayer(this.player1.getHealth(), this.player1.getDefenceValue());
 
-        this.dojoHealthSystem.setHealth(this.dojoBoss.returnBossArmour());
+        console.log(this.dojoBoss.returnBossArmour());
+        this.dojoHealthSystem.setHealth(this.dojoBoss.returnBossHealth());
         this.dojoHealthSystem.setArmour(this.dojoBoss.returnBossArmour());
 
         this.player1HealthSystem.setHealth(this.player1.getHealth());
