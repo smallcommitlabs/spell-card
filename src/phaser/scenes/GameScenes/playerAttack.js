@@ -3,7 +3,6 @@ import GamingScene from '../../components/gamingScene';
 
 export default class playerAttack extends Phaser.Scene {
   init(data) {
-    console.log(data);
     this.player1 = data.player1;
     this.dojoBoss = data.dojoBoss;
     this.background = data.background;
@@ -150,7 +149,6 @@ export default class playerAttack extends Phaser.Scene {
       this.player1.changeMagicStatus(damage);
       // is this a c or s lmao
     } else if (type === 'Defence') {
-      console.log('!!!!!!!!!!!!!!!!!!');
       this.player1.addDefence(totalDamage);
       this.player1.clearMagic();
     }
