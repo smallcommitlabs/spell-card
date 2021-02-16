@@ -20,6 +20,14 @@ export default class cards {
     return this;
   }
 
+  refreshDecks() {
+    this.card = new Array();
+    this.randomCards = new Array();
+    this.discardedCards = new Array();
+    this.loadCard();
+    return this;
+  }
+
   loadCard() {
     let a = 0;
 
