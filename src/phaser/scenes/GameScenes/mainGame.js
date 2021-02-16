@@ -3,7 +3,7 @@ import GamingScene from '../../components/gamingScene';
 import QuestionBoard from '../../components/answerQuestion/questionBoard';
 import SettingMenu from '../../components/gameSetting/settingMenu';
 import CountdownController from '../../components/countdownController';
-import PlayerHealth from '../../player/playerHealth';
+import PlayerStats from '../../player/playerStat';
 import PlayerData from '../../player/playerData';
 import DojoBoss from '../../boss/DojoBoss';
 
@@ -27,15 +27,13 @@ export default class playGame extends Phaser.Scene {
 
   create() {
     const { width, height } = this.scale;
-
     this.cardNotAnswer = Array.from(this.selectedCards);
     this.correctCards = new Array();
-
     this.incorrectCards = new Array();
 
     // Health
     if (!this.player1) {
-      this.player1 = new PlayerHealth(30);
+      this.player1 = new PlayerStats(30, 0);
       this.dojoBoss = new DojoBoss(60, 0, 'Madara');
     }
 
@@ -47,6 +45,9 @@ export default class playGame extends Phaser.Scene {
     this.player1Armour = this.gamingScene.returnPlayer1Armour();
     this.dojoBossArmour = this.gamingScene.returnBossArmour();
 
+    this.add
+      .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
+      .setOrigin(0.5);
     // Setting button setup
     const settingBtn = this.add
       .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
@@ -58,7 +59,6 @@ export default class playGame extends Phaser.Scene {
     this.events.on('resume', function (sys, data) {
       if (data) {
         const mainGameTimerLabel = data.mainGameCounter;
-        console.log(data);
         if (!data.countdown) {
           mainGameTimerLabel.resume(0);
         } else {
@@ -74,7 +74,7 @@ export default class playGame extends Phaser.Scene {
 
     // Timer
     // const time = 300000;
-    const time = 5000;
+    const time = 10000;
 
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
     this.countdown = new CountdownController(this, this.timerLabel);
@@ -120,7 +120,6 @@ export default class playGame extends Phaser.Scene {
     for (const i of this.cardNotAnswer) {
       this.playerData.replaceCards(i);
     }
-    console.log(this.selectedCards);
     this.playerData.createRandomCardList();
 
     this.scene.start('roundResult', {
@@ -135,7 +134,6 @@ export default class playGame extends Phaser.Scene {
   loadCards() {
     let x = 480;
     for (const i of this.selectedCards) {
-      console.log(this.selectedCards);
       const card = this.add
         .image(x, 900, i.getCard().image)
         .setOrigin(0.5)
