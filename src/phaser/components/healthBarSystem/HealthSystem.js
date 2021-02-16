@@ -12,7 +12,7 @@ export default class healthSystem {
     this.left = left;
     this.scene = scene;
 
-    this.hp = new HealthBar(scene, x + 100, y, hp, colour, height, width);
+    this.hp = new HealthBar(scene, x + 100, y, hp, colour, height, width, left);
 
     this.create();
   }
