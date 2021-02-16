@@ -5,6 +5,8 @@ export default class gamingScene {
   constructor(scene, key) {
     this.scene = scene;
     this.key = key;
+    this.playerHealthValue = 30;
+    this.bossHealthValue = 60;
   }
 
   buildScene(player1, boss, hasTimer) {
@@ -22,9 +24,9 @@ export default class gamingScene {
       this.scene,
       width * 0.1,
       height * 0.1,
-      player1.getDefenceValue(),
-      player1.magicStatus(),
-      player1.getHealth(),
+      0,
+      0,
+      this.playerHealthValue,
       400,
       50,
       true
@@ -33,9 +35,9 @@ export default class gamingScene {
       this.scene,
       width * 0.65,
       height * 0.1,
-      boss.returnBossArmour(),
       0,
-      boss.returnBossHealth(),
+      0,
+      this.bossHealthValue,
       400,
       50,
       false
@@ -121,9 +123,5 @@ export default class gamingScene {
 
   returnBossHealthSystem() {
     return this.bossHealthSystem;
-  }
-
-  setDefence(amount) {
-    this.player1HealthSystem.setHealth(amount);
   }
 }
