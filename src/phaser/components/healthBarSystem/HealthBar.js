@@ -1,5 +1,3 @@
-import Phaser from 'phaser';
-
 export default class HealthBarComponent {
   constructor(scene, x, y, value, colour, width, height, left) {
     this.scene = scene;
@@ -11,6 +9,7 @@ export default class HealthBarComponent {
     this.colour = colour;
     this.left = left;
     this.p = (width - 4) / value;
+    console.log(this.p, '', value);
 
     this.bar = this.scene.add.graphics();
     this.draw();
@@ -18,7 +17,6 @@ export default class HealthBarComponent {
 
   setHealth(amount) {
     this.value = amount;
-    console.log(this.value);
     if (this.value < 0) {
       this.value = 0;
     }
@@ -40,13 +38,15 @@ export default class HealthBarComponent {
     this.bar.fillRect(this.x + 2, this.y + 2, this.width - 4, this.height - 4);
 
     const d = Math.floor(this.p * this.value);
+    this.bar.fillStyle(this.colour);
 
     if (this.left) {
-      this.bar.fillStyle(this.colour);
       this.bar.fillRect(this.x + 2, this.y + 2, d, this.height - 4);
     } else {
-      this.bar.fillStyle(this.colour);
-      this.bar.fillRect(this.width + this.x - 2, this.y + 2, -d, this.height - 4);
+      console.log('in');
+      console.log(this.value, d, this.p);
+      const x = this.width + this.x - 2;
+      this.bar.fillRect(x, this.y + 2, -d, this.height - 4);
     }
   }
 }
