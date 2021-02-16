@@ -128,7 +128,7 @@ export default class playerAttack extends Phaser.Scene {
         this.dojoBoss.decreaseArmour(totalDamage);
       } else {
         const take = totalDamage - this.dojoBoss.returnBossArmour();
-        this.dojoBose.decreaseArmour(totalDamage);
+        this.dojoBoss.decreaseArmour(totalDamage);
         this.dojoBoss.decreaseHealth(take);
       }
       this.player1.changeMagicStatus(0);
