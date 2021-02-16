@@ -43,8 +43,6 @@ export default class HealthBarComponent {
     if (this.left) {
       this.bar.fillRect(this.x + 2, this.y + 2, d, this.height - 4);
     } else {
-      console.log('in');
-      console.log(this.value, d, this.p);
       const x = this.width + this.x - 2;
       this.bar.fillRect(x, this.y + 2, -d, this.height - 4);
     }
