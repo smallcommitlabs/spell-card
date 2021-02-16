@@ -20,6 +20,7 @@ export default class playGame extends Phaser.Scene {
 
   constructor() {
     super('game');
+    console.log('game');
     this.showMenu = true;
     this.playerData = new PlayerData();
     this.gamingScene = new GamingScene(this, 'game');
@@ -39,15 +40,16 @@ export default class playGame extends Phaser.Scene {
 
     this.gamingScene.buildScene(this.player1, this.dojoBoss, true);
 
-    // Add text for player and boss health and armour
-    // this.player1Health = this.gamingScene.returnPlayer1Health();
-    // this.dojoBossHealth = this.gamingScene.returnBossHealth();
-    // this.player1Armour = this.gamingScene.returnPlayer1Armour();
-    // this.dojoBossArmour = this.gamingScene.returnBossArmour();
+    // Set health, magic and armour
+    this.playerHealthSystem = this.gamingScene.returnPlayerHealthSystem();
+    this.dojoHealthSystem = this.gamingScene.returnBossHealthSystem();
 
-    // // health system for player and boss
-    // this.player1HealthSystem=this.gamingScene.returnPlayerHealthSystem();
-    // this.dojoHealthSystem=this.gamingScene.returnBossHealthSystem();
+    this.dojoHealthSystem.setArmour(this.dojoBoss.returnBossArmour());
+    this.dojoHealthSystem.setHealth(this.dojoBoss.returnBossHealth());
+
+    this.playerHealthSystem.setHealth(this.player1.getHealth());
+    this.playerHealthSystem.setArmour(this.player1.getDefenceValue());
+    this.playerHealthSystem.setMagic(this.player1.magicStatus());
 
     this.add
       .text(width * 0.85, height * 0.1, this.dojoBoss.returnBossArmour(), { fontSize: 30 })
