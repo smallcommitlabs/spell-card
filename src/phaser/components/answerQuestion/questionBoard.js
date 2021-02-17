@@ -32,8 +32,9 @@ export default class questionBoard extends Phaser.Scene {
     const retangle = this.add.rectangle(0, 0, width, height, 0x000000).setOrigin(0);
     retangle.alpha = 0.5;
 
-    this.add.text(600, 500, 'Answer question..... \n \n What is ' + this.question, {
+    this.add.text(600, 400, 'What is ' + this.question, {
       fontSize: 42,
+      fontFamily: 'Arial',
     });
 
     // Create timer
@@ -43,7 +44,9 @@ export default class questionBoard extends Phaser.Scene {
     this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
 
     // Close button
-    const close = this.add.text(200, 200, 'X', { fontSize: 60 }).setInteractive();
+    const close = this.add
+      .text(200, 200, 'Return', { fontSize: 60, fontFamily: 'Arial' })
+      .setInteractive();
     close.on(
       'pointerdown',
       () => {
@@ -53,7 +56,7 @@ export default class questionBoard extends Phaser.Scene {
     );
 
     // Confirm button
-    const confirmBtn = this.add.text(600, 800, 'A: Correct Option', {
+    const confirmBtn = this.add.text(600, 600, 'A: Correct Option', {
       fontSize: 68,
       fontFamily: 'Arial',
     });
@@ -66,7 +69,7 @@ export default class questionBoard extends Phaser.Scene {
     });
 
     // Answered wrong button
-    const incorrectBtn = this.add.text(600, 900, 'B: Incorrect Option 1', {
+    const incorrectBtn = this.add.text(600, 700, 'B: Incorrect Option 1', {
       fontSize: 68,
       fontFamily: 'Arial',
     });
@@ -80,7 +83,7 @@ export default class questionBoard extends Phaser.Scene {
     });
 
     // Another answer wrong button
-    const incorrectBtn2 = this.add.text(600, 1000, 'C: Incorrect Option 2', {
+    const incorrectBtn2 = this.add.text(600, 800, 'C: Incorrect Option 2', {
       fontSize: 68,
       fontFamily: 'Arial',
     });
