@@ -53,7 +53,10 @@ export default class questionBoard extends Phaser.Scene {
     );
 
     // Confirm button
-    const confirmBtn = this.add.text(600, 800, 'Confirm', { fontSize: 68 });
+    const confirmBtn = this.add.text(600, 800, 'A: Correct Option', {
+      fontSize: 68,
+      fontFamily: 'Arial',
+    });
     confirmBtn.setInteractive();
     confirmBtn.on('pointerdown', () => {
       this.correctCards.push(this.selectedCard);
@@ -63,9 +66,25 @@ export default class questionBoard extends Phaser.Scene {
     });
 
     // Answered wrong button
-    const incorrectBtn = this.add.text(600, 900, 'Incorrect', { fontSize: 68 });
+    const incorrectBtn = this.add.text(600, 900, 'B: Incorrect Option 1', {
+      fontSize: 68,
+      fontFamily: 'Arial',
+    });
     incorrectBtn.setInteractive();
     incorrectBtn.on('pointerdown', () => {
+      this.callback();
+      this.incorrectCards.push(this.selectedCard);
+      this.playerData.replaceCards(this.selectedCard);
+      this.removeAnsweredCard(this.selectedCard);
+      this.navigation(false);
+    });
+
+    // Another answer wrong button
+    const incorrectBtn2 = this.add.text(600, 1000, 'C: Incorrect Option 2', {
+      fontSize: 68,
+      fontFamily: 'Arial',
+    });
+    incorrectBtn2.on('pointerdown', () => {
       this.callback();
       this.incorrectCards.push(this.selectedCard);
       this.playerData.replaceCards(this.selectedCard);
