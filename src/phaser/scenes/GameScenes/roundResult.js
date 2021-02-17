@@ -51,6 +51,7 @@ export default class roundResult extends Phaser.Scene {
       this.dojoBoss.returnBossHealth() <= 0 ||
       this.playerData.getCardRemainNumber() === 0
     ) {
+      this.playerData.refreshDecks();
       this.scene.start('gameResult', {
         player1: this.player1,
         dojoBoss: this.dojoBoss,

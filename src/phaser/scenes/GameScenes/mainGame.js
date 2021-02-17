@@ -33,7 +33,7 @@ export default class playGame extends Phaser.Scene {
 
     // Health
     if (!this.player1) {
-      this.player1 = new PlayerStats(30, 0);
+      this.player1 = new PlayerStats(30, 0, 0);
       this.dojoBoss = new DojoBoss(60, 0, 'Madara');
     }
 
