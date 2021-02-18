@@ -20,28 +20,33 @@ export default class gamingScene {
     this.cardGraveyard = this.scene.add.image(196, 912, 'CardBack').setScale(0.63, 0.58);
 
     // Health Bar System
+    const xpos = 120;
+    const ypos = height * 0.15;
+
+    // Health System
     this.player1HealthSystem = new HealthSystem(
       this.scene,
-      width * 0.1,
-      height * 0.1,
+      xpos,
+      ypos,
       0,
       0,
       this.playerHealthValue,
-      400,
-      50,
+      530,
+      55,
       true
     );
     this.bossHealthSystem = new HealthSystem(
       this.scene,
-      width * 0.65,
-      height * 0.1,
+      width - xpos,
+      ypos,
       0,
       0,
       this.bossHealthValue,
-      400,
-      50,
+      530,
+      55,
       false
     );
+
     // player
     this.scene.physics.add
       .sprite(width * 0.2, height * 0.4, 'player')
@@ -55,10 +60,10 @@ export default class gamingScene {
 
     // Layout for boss and player health and armour stats
     this.player1Health = this.scene.add
-      .text(width * 0.1, height * 0.1, player1.getHealth(), { fontSize: 30 })
+      .text(230, ypos + 38, player1.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
     this.bossHealth = this.scene.add
-      .text(width * 0.9, height * 0.1, boss.returnBossHealth(), { fontSize: 30 })
+      .text(width - 230, ypos + 38, boss.returnBossHealth(), { fontSize: 30 })
       .setOrigin(0.5);
     this.player1Armour = this.scene.add
       .text(width * 0.15, height * 0.1, player1.getDefenceValue(), { fontSize: 30 })

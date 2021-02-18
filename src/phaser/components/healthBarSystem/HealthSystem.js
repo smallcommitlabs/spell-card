@@ -3,32 +3,55 @@ import HealthBar from './HealthBar';
 
 export default class healthSystem {
   constructor(scene, x, y, defence, magic, hp, height, width, left) {
-    const colour = '0x63E563';
     this.width = width;
     this.x = x;
     this.y = y;
     this.defence = defence;
     this.magic = magic;
-    this.left = left;
     this.scene = scene;
+    this.left = left;
 
-    this.hp = new HealthBar(scene, x + 100, y, hp, colour, height, width, left);
+    const colour = '0x63E563';
+    let xHealth = x + 100;
+    if (!left) {
+      xHealth = x - 630;
+    }
+    this.hp = new HealthBar(this.scene, xHealth, this.y - 50, hp, colour, height, width, left);
 
     this.create();
   }
 
   create() {
-    let relativeX = this.x;
+    // IconBoarder
+    this.scene.add.image(this.x, this.y, 'iconBoarder').setScale(0.35).setOrigin(0.5);
+
+    // x position pf the armour
+    let xArmour = 0;
+    let xArmourText = 0;
+
+    // Create mirrored healthSystem
     if (!this.left) {
-      relativeX += this.width + 470;
+      xArmour = this.x + 56;
+      xArmourText = this.x + 55;
     } else {
-      this.magicText = this.scene.add
-        .text(relativeX, this.y + 30, this.magic, { fontSize: 30 })
+      this.scene.add
+        .image(this.x + 56, this.y + 40, 'magic')
+        .setScale(0.35)
         .setOrigin(0.5);
+      this.magicText = this.scene.add
+        .text(this.x + 57, this.y + 38, this.magic, { fontSize: 30 })
+        .setOrigin(0.5);
+      xArmour = this.x - 56;
+      xArmourText = this.x - 55;
     }
 
+    // Add armour icon and text
+    this.scene.add
+      .image(xArmour, this.y + 25, 'armour')
+      .setScale(0.35)
+      .setOrigin(0.5);
     this.defenceText = this.scene.add
-      .text(relativeX + 80, this.y + 30, this.defence, { fontSize: 30 })
+      .text(xArmourText, this.y + 36, this.defence, { fontSize: 30 })
       .setOrigin(0.5);
   }
 
