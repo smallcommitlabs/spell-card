@@ -35,7 +35,7 @@ export default class playerAttack extends Phaser.Scene {
 
   update() {
     // update boss health;
-    this.gamingScene.updateBoss(this.dojoBoss.returnBossHealth(), this.dojoBoss.returnBossArmour());
+    this.background.updateBoss(this.dojoBoss.returnBossHealth(), this.dojoBoss.returnBossArmour());
 
     // Get the HealthSystem object for the player and boss
     this.player1HealthSystem = this.background.returnPlayerHealthSystem();
