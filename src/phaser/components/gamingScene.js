@@ -49,10 +49,21 @@ export default class gamingScene {
     );
 
     // player
-    this.scene.physics.add
-      .sprite(width * 0.2, height * 0.4, 'player')
-      .setOrigin(0.5)
-      .setScale(0.15);
+    // this.scene.physics.add
+    //   .sprite(width * 0.2, height * 0.4, 'player')
+    //   .setOrigin(0.5)
+    //   .setScale(0.15);
+    const bplay = this.scene.add
+      .sprite(width * 0.2, height * 0.4, 'attackAnimation', 0)
+      .setScale(0.6);
+    this.scene.anims.create({
+      key: 'moving',
+      repeat: -1,
+      frameRate: 5,
+      frames: this.scene.anims.generateFrameNumbers('attackAnimation', { start: 0, end: 3 }),
+    });
+    console.log(bplay);
+    bplay.play('moving');
 
     this.scene.physics.add
       .sprite(width * 0.8, height * 0.4, 'player')

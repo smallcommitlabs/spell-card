@@ -11,6 +11,7 @@ import player from '../assets/player.png';
 import iconBoarder from '../assets/HealthSystem/Iconborder.png';
 import armour from '../assets/HealthSystem/Armour.png';
 import magic from '../assets/HealthSystem/Magic.png';
+import attack0 from '../assets/spriteSheet/attack-0.png';
 
 class preloader extends Phaser.Scene {
   constructor() {
@@ -32,6 +33,7 @@ class preloader extends Phaser.Scene {
     this.load.image('iconBoarder', iconBoarder);
     this.load.image('armour', armour);
     this.load.image('magic', magic);
+    this.load.spritesheet('attackAnimation', attack0, { frameWidth: 500, frameHeight: 484 });
   }
 
   create() {
