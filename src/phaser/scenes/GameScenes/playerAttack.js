@@ -35,7 +35,7 @@ export default class playerAttack extends Phaser.Scene {
 
   update() {
     // update boss health;
-    this.gamingScene.updateBoss(this.dojoBoss.returnBossHealth(), this.dojoBoss.returnBossArmour());
+    this.background.updateBoss(this.dojoBoss.returnBossHealth(), this.dojoBoss.returnBossArmour());
 
     // Get the HealthSystem object for the player and boss
     this.player1HealthSystem = this.background.returnPlayerHealthSystem();
@@ -126,6 +126,7 @@ export default class playerAttack extends Phaser.Scene {
     target.visible = false;
 
     const totalDamage = damage + this.player1.magicStatus();
+    console.log(totalDamage + ', ' + this.player1.magicStatus());
 
     if (type === 'Attack') {
       if (this.dojoBoss.returnBossArmour() >= totalDamage) {

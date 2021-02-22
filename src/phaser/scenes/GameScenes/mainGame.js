@@ -64,13 +64,15 @@ export default class playGame extends Phaser.Scene {
     // Listen to the resume event
     this.events.on('resume', function (sys, data) {
       if (data) {
+        console.log(data);
         const mainGameTimerLabel = data.mainGameCounter;
-        if (!data.countdown) {
+        if (!data.counter) {
           mainGameTimerLabel.resume(0);
         } else {
-          const counter = data.countdown;
+          const counter = data.counter;
           // Get the remaining time in the popup scene
           const timeRemain = counter.getRemain();
+          console.log(timeRemain + '!!!');
           mainGameTimerLabel.resume(timeRemain);
         }
       }
@@ -80,7 +82,7 @@ export default class playGame extends Phaser.Scene {
 
     // Timer
     // const time = 300000;
-    const time = 10000;
+    const time = 100000;
 
     this.timerLabel = this.add.text(width * 0.5, 220, '5:00', { fontSize: 32 }).setOrigin(0.5);
     this.countdown = new CountdownController(this, this.timerLabel);
