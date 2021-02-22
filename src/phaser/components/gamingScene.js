@@ -80,7 +80,7 @@ export default class gamingScene {
         .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
         .setOrigin(0.5)
         .setInteractive();
-      this.settingScreen(settingBtn, 'setting', SettingMenu);
+      this.settingScreen(settingBtn, 'setting', SettingMenu, this.key);
     }
   }
   updatePlayer(player1HealthValue, player1ArmourValue) {
