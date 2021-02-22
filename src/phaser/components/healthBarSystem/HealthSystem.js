@@ -39,7 +39,7 @@ export default class healthSystem {
         .setScale(0.35)
         .setOrigin(0.5);
       this.magicText = this.scene.add
-        .text(this.x + 57, this.y + 38, '40', { fontSize: 35 })
+        .text(this.x + 57, this.y + 38, this.magic, { fontSize: 35 })
         .setOrigin(0.5);
       xArmour = this.x - 56;
       xArmourText = this.x - 55;
@@ -53,7 +53,7 @@ export default class healthSystem {
       .setScale(0.35)
       .setOrigin(0.5);
     this.defenceText = this.scene.add
-      .text(xArmourText, this.y + 36, '40', { fontSize: 35 })
+      .text(xArmourText, this.y + 36, this.defence, { fontSize: 35 })
       .setOrigin(0.5);
     this.defenceText.setStroke('#FFFFFF', 2);
   }
@@ -67,13 +67,13 @@ export default class healthSystem {
   }
 
   setArmour(amount) {
-    // this.defence = amount;
-    // this.defenceText.setText(this.defence);
+    this.defence = amount;
+    this.defenceText.setText(this.defence);
   }
 
   setMagic(amount) {
-    // this.magic = amount;
-    // this.magicText.setText(this.magic);
+    this.magic = amount;
+    this.magicText.setText(this.magic);
   }
 
   setHealth(amount) {
