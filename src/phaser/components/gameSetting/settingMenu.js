@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import CountdownController from '../../components/countdownController';
+import playerData from '../../player/playerData';
 
 export default class setting extends Phaser.Scene {
   init(data) {
@@ -11,6 +12,7 @@ export default class setting extends Phaser.Scene {
 
   constructor() {
     super('gameSetting');
+    this.playerData = new playerData();
   }
 
   create() {
@@ -30,6 +32,7 @@ export default class setting extends Phaser.Scene {
     surrender.on('pointerdown', () => {
       this.scene.remove('gameSetting');
       this.scene = this.mainGame.object.scene;
+      this.playerData.refreshDecks();
       this.scene.start('mainMenu');
     });
 
