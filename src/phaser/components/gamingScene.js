@@ -20,6 +20,7 @@ export default class gamingScene {
     this.cardGraveyard = this.scene.add.image(196, 912, 'CardBack').setScale(0.63, 0.58);
 
     // Health Bar System
+
     const xpos = 120;
     const ypos = height * 0.15;
 
