@@ -97,8 +97,6 @@ export default class questionBoard extends Phaser.Scene {
   // Naivgation from question board to playerAttack
   navigation(correctness) {
     this.closeScenePrep();
-    console.log(this.countdown);
-
     this.scene.add('playerAttack', playerAttack, true, {
       countdown: this.countdown,
       mainGameCounter: this.counter,

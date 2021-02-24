@@ -40,6 +40,10 @@ export default class playerStats {
     this.magic = this.magic + magic;
   }
 
+  clearMagic() {
+    this.magic = 0;
+  }
+
   magicStatus() {
     return this.magic;
   }

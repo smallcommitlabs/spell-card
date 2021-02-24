@@ -1,9 +1,12 @@
 import SettingMenu from './gameSetting/settingMenu';
+import HealthSystem from './healthBarSystem/HealthSystem';
 
 export default class gamingScene {
   constructor(scene, key) {
     this.scene = scene;
     this.key = key;
+    this.playerHealthValue = 30;
+    this.bossHealthValue = 60;
   }
 
   buildScene(player1, boss, hasTimer) {
@@ -15,6 +18,35 @@ export default class gamingScene {
 
     this.cardDeck = this.scene.add.image(1738, 912, 'CardBack').setScale(0.63, 0.58);
     this.cardGraveyard = this.scene.add.image(196, 912, 'CardBack').setScale(0.63, 0.58);
+
+    // Health Bar System
+
+    const xpos = 120;
+    const ypos = height * 0.15;
+
+    // Health System
+    this.player1HealthSystem = new HealthSystem(
+      this.scene,
+      xpos,
+      ypos,
+      0,
+      0,
+      this.playerHealthValue,
+      530,
+      55,
+      true
+    );
+    this.bossHealthSystem = new HealthSystem(
+      this.scene,
+      width - xpos,
+      ypos,
+      0,
+      0,
+      this.bossHealthValue,
+      530,
+      55,
+      false
+    );
 
     // player
     this.scene.physics.add
@@ -29,11 +61,13 @@ export default class gamingScene {
 
     // Layout for boss and player health and armour stats
     this.player1Health = this.scene.add
-      .text(width * 0.1, height * 0.1, player1.getHealth(), { fontSize: 30 })
+      .text(230, ypos + 38, player1.getHealth(), { fontSize: 30 })
       .setOrigin(0.5);
+    this.player1Health.setStroke('#000000', 3);
     this.bossHealth = this.scene.add
-      .text(width * 0.9, height * 0.1, boss.returnBossHealth(), { fontSize: 30 })
+      .text(width - 230, ypos + 38, boss.returnBossHealth(), { fontSize: 30 })
       .setOrigin(0.5);
+    this.bossHealth.setStroke('#000000', 3);
     this.player1Armour = this.scene.add
       .text(width * 0.15, height * 0.1, player1.getDefenceValue(), { fontSize: 30 })
       .setOrigin(0.5);
@@ -47,7 +81,7 @@ export default class gamingScene {
         .text(width * 0.5, height * 0.17, 'Setting', { fontSize: 24 })
         .setOrigin(0.5)
         .setInteractive();
-      this.settingScreen(settingBtn, 'setting', SettingMenu);
+      this.settingScreen(settingBtn, 'setting', SettingMenu, this.key);
     }
   }
   updatePlayer(player1HealthValue, player1ArmourValue) {
@@ -89,5 +123,13 @@ export default class gamingScene {
 
   returnBossArmour() {
     return this.player2Armour;
+  }
+
+  returnPlayerHealthSystem() {
+    return this.player1HealthSystem;
+  }
+
+  returnBossHealthSystem() {
+    return this.bossHealthSystem;
   }
 }
