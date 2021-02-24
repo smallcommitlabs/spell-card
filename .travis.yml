@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - 'stable'
+cache:
+  directories:
+    - node_modules
+install:
+  - yarn
+script:
+  # Run tests
+  # - yarn test
+
+  # Build react app
+  - yarn build
+
+after_success:
+  # Deploy build to octopus package library
+  - test $TRAVIS_BRANCH = "main" &&
+    yarn ci:publish
