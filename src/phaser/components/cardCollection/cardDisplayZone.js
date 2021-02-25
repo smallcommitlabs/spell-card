@@ -15,7 +15,7 @@ export default class cardDisplayZone extends Phaser.Scene {
   }
 
   create() {
-    const text = this.add.text(700, 400, this.input, { fontSize: 24 });
+    this.add.text(700, 400, this.input, { fontSize: 24 });
     const { width, height } = this.scale;
     const zone = this.zone.creactZone(width * 0.08, height * 0.25, width * 0.45, height * 0.55);
     this.mockCards(zone);
@@ -46,15 +46,13 @@ export default class cardDisplayZone extends Phaser.Scene {
   }
 
   mockCards(zone) {
-    let card;
-
     // =this.scene.add.sprite(zone.x+40, zone.y+40,"CardBack").setOrigin(0).setScale(0.2)
     let x = zone.x + 40;
     let y = zone.y + 40;
     const xper = 1;
     for (let i = 0; i < 2; ++i) {
       for (let j = 0; j < 3; ++j) {
-        card = this.add
+        this.add
           .sprite(x * xper, y, 'CardBack')
           .setOrigin(0)
           .setScale(0.2);

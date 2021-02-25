@@ -29,8 +29,8 @@ export default class playGame extends Phaser.Scene {
   create() {
     const { width, height } = this.scale;
     this.cardNotAnswer = Array.from(this.selectedCards);
-    this.correctCards = new Array();
-    this.incorrectCards = new Array();
+    this.correctCards = [];
+    this.incorrectCards = [];
 
     // Health
     if (!this.player1) {
@@ -62,7 +62,7 @@ export default class playGame extends Phaser.Scene {
     this.popUpScreen(settingBtn, 'setting', SettingMenu);
 
     // Listen to the resume event
-    this.events.on('resume', function (sys, data) {
+    this.events.on('resume', (sys, data) => {
       if (data) {
         console.log(data);
         const mainGameTimerLabel = data.mainGameCounter;

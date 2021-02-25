@@ -2,12 +2,6 @@ const ATTACK = 'attack8';
 const DEFENCE = 'attack4';
 const MAGIC = 'attack6';
 
-const player = [
-  {
-    Name: 'Arron',
-  },
-];
-
 const deck = {
   card: [
     {

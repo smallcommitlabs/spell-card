@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 import playerData from '../../player/playerData';
-import DojoBoss from '../../boss/DojoBoss';
 
 export default class gamePreloader extends Phaser.Scene {
   constructor() {

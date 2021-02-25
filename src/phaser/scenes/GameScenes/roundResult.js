@@ -1,4 +1,3 @@
-import { timingSafeEqual } from 'crypto';
 import Phaser from 'phaser';
 import GamingScene from '../../components/gamingScene';
 import PlayerData from '../../player/playerData';
@@ -72,7 +71,6 @@ export default class roundResult extends Phaser.Scene {
         player1: this.player1,
         dojoBoss: this.dojoBoss,
         selectedCards: this.getCards(),
-        dojoBoss: this.dojoBoss,
       });
       this.scene.remove('gameSetting');
     }
