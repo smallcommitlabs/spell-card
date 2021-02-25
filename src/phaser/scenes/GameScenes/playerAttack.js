@@ -68,7 +68,7 @@ export default class playerAttack extends Phaser.Scene {
         this.scene.resume('game', {
           player1: this.player1,
           dojoBoss: this.dojoBoss,
-          countdown: this.countdown,
+          counter: this.countdown,
           mainGameCounter: this.mainGameCounter,
         });
       }
