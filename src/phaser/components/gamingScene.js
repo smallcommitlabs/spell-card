@@ -48,27 +48,10 @@ export default class gamingScene {
       false
     );
 
-    // player
-    // this.scene.physics.add
-    //   .sprite(width * 0.2, height * 0.4, 'player')
-    //   .setOrigin(0.5)
-    //   .setScale(0.15);
-    const bplay = this.scene.add
-      .sprite(width * 0.2, height * 0.4, 'attackAnimation', 0)
-      .setScale(0.6);
-    this.scene.anims.create({
-      key: 'moving',
-      repeat: -1,
-      frameRate: 5,
-      frames: this.scene.anims.generateFrameNumbers('attackAnimation', { start: 0, end: 3 }),
-    });
-    console.log(bplay);
-    bplay.play('moving');
-
-    this.scene.physics.add
-      .sprite(width * 0.8, height * 0.4, 'player')
-      .setOrigin(0.5)
-      .setScale(0.15);
+    // player animation
+    this.playerModel = this.scene.add.sprite(370, 550, 'playerModel', 0).setScale(0.65);
+    this.makeAnims();
+    this.playerModel.play('idle');
 
     // Layout for boss and player health and armour stats
     this.player1Health = this.scene.add
@@ -118,6 +101,57 @@ export default class gamingScene {
       },
       this.scene
     );
+  }
+
+  makeAnims() {
+    this.scene.anims.create({
+      key: 'idle',
+      repeat: -1,
+      frameRate: 8,
+      frames: this.scene.anims.generateFrameNames('playerModel', {
+        start: 1,
+        end: 12,
+        zeroPad: 0,
+        prefix: 'playerIdle_',
+        suffix: '.png',
+      }),
+    });
+    this.scene.anims.create({
+      key: 'attack',
+      repeat: 0,
+      frameRate: 8,
+      frames: this.scene.anims.generateFrameNames('playerModel', {
+        start: 25,
+        end: 42,
+        zeroPad: 0,
+        prefix: 'playerAttack_',
+        suffix: '.png',
+      }),
+    });
+    this.scene.anims.create({
+      key: 'defence',
+      repeat: 0,
+      frameRate: 8,
+      frames: this.scene.anims.generateFrameNames('playerModel', {
+        start: 13,
+        end: 31,
+        zeroPad: 0,
+        prefix: 'playerdefence_',
+        suffix: '.png',
+      }),
+    });
+  }
+
+  playAttack() {
+    this.playerModel.play('attack');
+  }
+
+  playDefence() {
+    this.playerModel.play('defence');
+  }
+
+  returnPlayer() {
+    return this.playerModel;
   }
 
   returnPlayer1Health() {
