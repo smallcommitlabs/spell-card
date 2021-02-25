@@ -38,7 +38,7 @@ export default class Card {
 
   // Add or remove tint from card
   clickedStatus(cardBtn, cardObj) {
-    cardBtn.on('pointerdown', function (pointer) {
+    cardBtn.on('pointerdown', (pointer) => {
       if (!cardObj.isSelected) {
         cardObj.setCardSelectedStatus(true);
         cardBtn.setTint(0xff0000);

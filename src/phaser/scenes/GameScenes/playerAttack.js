@@ -68,7 +68,7 @@ export default class playerAttack extends Phaser.Scene {
         this.scene.resume('game', {
           player1: this.player1,
           dojoBoss: this.dojoBoss,
-          countdown: this.countdown,
+          counter: this.countdown,
           mainGameCounter: this.mainGameCounter,
         });
       }
@@ -153,6 +153,6 @@ export default class playerAttack extends Phaser.Scene {
 
     player.setHealth(this.player1.getHealth());
     player.setArmour(this.player1.getDefenceValue());
-    player.setArmour(this.player1.magicStatus());
+    player.setMagic(this.player1.magicStatus());
   }
 }

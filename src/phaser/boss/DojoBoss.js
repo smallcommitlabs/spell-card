@@ -11,9 +11,9 @@ export default class DojoBoss extends Boss {
     const max = 10;
     if (Math.random() * (max - min) + min > 4) {
       const randomMove = this.moveset[Math.floor(Math.random() * this.moveset.length)];
-      if (randomMove == 'attack') {
+      if (randomMove === 'attack') {
         return this.attack();
-      } else if (randomMove == 'shield') {
+      } else if (randomMove === 'shield') {
         return this.defense();
       }
     } else {

@@ -3,7 +3,6 @@ import { Button } from 'reactstrap';
 import SpellCard from '../components/SpellCard';
 import { logout } from '../redux/auth/thunks/logout';
 import { useAppDispatch } from '../redux/store';
-import { AuthClient } from '../util/AuthClient';
 
 const Game = () => {
   const dispatch = useAppDispatch();

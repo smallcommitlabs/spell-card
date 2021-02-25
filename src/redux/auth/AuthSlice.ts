@@ -1,5 +1,5 @@
 import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
-import { hydrateAuth, hydrateAuthReducers } from './thunks/hydrateAuth';
+import { hydrateAuthReducers } from './thunks/hydrateAuth';
 import { loginReducers } from './thunks/login';
 import { logoutReducers } from './thunks/logout';
 

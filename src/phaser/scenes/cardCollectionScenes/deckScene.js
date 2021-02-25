@@ -14,12 +14,6 @@ export default class deckScene extends Phaser.Scene {
 
     this.navibutton.createBtn(48, 14, 24, 'Return', 'cardCollection');
 
-    const submit = this.navibutton.createBtn(
-      width * 0.5,
-      height * 0.75,
-      24,
-      'Submit',
-      'cardCollection'
-    );
+    this.navibutton.createBtn(width * 0.5, height * 0.75, 24, 'Submit', 'cardCollection');
   }
 }
