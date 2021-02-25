@@ -14,14 +14,8 @@ export default class deckSelection extends Phaser.Scene {
 
     this.navibutton.createBtn(48, 14, 24, 'Return', 'mainMenu');
 
-    const myColectionBtn = this.navibutton.createBtn(
-      width * 0.5,
-      height * 0.5,
-      24,
-      'My Collection',
-      'cardCollection'
-    );
+    this.navibutton.createBtn(width * 0.5, height * 0.5, 24, 'My Collection', 'cardCollection');
 
-    const submit = this.navibutton.createBtn(width * 0.5, height * 0.75, 42, 'Play', 'gamePreload');
+    this.navibutton.createBtn(width * 0.5, height * 0.75, 42, 'Play', 'gamePreload');
   }
 }

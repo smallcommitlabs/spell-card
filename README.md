@@ -1,4 +1,5 @@
 # ✨ Spell Card ✨
+[![Build Status](https://travis-ci.com/smallcommitlabs/spell-card.svg?branch=main)](https://travis-ci.com/smallcommitlabs/spell-card)
 
 Repo for the frontend of the Spell-card game, using [React](https://reactjs.org/) and [Phaser](https://phaser.io/). Bootstrapped with [CRA](https://github.com/facebook/create-react-app).
 

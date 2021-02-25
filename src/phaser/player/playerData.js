@@ -14,16 +14,16 @@ export default class cards {
       return cards.instance;
     }
     cards.instance = this;
-    this.card = new Array();
-    this.randomCards = new Array();
-    this.discardedCards = new Array();
+    this.card = [];
+    this.randomCards = [];
+    this.discardedCards = [];
     return this;
   }
 
   refreshDecks() {
-    this.card = new Array();
-    this.randomCards = new Array();
-    this.discardedCards = new Array();
+    this.card = [];
+    this.randomCards = [];
+    this.discardedCards = [];
     this.loadCard();
     return this;
   }
@@ -73,14 +73,14 @@ export default class cards {
    * This method gets the last cards from the randomCards array and places them
    */
   getRandomCards(numOfCards) {
-    let returnedCards = new Array();
+    let returnedCards = [];
     let j = 0;
 
     // If the current remain cards is less than the what it require, return the all the
     // remaining cardss
     if (numOfCards > this.randomCards.length) {
       returnedCards = Array.from(this.randomCards);
-      this.randomCards = new Array();
+      this.randomCards = [];
       return returnedCards;
     }
 

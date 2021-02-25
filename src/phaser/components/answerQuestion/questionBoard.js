@@ -89,7 +89,7 @@ export default class questionBoard extends Phaser.Scene {
     this.closeScenePrep();
 
     this.scene.resume('game', {
-      countdown: this.countdown,
+      counter: this.countdown,
       mainGameCounter: this.counter,
     });
   }

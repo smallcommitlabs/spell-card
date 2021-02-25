@@ -1,4 +1,3 @@
-import Phaser from 'phaser';
 import HealthBar from './HealthBar';
 
 export default class healthSystem {
@@ -10,7 +9,7 @@ export default class healthSystem {
     this.magic = magic;
     this.scene = scene;
     this.left = left;
-    
+
     const colour = '0x63E563';
     let xHealth = x + 100;
     if (!left) {

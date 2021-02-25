@@ -5,7 +5,7 @@ import playerData from '../../player/playerData';
 export default class setting extends Phaser.Scene {
   init(data) {
     this.mainGame = data;
-    this.counter = data.counter;
+    this.mainGameCounter = data.counter;
     this.mainGameTimerLabel = data.timerLabel;
     this.key = data.key;
   }
@@ -25,7 +25,7 @@ export default class setting extends Phaser.Scene {
     retangle.alpha = 0.5;
     const surrender = this.add.text(600, 600, 'Surrender', { fontSize: 48 }).setInteractive();
 
-    if (this.counter) {
+    if (this.mainGameCounter) {
       this.timerSettup(width);
     }
 
@@ -47,7 +47,7 @@ export default class setting extends Phaser.Scene {
   }
 
   update() {
-    if (this.counter) {
+    if (this.mainGameCounter) {
       this.countdown.update();
     }
   }
@@ -58,7 +58,7 @@ export default class setting extends Phaser.Scene {
 
   timerSettup(width) {
     const timerLabel = this.add.text(width * 0.5, 150, '5:00', { fontSize: 32 }).setOrigin(0.5);
-    const timeRemain = this.counter.getRemain();
+    const timeRemain = this.mainGameCounter.getRemain();
     this.countdown = new CountdownController(this, timerLabel);
     this.countdown.start(this.handleCountdownFinished.bind(this), timeRemain);
   }
@@ -66,9 +66,12 @@ export default class setting extends Phaser.Scene {
   navigation() {
     this.scene.remove('gameSetting');
     this.scene = this.mainGame.object.scene;
-    if (this.counter) {
+    if (this.mainGameCounter) {
       this.mainGameTimerLabel.visible = true;
-      this.scene.resume(this.key, { counter: this.countdown, mainGameCounter: this.counter });
+      this.scene.resume(this.key, {
+        counter: this.countdown,
+        mainGameCounter: this.mainGameCounter,
+      });
     } else {
       this.scene.resume(this.key);
     }

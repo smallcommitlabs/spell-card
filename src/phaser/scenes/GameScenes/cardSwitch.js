@@ -14,7 +14,7 @@ export default class cardSwich extends Phaser.Scene {
   constructor() {
     super('cardSwitch');
     this.navigation = new NavigationButton(this);
-    this.givenCards = new Array();
+    this.givenCards = [];
     this.process = new playerData();
   }
 
@@ -46,7 +46,7 @@ export default class cardSwich extends Phaser.Scene {
     this.navigation.createSpecialButton(width * 0.5, height * 0.85, 24, 'Confirm', () => {
       let cardsReplaced = 0;
       let cardsKept = 0;
-      let replacementCards = new Array();
+      let replacementCards = [];
       // THis is not working because this.givenCards[i] is not referencing the same isSelected and does not change
       // in this instance itself i think and only in the card class instance or something like that
 
