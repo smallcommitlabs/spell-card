@@ -88,9 +88,10 @@ export default class playerAttack extends Phaser.Scene {
       this.action(cardClass, rank);
     } else if (this.correctness && cardClass === 'Magic') {
       // replace this with magic
-      this.gamingScene.playAttack();
+      this.gamingScene.playMagic();
       this.action(cardClass, rank);
     } else {
+      this.gamingScene.playSelfDamage();
       this.player1.dealDamage(1);
     }
   }

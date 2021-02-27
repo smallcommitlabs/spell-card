@@ -49,9 +49,14 @@ export default class gamingScene {
     );
 
     // player animation
-    this.playerModel = this.scene.add.sprite(370, 550, 'playerModel', 0).setScale(0.65);
+    this.playerModel = this.scene.add.sprite(370, 550, 'playerModel', 0).setScale(0.5);
     this.makeAnims();
     this.playerModel.play('idle');
+
+    // boss model animation
+    this.bossModel = this.scene.add.sprite(1500, 470, 'playerModel', 0).setScale(0.8);
+    this.bossModel.flipX = true;
+    this.bossModel.play('idle');
 
     // Layout for boss and player health and armour stats
     this.player1Health = this.scene.add
@@ -112,8 +117,20 @@ export default class gamingScene {
         start: 1,
         end: 12,
         zeroPad: 0,
-        prefix: 'playerIdle_',
-        suffix: '.png',
+        prefix: 'playerIdle (',
+        suffix: ').png',
+      }),
+    });
+    this.scene.anims.create({
+      key: 'idle2',
+      repeat: 0,
+      frameRate: 8,
+      frames: this.scene.anims.generateFrameNames('playerModel', {
+        start: 1,
+        end: 12,
+        zeroPad: 0,
+        prefix: 'playerIdle (',
+        suffix: ').png',
       }),
     });
     this.scene.anims.create({
@@ -121,11 +138,11 @@ export default class gamingScene {
       repeat: 0,
       frameRate: 8,
       frames: this.scene.anims.generateFrameNames('playerModel', {
-        start: 25,
-        end: 42,
+        start: 13,
+        end: 33,
         zeroPad: 0,
-        prefix: 'playerAttack_',
-        suffix: '.png',
+        prefix: 'playerAttack (',
+        suffix: ').png',
       }),
     });
     this.scene.anims.create({
@@ -136,8 +153,20 @@ export default class gamingScene {
         start: 13,
         end: 31,
         zeroPad: 0,
-        prefix: 'playerdefence_',
-        suffix: '.png',
+        prefix: 'playerDefend (',
+        suffix: ').png',
+      }),
+    });
+    this.scene.anims.create({
+      key: 'magic',
+      repeat: 0,
+      frameRate: 8,
+      frames: this.scene.anims.generateFrameNames('playerModel', {
+        start: 15,
+        end: 35,
+        zeroPad: 0,
+        prefix: 'playerMagic (',
+        suffix: ').png',
       }),
     });
   }
@@ -148,6 +177,15 @@ export default class gamingScene {
 
   playDefence() {
     this.playerModel.play('defence');
+  }
+
+  playMagic() {
+    this.playerModel.play('magic');
+  }
+
+  playSelfDamage() {
+    this.playerModel.tint = 0xff0000;
+    this.playerModel.play('idle2');
   }
 
   returnPlayer() {
