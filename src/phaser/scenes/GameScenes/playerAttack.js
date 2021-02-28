@@ -44,7 +44,6 @@ export default class playerAttack extends Phaser.Scene {
     if (!this.gamingScene.returnPlayer().anims.isPlaying) {
       // If the the player health is equal 0 or no more cards, switch to gameResult
       // Else restart a new round
-
       if (this.player1.getHealth() <= 0 || this.dojoBoss.returnBossHealth() <= 0) {
         this.scene.start('gameResult', {
           player1: this.player1,

@@ -55,29 +55,32 @@ export default class roundResult extends Phaser.Scene {
     // if (!this.timeline.isPlaying()) {
     // If the the player health is equal 0 or no more cards, switch to gameResult
     // Else restart a new round
-    if (
-      this.player1.getHealth() <= 0 ||
-      this.dojoBoss.returnBossHealth() <= 0 ||
-      this.playerData.getCardRemainNumber() === 0
-    ) {
-      this.playerData.refreshDecks();
-      this.scene.start('gameResult', {
-        player1: this.player1,
-        dojoBoss: this.dojoBoss,
-      });
-      this.scene.remove('gameSetting');
-    } else {
-      this.scene.start('game', {
-        player1: this.player1,
-        dojoBoss: this.dojoBoss,
-        selectedCards: this.getCards(),
-      });
-      this.scene.remove('gameSetting');
+    if (!this.gamingScene.returnBoss().anims.isPlaying) {
+      if (
+        this.player1.getHealth() <= 0 ||
+        this.dojoBoss.returnBossHealth() <= 0 ||
+        this.playerData.getCardRemainNumber() === 0
+      ) {
+        this.playerData.refreshDecks();
+        this.scene.start('gameResult', {
+          player1: this.player1,
+          dojoBoss: this.dojoBoss,
+        });
+        this.scene.remove('gameSetting');
+      } else {
+        this.scene.start('game', {
+          player1: this.player1,
+          dojoBoss: this.dojoBoss,
+          selectedCards: this.getCards(),
+        });
+        this.scene.remove('gameSetting');
+      }
     }
   }
 
   punishment(cards, length, player) {
     const nonanswerDamage = length - cards.length;
+    this.gamingScene.playSelfDamagePunishment();
     player.dealDamage(nonanswerDamage);
   }
 
@@ -91,7 +94,12 @@ export default class roundResult extends Phaser.Scene {
   bossAttack() {
     for (let i = 0; i < 3; i++) {
       const damage = this.dojoBoss.randomAttack();
-      console.log(this.player1.getDefenceValue());
+      console.log(damage);
+      if (damage === 0) {
+        this.gamingScene.playDefenceBoss();
+      } else {
+        this.gamingScene.playAttackBoss();
+      }
       if (this.player1.getDefenceValue() >= damage) {
         this.player1.reduceDefence(damage);
       } else {

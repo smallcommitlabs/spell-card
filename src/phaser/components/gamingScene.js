@@ -179,7 +179,22 @@ export default class gamingScene {
 
   playAttack() {
     this.playerModel.play('attack');
-    this.bossModel.tint = 0xff0000;
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback: () => {
+        this.bossModel.tint = 0xff0000;
+      },
+    });
+  }
+
+  playAttackBoss() {
+    this.bossModel.play('attack');
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback: () => {
+        this.playerModel.tint = 0xff0000;
+      },
+    });
   }
 
   playDefence() {
@@ -203,6 +218,10 @@ export default class gamingScene {
     });
   }
 
+  playDefenceBoss() {
+    this.bossModel.play('defence');
+  }
+
   playMagic() {
     this.playerModel.play('magic');
   }
@@ -212,8 +231,23 @@ export default class gamingScene {
     this.playerModel.play('idle2');
   }
 
+  playSelfDamagePunishment() {
+    this.playerModel.tint = 0xff0000;
+    this.playerModel.play('idle2');
+    this.scene.time.addEvent({
+      delay: 500,
+      callback: () => {
+        this.playerModel.tint = 0xffffff;
+      },
+    });
+  }
+
   returnPlayer() {
     return this.playerModel;
+  }
+
+  returnBoss() {
+    return this.bossModel;
   }
 
   returnPlayer1Health() {
