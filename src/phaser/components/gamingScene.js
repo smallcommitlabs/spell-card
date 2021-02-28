@@ -58,6 +58,12 @@ export default class gamingScene {
     this.bossModel.flipX = true;
     this.bossModel.play('idle');
 
+    // shield animation
+    this.smallShield = this.scene.add.sprite(375, 560, 'shieldSmall', 0).setScale(0.5);
+    this.bigShield = this.scene.add.sprite(375, 560, 'shieldLarge', 0).setScale(0.5);
+    this.smallShield.alpha = 0;
+    this.bigShield.alpha = 0;
+
     // Layout for boss and player health and armour stats
     this.player1Health = this.scene.add
       .text(230, ypos + 38, player1.getHealth(), { fontSize: 30 })
@@ -173,10 +179,28 @@ export default class gamingScene {
 
   playAttack() {
     this.playerModel.play('attack');
+    this.bossModel.tint = 0xff0000;
   }
 
   playDefence() {
     this.playerModel.play('defence');
+    this.scene.time.addEvent({
+      delay: 500,
+      callback: () => {
+        this.scene.tweens.add({
+          targets: this.smallShield,
+          alpha: 1,
+          duration: 500,
+          repeat: 0,
+        });
+        this.scene.tweens.add({
+          targets: this.bigShield,
+          alpha: 0.7,
+          duration: 500,
+          repeat: 0,
+        });
+      },
+    });
   }
 
   playMagic() {

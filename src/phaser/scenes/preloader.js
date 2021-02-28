@@ -39,8 +39,8 @@ class preloader extends Phaser.Scene {
     this.load.image('magic', magic);
     this.load.spritesheet('attackAnimation', attack0, { frameWidth: 500, frameHeight: 484 });
     this.load.atlas('playerModel', playerSpritesheet, playerJson);
-    this.load.image('shieldSmall', shieldSmall);
-    this.load.image('shieldLarge', shieldLarge);
+    this.load.image('shieldSmall', shieldSmall, { frameWidth: 400, frameHeight: 384 });
+    this.load.image('shieldLarge', shieldLarge, { frameWidth: 450, frameHeight: 434 });
   }
 
   create() {
