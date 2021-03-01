@@ -48,27 +48,21 @@ export default class gamingScene {
       false
     );
 
-    // player
-    // this.scene.physics.add
-    //   .sprite(width * 0.2, height * 0.4, 'player')
-    //   .setOrigin(0.5)
-    //   .setScale(0.15);
-    const bplay = this.scene.add
-      .sprite(width * 0.2, height * 0.4, 'attackAnimation', 0)
-      .setScale(0.6);
-    this.scene.anims.create({
-      key: 'moving',
-      repeat: -1,
-      frameRate: 5,
-      frames: this.scene.anims.generateFrameNumbers('attackAnimation', { start: 0, end: 3 }),
-    });
-    console.log(bplay);
-    bplay.play('moving');
+    // player animation
+    this.playerModel = this.scene.add.sprite(370, 550, 'playerModel', 0).setScale(0.5);
+    this.makeAnims();
+    this.playerModel.play('idle');
 
-    this.scene.physics.add
-      .sprite(width * 0.8, height * 0.4, 'player')
-      .setOrigin(0.5)
-      .setScale(0.15);
+    // boss model animation
+    this.bossModel = this.scene.add.sprite(1500, 470, 'playerModel', 0).setScale(0.8);
+    this.bossModel.flipX = true;
+    this.bossModel.play('idle');
+
+    // shield animation
+    this.smallShield = this.scene.add.sprite(375, 560, 'shieldSmall', 0).setScale(0.5);
+    this.bigShield = this.scene.add.sprite(375, 560, 'shieldLarge', 0).setScale(0.5);
+    this.smallShield.alpha = 0;
+    this.bigShield.alpha = 0;
 
     // Layout for boss and player health and armour stats
     this.player1Health = this.scene.add
@@ -118,6 +112,142 @@ export default class gamingScene {
       },
       this.scene
     );
+  }
+
+  makeAnims() {
+    this.scene.anims.create({
+      key: 'idle',
+      repeat: -1,
+      frameRate: 8,
+      frames: this.scene.anims.generateFrameNames('playerModel', {
+        start: 1,
+        end: 12,
+        zeroPad: 0,
+        prefix: 'playerIdle (',
+        suffix: ').png',
+      }),
+    });
+    this.scene.anims.create({
+      key: 'idle2',
+      repeat: 0,
+      frameRate: 8,
+      frames: this.scene.anims.generateFrameNames('playerModel', {
+        start: 1,
+        end: 12,
+        zeroPad: 0,
+        prefix: 'playerIdle (',
+        suffix: ').png',
+      }),
+    });
+    this.scene.anims.create({
+      key: 'attack',
+      repeat: 0,
+      frameRate: 8,
+      frames: this.scene.anims.generateFrameNames('playerModel', {
+        start: 13,
+        end: 33,
+        zeroPad: 0,
+        prefix: 'playerAttack (',
+        suffix: ').png',
+      }),
+    });
+    this.scene.anims.create({
+      key: 'defence',
+      repeat: 0,
+      frameRate: 8,
+      frames: this.scene.anims.generateFrameNames('playerModel', {
+        start: 13,
+        end: 31,
+        zeroPad: 0,
+        prefix: 'playerDefend (',
+        suffix: ').png',
+      }),
+    });
+    this.scene.anims.create({
+      key: 'magic',
+      repeat: 0,
+      frameRate: 8,
+      frames: this.scene.anims.generateFrameNames('playerModel', {
+        start: 15,
+        end: 35,
+        zeroPad: 0,
+        prefix: 'playerMagic (',
+        suffix: ').png',
+      }),
+    });
+  }
+
+  playAttack() {
+    this.playerModel.play('attack');
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback: () => {
+        this.bossModel.tint = 0xff0000;
+      },
+    });
+  }
+
+  playAttackBoss() {
+    this.bossModel.play('attack');
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback: () => {
+        this.playerModel.tint = 0xff0000;
+      },
+    });
+  }
+
+  playDefence() {
+    this.playerModel.play('defence');
+    this.scene.time.addEvent({
+      delay: 500,
+      callback: () => {
+        this.scene.tweens.add({
+          targets: this.smallShield,
+          alpha: 1,
+          duration: 500,
+          repeat: 0,
+        });
+        this.scene.tweens.add({
+          targets: this.bigShield,
+          alpha: 0.7,
+          duration: 500,
+          repeat: 0,
+        });
+      },
+    });
+  }
+
+  playDefenceBoss() {
+    this.bossModel.play('defence');
+  }
+
+  playMagic() {
+    this.playerModel.play('magic');
+  }
+
+  playSelfDamage() {
+    this.playerModel.tint = 0xff0000;
+    this.playerModel.play('idle2');
+  }
+
+  playSelfDamagePunishment() {
+    this.playerModel.tint = 0xff0000;
+    this.playerModel.play('idle2');
+    this.scene.time.addEvent({
+      delay: 500,
+      callback: () => {
+        this.playerModel.tint = 0xffffff;
+      },
+    });
+  }
+
+  returnPlayer() {
+    return this.playerModel;
+  }
+
+  returnBoss() {
+    return this.bossModel;
   }
 
   returnPlayer1Health() {
