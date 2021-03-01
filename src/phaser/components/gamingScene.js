@@ -216,6 +216,17 @@ export default class gamingScene {
         });
       },
     });
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback: () => {
+        this.scene.tweens.add({
+          targets: [this.smallShield, this.bigShield],
+          alpha: 0,
+          duration: 300,
+          repeat: 0,
+        });
+      },
+    });
   }
 
   playDefenceBoss() {
