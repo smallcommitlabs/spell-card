@@ -93,11 +93,12 @@ export default class roundResult extends Phaser.Scene {
   // Bosses attack
   bossAttack() {
     for (let i = 0; i < 3; i++) {
+      const currentBossDeff = this.dojoBoss.returnBossArmour();
       const damage = this.dojoBoss.randomAttack();
       console.log(damage);
-      if (damage === 0) {
+      if (currentBossDeff !== this.dojoBoss.returnBossArmour()) {
         this.gamingScene.playDefenceBoss();
-      } else {
+      } else if (damage > 0) {
         this.gamingScene.playAttackBoss();
       }
       if (this.player1.getDefenceValue() >= damage) {
