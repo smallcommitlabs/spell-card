@@ -19,7 +19,6 @@ export default class playerAttack extends Phaser.Scene {
   }
 
   create() {
-    const { width, height } = this.scale;
     this.gamingScene.buildScene(this.player1, this.dojoBoss, false);
 
     // Set up magic health and defence
@@ -28,7 +27,7 @@ export default class playerAttack extends Phaser.Scene {
 
     this.setPlayerNBossHealthSystem(this.playerHealthSystem, this.bossHealthSystem);
 
-    this.processCard(width, height);
+    this.processCard();
 
     console.log(this.player1.getHealth(), ' ', this.dojoBoss.returnBossHealth());
   }
@@ -42,10 +41,9 @@ export default class playerAttack extends Phaser.Scene {
     this.dojoHealthSystem = this.background.returnBossHealthSystem();
 
     // If the animation finished
-    if (!this.timeline.isPlaying()) {
+    if (!this.gamingScene.returnPlayer().anims.isPlaying) {
       // If the the player health is equal 0 or no more cards, switch to gameResult
       // Else restart a new round
-
       if (this.player1.getHealth() <= 0 || this.dojoBoss.returnBossHealth() <= 0) {
         this.scene.start('gameResult', {
           player1: this.player1,
@@ -76,55 +74,29 @@ export default class playerAttack extends Phaser.Scene {
   }
 
   // Add animation and effects for correctCards
-  processCard(width, height) {
-    this.timeline = this.tweens.createTimeline();
-
+  processCard() {
     const card = this.currentCard.getCard();
     const cardClass = card.class;
     const rank = card.rank;
-    const image = card.image;
-
-    // Target that the animation is aiming at
-    const target = this.add
-      .image(width * 0.2 + 50, height * 0.4, image)
-      .setOrigin(0.5)
-      .setScale(0.15);
-
     // correct and incorrect card animations
-    if (this.correctness) {
-      this.timeline.add({
-        targets: target,
-        x: 1400,
-        onStart: this.onStart.bind(this, target),
-        ease: 'Power0',
-        duration: 2000,
-        onComplete: this.action.bind(this, cardClass, rank, target),
-      });
+    if (this.correctness && cardClass === 'Attack') {
+      this.gamingScene.playAttack();
+      this.action(cardClass, rank);
+    } else if (this.correctness && cardClass === 'Defence') {
+      this.gamingScene.playDefence();
+      this.action(cardClass, rank);
+    } else if (this.correctness && cardClass === 'Magic') {
+      // replace this with magic
+      this.gamingScene.playMagic();
+      this.action(cardClass, rank);
     } else {
-      this.timeline.add({
-        targets: target,
-        x: 400,
-        onStart: this.onStart.bind(this, target),
-        ease: 'Power0',
-        duration: 600,
-        onComplete: this.action.bind(this, cardClass, rank, target),
-      });
+      this.gamingScene.playSelfDamage();
       this.player1.dealDamage(1);
     }
-
-    target.visible = false;
-    // Play animation
-    this.timeline.play();
-  }
-
-  onStart(target) {
-    target.visible = true;
   }
 
   // to indentify the type of attack
-  action(type, damage, target) {
-    target.visible = false;
-
+  action(type, damage) {
     const totalDamage = damage + this.player1.magicStatus();
     console.log(totalDamage + ', ' + this.player1.magicStatus());
 
@@ -137,7 +109,6 @@ export default class playerAttack extends Phaser.Scene {
         this.dojoBoss.decreaseHealth(take);
       }
       this.player1.clearMagic();
-      this.player1HealthSystem.setMagic(this.player1.magicStatus());
     } else if (type === 'Magic') {
       this.player1.changeMagicStatus(damage);
       // is this a c or s lmao

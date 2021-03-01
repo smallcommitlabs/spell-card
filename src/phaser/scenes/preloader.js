@@ -12,6 +12,10 @@ import iconBoarder from '../assets/HealthSystem/Iconborder.png';
 import armour from '../assets/HealthSystem/Armour.png';
 import magic from '../assets/HealthSystem/Magic.png';
 import attack0 from '../assets/spriteSheet/attack-0.png';
+import playerSpritesheet from '../assets/characterAnimation/playerSpritesheet.png';
+import playerJson from '../assets/characterAnimation/playerJson.json';
+import shieldSmall from '../assets/characterAnimation/shieldSmall.png';
+import shieldLarge from '../assets/characterAnimation/shieldLarge.png';
 
 class preloader extends Phaser.Scene {
   constructor() {
@@ -34,6 +38,9 @@ class preloader extends Phaser.Scene {
     this.load.image('armour', armour);
     this.load.image('magic', magic);
     this.load.spritesheet('attackAnimation', attack0, { frameWidth: 500, frameHeight: 484 });
+    this.load.atlas('playerModel', playerSpritesheet, playerJson);
+    this.load.image('shieldSmall', shieldSmall, { frameWidth: 400, frameHeight: 384 });
+    this.load.image('shieldLarge', shieldLarge, { frameWidth: 450, frameHeight: 434 });
   }
 
   create() {

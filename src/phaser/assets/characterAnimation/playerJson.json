@@ -1,0 +1,2246 @@
+{
+  "textures": [
+    {
+      "image": "sheet04.png",
+      "format": "RGBA8888",
+      "size": {
+        "w": 7927,
+        "h": 4575
+      },
+      "scale": 1,
+      "frames": [
+        {
+          "filename": "playerAttack (1).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 550,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 550,
+            "h": 556
+          },
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 550,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerAttack (2).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 569,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 569,
+            "h": 556
+          },
+          "frame": {
+            "x": 550,
+            "y": 0,
+            "w": 569,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerAttack (3).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 564,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          },
+          "frame": {
+            "x": 1119,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerAttack (4).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 574,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          },
+          "frame": {
+            "x": 1683,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerAttack (5).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 568,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          },
+          "frame": {
+            "x": 2257,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerAttack (6).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 2825,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerAttack (7).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 3390,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerAttack (8).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 567,
+            "h": 545
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 567,
+            "h": 545
+          },
+          "frame": {
+            "x": 3955,
+            "y": 0,
+            "w": 567,
+            "h": 545
+          }
+        },
+        {
+          "filename": "playerAttack (9).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 4522,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerAttack (10).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 5087,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerAttack (11).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 568,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          },
+          "frame": {
+            "x": 5652,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerAttack (12).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 574,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          },
+          "frame": {
+            "x": 6220,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerAttack (13).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 564,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          },
+          "frame": {
+            "x": 6794,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerAttack (14).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 569,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 569,
+            "h": 556
+          },
+          "frame": {
+            "x": 7358,
+            "y": 0,
+            "w": 569,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerAttack (15).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 550,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 550,
+            "h": 556
+          },
+          "frame": {
+            "x": 0,
+            "y": 556,
+            "w": 550,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerAttack (16).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 575,
+            "h": 558
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 575,
+            "h": 558
+          },
+          "frame": {
+            "x": 550,
+            "y": 556,
+            "w": 575,
+            "h": 558
+          }
+        },
+        {
+          "filename": "playerAttack (17).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 571,
+            "h": 558
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 571,
+            "h": 558
+          },
+          "frame": {
+            "x": 1125,
+            "y": 556,
+            "w": 571,
+            "h": 558
+          }
+        },
+        {
+          "filename": "playerAttack (18).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 544,
+            "h": 535
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 544,
+            "h": 535
+          },
+          "frame": {
+            "x": 1696,
+            "y": 556,
+            "w": 544,
+            "h": 535
+          }
+        },
+        {
+          "filename": "playerAttack (19).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 549,
+            "h": 537
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 549,
+            "h": 537
+          },
+          "frame": {
+            "x": 2240,
+            "y": 556,
+            "w": 549,
+            "h": 537
+          }
+        },
+        {
+          "filename": "playerAttack (20).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 490,
+            "h": 536
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 490,
+            "h": 536
+          },
+          "frame": {
+            "x": 2789,
+            "y": 556,
+            "w": 490,
+            "h": 536
+          }
+        },
+        {
+          "filename": "playerAttack (21).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 466,
+            "h": 554
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 466,
+            "h": 554
+          },
+          "frame": {
+            "x": 3279,
+            "y": 556,
+            "w": 466,
+            "h": 554
+          }
+        },
+        {
+          "filename": "playerAttack (22).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 524,
+            "h": 549
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 524,
+            "h": 549
+          },
+          "frame": {
+            "x": 3745,
+            "y": 556,
+            "w": 524,
+            "h": 549
+          }
+        },
+        {
+          "filename": "playerAttack (23).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 515,
+            "h": 545
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 515,
+            "h": 545
+          },
+          "frame": {
+            "x": 4269,
+            "y": 556,
+            "w": 515,
+            "h": 545
+          }
+        },
+        {
+          "filename": "playerAttack (24).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 510,
+            "h": 532
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 510,
+            "h": 532
+          },
+          "frame": {
+            "x": 4784,
+            "y": 556,
+            "w": 510,
+            "h": 532
+          }
+        },
+        {
+          "filename": "playerAttack (25).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 548,
+            "h": 540
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 548,
+            "h": 540
+          },
+          "frame": {
+            "x": 5294,
+            "y": 556,
+            "w": 548,
+            "h": 540
+          }
+        },
+        {
+          "filename": "playerAttack (26).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 522,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 522,
+            "h": 544
+          },
+          "frame": {
+            "x": 5842,
+            "y": 556,
+            "w": 522,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerAttack (27).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 529,
+            "h": 541
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 529,
+            "h": 541
+          },
+          "frame": {
+            "x": 6364,
+            "y": 556,
+            "w": 529,
+            "h": 541
+          }
+        },
+        {
+          "filename": "playerAttack (28).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 542,
+            "h": 532
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 542,
+            "h": 532
+          },
+          "frame": {
+            "x": 6893,
+            "y": 556,
+            "w": 542,
+            "h": 532
+          }
+        },
+        {
+          "filename": "playerAttack (29).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 533,
+            "h": 537
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 533,
+            "h": 537
+          },
+          "frame": {
+            "x": 0,
+            "y": 1114,
+            "w": 533,
+            "h": 537
+          }
+        },
+        {
+          "filename": "playerAttack (30).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 533,
+            "y": 1114,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerAttack (31).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 568,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          },
+          "frame": {
+            "x": 1098,
+            "y": 1114,
+            "w": 568,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerAttack (32).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 574,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          },
+          "frame": {
+            "x": 1666,
+            "y": 1114,
+            "w": 574,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerAttack (33).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 564,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          },
+          "frame": {
+            "x": 2240,
+            "y": 1114,
+            "w": 564,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerDefend (1).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 550,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 550,
+            "h": 556
+          },
+          "frame": {
+            "x": 2804,
+            "y": 1114,
+            "w": 550,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerDefend (2).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 569,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 569,
+            "h": 556
+          },
+          "frame": {
+            "x": 3354,
+            "y": 1114,
+            "w": 569,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerDefend (3).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 564,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          },
+          "frame": {
+            "x": 3923,
+            "y": 1114,
+            "w": 564,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerDefend (4).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 574,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          },
+          "frame": {
+            "x": 4487,
+            "y": 1114,
+            "w": 574,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerDefend (5).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 568,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          },
+          "frame": {
+            "x": 5061,
+            "y": 1114,
+            "w": 568,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerDefend (6).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 5629,
+            "y": 1114,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerDefend (7).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 6194,
+            "y": 1114,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerDefend (8).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 567,
+            "h": 545
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 567,
+            "h": 545
+          },
+          "frame": {
+            "x": 6759,
+            "y": 1114,
+            "w": 567,
+            "h": 545
+          }
+        },
+        {
+          "filename": "playerDefend (9).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 7326,
+            "y": 1114,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerDefend (10).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 0,
+            "y": 1670,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerDefend (11).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 568,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          },
+          "frame": {
+            "x": 565,
+            "y": 1670,
+            "w": 568,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerDefend (12).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 574,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          },
+          "frame": {
+            "x": 1133,
+            "y": 1670,
+            "w": 574,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerDefend (13).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 564,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          },
+          "frame": {
+            "x": 1707,
+            "y": 1670,
+            "w": 564,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerDefend (14).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 569,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 569,
+            "h": 556
+          },
+          "frame": {
+            "x": 2271,
+            "y": 1670,
+            "w": 569,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerDefend (15).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 550,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 550,
+            "h": 556
+          },
+          "frame": {
+            "x": 2840,
+            "y": 1670,
+            "w": 550,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerDefend (16).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 550
+          },
+          "frame": {
+            "x": 3390,
+            "y": 1670,
+            "w": 565,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerDefend (17).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 477,
+            "h": 539
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 477,
+            "h": 539
+          },
+          "frame": {
+            "x": 3955,
+            "y": 1670,
+            "w": 477,
+            "h": 539
+          }
+        },
+        {
+          "filename": "playerDefend (18).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 474,
+            "h": 521
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 474,
+            "h": 521
+          },
+          "frame": {
+            "x": 4432,
+            "y": 1670,
+            "w": 474,
+            "h": 521
+          }
+        },
+        {
+          "filename": "playerDefend (19).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 491,
+            "h": 522
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 491,
+            "h": 522
+          },
+          "frame": {
+            "x": 4906,
+            "y": 1670,
+            "w": 491,
+            "h": 522
+          }
+        },
+        {
+          "filename": "playerDefend (20).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 474,
+            "h": 521
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 474,
+            "h": 521
+          },
+          "frame": {
+            "x": 5397,
+            "y": 1670,
+            "w": 474,
+            "h": 521
+          }
+        },
+        {
+          "filename": "playerDefend (21).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 477,
+            "h": 539
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 477,
+            "h": 539
+          },
+          "frame": {
+            "x": 5871,
+            "y": 1670,
+            "w": 477,
+            "h": 539
+          }
+        },
+        {
+          "filename": "playerDefend (22).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 550
+          },
+          "frame": {
+            "x": 6348,
+            "y": 1670,
+            "w": 565,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerDefend (23).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 551,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 551,
+            "h": 556
+          },
+          "frame": {
+            "x": 6913,
+            "y": 1670,
+            "w": 551,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerIdle (1).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 550,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 550,
+            "h": 556
+          },
+          "frame": {
+            "x": 0,
+            "y": 2226,
+            "w": 550,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerIdle (2).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 569,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 569,
+            "h": 556
+          },
+          "frame": {
+            "x": 550,
+            "y": 2226,
+            "w": 569,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerIdle (3).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 564,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          },
+          "frame": {
+            "x": 1119,
+            "y": 2226,
+            "w": 564,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerIdle (4).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 574,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          },
+          "frame": {
+            "x": 1683,
+            "y": 2226,
+            "w": 574,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerIdle (5).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 568,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          },
+          "frame": {
+            "x": 2257,
+            "y": 2226,
+            "w": 568,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerIdle (6).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 2825,
+            "y": 2226,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerIdle (7).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 3390,
+            "y": 2226,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerIdle (8).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 567,
+            "h": 545
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 567,
+            "h": 545
+          },
+          "frame": {
+            "x": 3955,
+            "y": 2226,
+            "w": 567,
+            "h": 545
+          }
+        },
+        {
+          "filename": "playerIdle (9).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 4522,
+            "y": 2226,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerIdle (10).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 5087,
+            "y": 2226,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerIdle (11).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 568,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          },
+          "frame": {
+            "x": 5652,
+            "y": 2226,
+            "w": 568,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerIdle (12).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 574,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          },
+          "frame": {
+            "x": 6220,
+            "y": 2226,
+            "w": 574,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerIdle (13).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 564,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          },
+          "frame": {
+            "x": 6794,
+            "y": 2226,
+            "w": 564,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerIdle (14).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 569,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 569,
+            "h": 556
+          },
+          "frame": {
+            "x": 7358,
+            "y": 2226,
+            "w": 569,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerIdle (15).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 550,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 550,
+            "h": 556
+          },
+          "frame": {
+            "x": 0,
+            "y": 2782,
+            "w": 550,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerMagic (1).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 550,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 550,
+            "h": 556
+          },
+          "frame": {
+            "x": 550,
+            "y": 2782,
+            "w": 550,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerMagic (2).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 569,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 569,
+            "h": 556
+          },
+          "frame": {
+            "x": 1100,
+            "y": 2782,
+            "w": 569,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerMagic (3).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 564,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          },
+          "frame": {
+            "x": 1669,
+            "y": 2782,
+            "w": 564,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerMagic (4).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 574,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          },
+          "frame": {
+            "x": 2233,
+            "y": 2782,
+            "w": 574,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerMagic (5).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 568,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          },
+          "frame": {
+            "x": 2807,
+            "y": 2782,
+            "w": 568,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerMagic (6).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 3375,
+            "y": 2782,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerMagic (7).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 3940,
+            "y": 2782,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerMagic (8).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 567,
+            "h": 545
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 567,
+            "h": 545
+          },
+          "frame": {
+            "x": 4505,
+            "y": 2782,
+            "w": 567,
+            "h": 545
+          }
+        },
+        {
+          "filename": "playerMagic (9).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 5072,
+            "y": 2782,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerMagic (10).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 565,
+            "h": 544
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 565,
+            "h": 544
+          },
+          "frame": {
+            "x": 5637,
+            "y": 2782,
+            "w": 565,
+            "h": 544
+          }
+        },
+        {
+          "filename": "playerMagic (11).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 568,
+            "h": 550
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 568,
+            "h": 550
+          },
+          "frame": {
+            "x": 6202,
+            "y": 2782,
+            "w": 568,
+            "h": 550
+          }
+        },
+        {
+          "filename": "playerMagic (12).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 574,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 574,
+            "h": 552
+          },
+          "frame": {
+            "x": 6770,
+            "y": 2782,
+            "w": 574,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerMagic (13).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 564,
+            "h": 552
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 564,
+            "h": 552
+          },
+          "frame": {
+            "x": 7344,
+            "y": 2782,
+            "w": 564,
+            "h": 552
+          }
+        },
+        {
+          "filename": "playerMagic (14).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 569,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 569,
+            "h": 556
+          },
+          "frame": {
+            "x": 0,
+            "y": 3338,
+            "w": 569,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerMagic (15).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 550,
+            "h": 556
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 550,
+            "h": 556
+          },
+          "frame": {
+            "x": 569,
+            "y": 3338,
+            "w": 550,
+            "h": 556
+          }
+        },
+        {
+          "filename": "playerMagic (16).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 516,
+            "h": 542
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 516,
+            "h": 542
+          },
+          "frame": {
+            "x": 1119,
+            "y": 3338,
+            "w": 516,
+            "h": 542
+          }
+        },
+        {
+          "filename": "playerMagic (17).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 503,
+            "h": 537
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 503,
+            "h": 537
+          },
+          "frame": {
+            "x": 1635,
+            "y": 3338,
+            "w": 503,
+            "h": 537
+          }
+        },
+        {
+          "filename": "playerMagic (18).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 497,
+            "h": 536
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 497,
+            "h": 536
+          },
+          "frame": {
+            "x": 2138,
+            "y": 3338,
+            "w": 497,
+            "h": 536
+          }
+        },
+        {
+          "filename": "playerMagic (19).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 484,
+            "h": 533
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 484,
+            "h": 533
+          },
+          "frame": {
+            "x": 2635,
+            "y": 3338,
+            "w": 484,
+            "h": 533
+          }
+        },
+        {
+          "filename": "playerMagic (20).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 547,
+            "h": 540
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 547,
+            "h": 540
+          },
+          "frame": {
+            "x": 3119,
+            "y": 3338,
+            "w": 547,
+            "h": 540
+          }
+        },
+        {
+          "filename": "playerMagic (21).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 515,
+            "h": 545
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 515,
+            "h": 545
+          },
+          "frame": {
+            "x": 3666,
+            "y": 3338,
+            "w": 515,
+            "h": 545
+          }
+        },
+        {
+          "filename": "playerMagic (22).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 519,
+            "h": 553
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 519,
+            "h": 553
+          },
+          "frame": {
+            "x": 4181,
+            "y": 3338,
+            "w": 519,
+            "h": 553
+          }
+        },
+        {
+          "filename": "playerMagic (23).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 532,
+            "h": 620
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 532,
+            "h": 620
+          },
+          "frame": {
+            "x": 4700,
+            "y": 3338,
+            "w": 532,
+            "h": 620
+          }
+        },
+        {
+          "filename": "playerMagic (24).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 516,
+            "h": 656
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 516,
+            "h": 656
+          },
+          "frame": {
+            "x": 5232,
+            "y": 3338,
+            "w": 516,
+            "h": 656
+          }
+        },
+        {
+          "filename": "playerMagic (25).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 509,
+            "h": 690
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 509,
+            "h": 690
+          },
+          "frame": {
+            "x": 5748,
+            "y": 3338,
+            "w": 509,
+            "h": 690
+          }
+        },
+        {
+          "filename": "playerMagic (26).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 516,
+            "h": 656
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 516,
+            "h": 656
+          },
+          "frame": {
+            "x": 6257,
+            "y": 3338,
+            "w": 516,
+            "h": 656
+          }
+        },
+        {
+          "filename": "playerMagic (27).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 532,
+            "h": 620
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 532,
+            "h": 620
+          },
+          "frame": {
+            "x": 6773,
+            "y": 3338,
+            "w": 532,
+            "h": 620
+          }
+        },
+        {
+          "filename": "playerMagic (28).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 519,
+            "h": 553
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 519,
+            "h": 553
+          },
+          "frame": {
+            "x": 7305,
+            "y": 3338,
+            "w": 519,
+            "h": 553
+          }
+        },
+        {
+          "filename": "playerMagic (29).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 515,
+            "h": 545
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 515,
+            "h": 545
+          },
+          "frame": {
+            "x": 0,
+            "y": 4028,
+            "w": 515,
+            "h": 545
+          }
+        },
+        {
+          "filename": "playerMagic (30).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 547,
+            "h": 540
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 547,
+            "h": 540
+          },
+          "frame": {
+            "x": 515,
+            "y": 4028,
+            "w": 547,
+            "h": 540
+          }
+        },
+        {
+          "filename": "playerMagic (31).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 484,
+            "h": 533
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 484,
+            "h": 533
+          },
+          "frame": {
+            "x": 1062,
+            "y": 4028,
+            "w": 484,
+            "h": 533
+          }
+        },
+        {
+          "filename": "playerMagic (32).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 497,
+            "h": 536
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 497,
+            "h": 536
+          },
+          "frame": {
+            "x": 1546,
+            "y": 4028,
+            "w": 497,
+            "h": 536
+          }
+        },
+        {
+          "filename": "playerMagic (33).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 503,
+            "h": 537
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 503,
+            "h": 537
+          },
+          "frame": {
+            "x": 2043,
+            "y": 4028,
+            "w": 503,
+            "h": 537
+          }
+        },
+        {
+          "filename": "playerMagic (34).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 516,
+            "h": 542
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 516,
+            "h": 542
+          },
+          "frame": {
+            "x": 2546,
+            "y": 4028,
+            "w": 516,
+            "h": 542
+          }
+        },
+        {
+          "filename": "playerMagic (35).png",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": {
+            "w": 566,
+            "h": 547
+          },
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 566,
+            "h": 547
+          },
+          "frame": {
+            "x": 3062,
+            "y": 4028,
+            "w": 566,
+            "h": 547
+          }
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "app": "https://www.codeandweb.com/texturepacker",
+    "version": "3.0",
+    "smartupdate": "$TexturePacker:SmartUpdate:2316a964efd1440f040a79610dbc9807:890cf026f010b7ad602d9ac4685153ed:4341d30286009e5b904725e9d136523b$"
+  }
+}
